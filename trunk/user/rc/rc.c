@@ -1165,16 +1165,6 @@ handle_notifications(void)
 			restart_sqm();
 		}
 #endif
-#if defined(APP_ADBYBY)
-		else if (strcmp(entry->d_name, RCN_RESTART_ADBYBY) == 0)
-		{
-			restart_adbyby();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_UPDATEADB) == 0)
-		{
-			update_adb();
-		}
-#endif
 #if defined(APP_ADGUARDHOME)
 		else if (strcmp(entry->d_name, RCN_RESTART_ADGUARDHOME) == 0)
 		{

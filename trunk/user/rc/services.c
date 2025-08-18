@@ -490,27 +490,6 @@ void restart_wireguard(void){
 }
 #endif
 
-#if defined(APP_ADBYBY)
-void stop_adbyby(void){
-	eval("/usr/bin/adbyby.sh","stop");
-}
-
-void start_adbyby(void){
-	int adbyby_mode = nvram_get_int("adbyby_enable");
-	if ( adbyby_mode == 1)
-		eval("/usr/bin/adbyby.sh","start");
-}
-
-void restart_adbyby(void){
-	stop_adbyby();
-	start_adbyby();
-}
-
-void update_adb(void){
-	eval("/usr/bin/adbyby.sh","updateadb");
-}
-#endif
-
 #if defined(APP_SMARTDNS)
 void stop_smartdns(void){
 	eval("/usr/bin/smartdns.sh","stop");
@@ -820,9 +799,6 @@ stop_services(int stopall)
 #if defined(APP_SHADOWSOCKS)
 	stop_ss();
 	stop_ss_tunnel();
-#endif
-#if defined(APP_ADBYBY)
-	stop_adbyby();
 #endif
 #if defined(APP_DDNSTO)
 	stop_ddnsto();

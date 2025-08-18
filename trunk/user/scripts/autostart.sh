@@ -11,7 +11,6 @@ sdns_port=$(nvram get sdns_port)
 if [ $(nvram get sdns_enable) = 1 ] ; then
    if [ -f "$smartdns_conf" ] ; then
        sed -i '/去广告/d' $smartdns_conf
-       sed -i '/adbyby/d' $smartdns_conf
        sed -i '/no-resolv/d' "$dnsmasq_Conf"
        sed -i '/server=127.0.0.1#'"$sdns_portd"'/d' "$dnsmasq_Conf"
        sed -i '/port=0/d' "$dnsmasq_Conf"
@@ -44,11 +43,6 @@ done
 
 if [ $(nvram get pppoemwan_enable) = 1 ] ; then
 sleep 20
-fi
-
-if [ $(nvram get adbyby_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动adbyby plus+"
-/usr/bin/adbyby.sh start
 fi
 
 if [ $(nvram get aliddns_enable) = 1 ] ; then

@@ -407,9 +407,9 @@ if (found_app_shadowsocks()){
 if (found_app_mentohust()){
 	tabtitle[13] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
 }
-if (found_app_adbyby()){
+/*if (found_app_adbyby()){
 	tabtitle[14] = new Array("", "<#menu5_20_1#>");
-}
+}*/
 if (found_app_smartdns()||found_app_adguardhome()){
 	tabtitle[15] = new Array("", "<#menu5_29#>");
 }
@@ -455,10 +455,10 @@ if (found_app_mentohust()){
 	mentohust_array = new Array("","mentohust.asp","mentohust_log.asp");
 	tablink[13] = (mentohust_array);
 }
-if (found_app_adbyby()){
+/*if (found_app_adbyby()){
 	ad_array = new Array("","Advanced_adbyby.asp");
 	tablink[14] = (ad_array);
-}
+}*/
 if (found_app_smartdns()){
 	smartdns_array = new Array("","Advanced_smartdns.asp");
 	tablink[15] = (smartdns_array);
@@ -513,10 +513,10 @@ if (found_app_mentohust()){
 	menuL2_title.push("mentohust");
 } else menuL2_title.push("");
 
-if (found_app_adbyby()){
+/*if (found_app_adbyby()){
 	menuL2_title.push("<#menu5_20#>");
 } else menuL2_title.push("");
-
+*/
 if (found_app_smartdns()||found_app_adguardhome()){
 	menuL2_title.push("<#menu5_29#>");
 } else menuL2_title.push("");
@@ -554,10 +554,10 @@ if (found_app_mentohust()){
 	menuL2_link.push(mentohust_array[1]);
 } else menuL2_link.push("");
 
-if (found_app_adbyby()){
+/*if (found_app_adbyby()){
 	menuL2_link.push(ad_array[1]);
 }  else menuL2_link.push("");
-
+*/
 if (found_app_smartdns()){
 	menuL2_link.push(smartdns_array[1]);
 } else if (found_app_adguardhome()){

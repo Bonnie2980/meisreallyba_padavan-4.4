@@ -69,14 +69,6 @@
 			{0,0,0,0}
 		};
 		
-	struct variable variables_AdbybyConf_AdIPList[] = {
-			{"adbybyip_mac_x", "14", NULL, FALSE},
-			{"adbybyip_ip_x", "17", NULL, FALSE},
-			{"adbybyip_name_x", "24", NULL, FALSE},
-			{"adbybyip_ip_road_x", "24", NULL, FALSE},
-			{0,0,0,0}
-		};
-
 	struct variable variables_ZeroConf_ZeroList[] = {
 			{"zero_enable_x", "24", NULL, FALSE},
 			{"zero_ip_x", "24", NULL, FALSE},
@@ -125,12 +117,6 @@
 			{0,0,0,0}
 		};
 
-	struct variable variables_AdbybyConf_AdRULESList[] = {
-			{"adbybyrules_x", "24", NULL, FALSE},
-			{"adbybyrules_road_x", "24", NULL, FALSE},
-			{0,0,0,0}
-		};
-		
 	struct variable variables_SmartdnsConf_SdnsList[] = {
 			{"sdnss_enable_x", "24", NULL, FALSE},
 			{"sdnss_name_x", "24", NULL, FALSE},
@@ -211,9 +197,7 @@
 			{"w_dnsf", "", NULL, FALSE},
 			{"w_ss", "", NULL, FALSE},
 			{"w_men", "", NULL, FALSE},
-			{"w_adbyby", "", NULL, FALSE},
-			{"w_pdnsd", "", NULL, FALSE},
-
+			{"w_pdnsd", "", NULL, FALSE}
 	};
 
 	struct variable variables_WLANConfig11b_rt_RBRList[] = {
@@ -1131,37 +1115,6 @@
 	};
 #endif
 
-#if defined(APP_ADBYBY)
-    struct variable variables_AdbybyConf[] = {
-			{"adbyby_enable", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_ip_x", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_rules_x", "", NULL, EVM_RESTART_ADBYBY},
-			{"hosts_ad", "", NULL, EVM_RESTART_ADBYBY},
-			{"tv_hosts", "", NULL, EVM_RESTART_ADBYBY},
-			{"block_ios", "", NULL, EVM_RESTART_ADBYBY},
-			{"block_douyin", "", NULL, EVM_RESTART_ADBYBY},
-			{"anti_ad", "", NULL, EVM_RESTART_ADBYBY},
-			{"anti_ad_link", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_set", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_adb_update", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_update", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_update_hour", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbyby_update_min", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbybyip_staticnum_x", "", NULL, EVM_RESTART_ADBYBY},
-			{"adbybyrules_staticnum_x", "", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_rules.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_blockip.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_adblack.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_adesc.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_adhost.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_config_script.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"scripts.adbyby_host.sh", "File", NULL, EVM_RESTART_ADBYBY},
-			{"AdIPList", "Group", ARGV((char*)variables_AdbybyConf_AdIPList, "8", "55", "adbybyip_staticnum_x"), EVM_RESTART_ADBYBY},
-			{"AdRULESList", "Group", ARGV((char*)variables_AdbybyConf_AdRULESList, "8", "55", "adbybyrules_staticnum_x"), EVM_RESTART_ADBYBY},
-			{0,0,0,0}
-	};
-#endif
-
 #if defined(APP_SMARTDNS)
     struct variable variables_SmartdnsConf[] = {
 	        {"sdns_enable", "", NULL, EVM_RESTART_SMARTDNS},
@@ -1343,9 +1296,6 @@
 #if defined(APP_SQM)
 		{"SqmConf",		variables_SqmConf},
 #endif
-#if defined(APP_ADBYBY)
-		{"AdbybyConf",		variables_AdbybyConf},
-#endif
 #if defined(APP_ADGUARDHOME)
 		{"AdguardHomeConf",		variables_AdguardHomeConf},
 #endif
@@ -1463,9 +1413,6 @@
 #endif
 #if defined(APP_SMARTDNS)
 		{EVM_RESTART_SMARTDNS,		EVT_RESTART_SMARTDNS,		RCN_RESTART_SMARTDNS,	0},
-#endif
-#if defined(APP_ADBYBY)
-		{EVM_RESTART_ADBYBY,		EVT_RESTART_ADBYBY,		RCN_RESTART_ADBYBY,	0},
 #endif
 #if defined(APP_ALIDDNS)
 		{EVM_RESTART_ALIDDNS,		EVT_RESTART_ALIDDNS,		RCN_RESTART_ALIDDNS,	0},

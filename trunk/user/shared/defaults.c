@@ -659,23 +659,6 @@ struct nvram_pair router_defaults[] = {
 	{ "ss_keyword", "过期时间/剩余流量" },
 #endif
 	
-	/*Adbyby PlUS+*/
-	{ "adbyby_enable", "0" },
-	{ "adbyby_set", "0" },
-	{ "adbyby_adb_update", "0" },
-	{ "adbyby_update", "2" },
-	{ "hosts_ad", "1" },
-	{ "adbyby_update_hour", "03" },
-	{ "adbyby_update_min", "30" },
-	{ "adbyby_ip_x", "0" },
-	{ "adbyby_rules_x", "0" },
-	{ "adbybyip_staticnum_x", "0" },
-	{ "adbybyrules_staticnum_x", "0" },
-	{ "block_ios", "0" },
-	{ "block_douyin", "0" },
-	{ "anti_ad", "0" },
-	{ "anti_ad_link", "https://anti-ad.net/anti-ad-for-dnsmasq.conf" },
-	{ "anti_ad_count", "0" },
 	/* Pdnsd */
 	{ "dns_enable", "0" },
 	{ "dns_server", "223.5.5.5,114.114.114.114" },
@@ -1219,14 +1202,6 @@ struct nvram_pair tables_defaults[] = {
 	{"pppoemwan_ip_x", "" },
 	{"pppoemwan_name_x", "" },
 	{"pppoemwan_interface_x", "" },
-
-	{"adbybyip_mac_x", "" },
-	{"adbybyip_ip_x", "" },
-	{"adbybyip_name_x", "" },
-	{"adbybyip_ip_road_x", "" },
-
-	{"adbybyrules_x", "" },
-	{"adbybyrules_road_x", "" },
 
 	{ "vpns_user_x", "" },
 	{ "vpns_pass_x", "" },

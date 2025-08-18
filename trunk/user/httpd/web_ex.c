@@ -2236,26 +2236,7 @@ static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
 	return 0;
 }
 #endif
-#if defined (APP_ADBYBY)
-static int adbyby_action_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int needed_seconds = 3;
-	char *ad_action = websGetVar(wp, "connect_action", "");
 
-	if (!strcmp(ad_action, "updateadb")) {
-		notify_rc(RCN_RESTART_UPDATEADB);
-	}
-	websWrite(wp, "<script>restart_needed_time(%d);</script>\n", needed_seconds);
-	return 0;
-}
-
-static int adbyby_status_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int ad_status_code = pids("adbyby");
-	websWrite(wp, "function adbyby_status() { return %d;}\n", ad_status_code);
-	return 0;
-}
-#endif
 #if defined (APP_SHADOWSOCKS)
 static int pdnsd_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2556,11 +2537,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_smartdns = 0;
 #endif
-#if defined(APP_ADBYBY)
-	int found_app_adbyby = 1;
-#else
-	int found_app_adbyby = 0;
-#endif
 #if defined(APP_DNSFORWARDER)
 	int found_app_dnsforwarder = 1;
 #else
@@ -2752,7 +2728,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_wireguard() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_mentohust() { return %d;}\n"
-		"function found_app_adbyby() { return %d;}\n"
 		"function found_app_zerotier() { return %d;}\n"
 		"function found_app_ddnsto() { return %d;}\n"
 		"function found_app_aldriver() { return %d;}\n"
@@ -2785,7 +2760,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_wireguard,
 		found_app_xupnpd,
 		found_app_mentohust,
-		found_app_adbyby,
 		found_app_zerotier,
 		found_app_ddnsto,
 		found_app_aldriver,
@@ -4521,10 +4495,6 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_FRP)
 	{ "frpc_status", frpc_status_hook},
 	{ "frps_status", frps_status_hook},
-#endif
-#if defined (APP_ADBYBY)
-	{ "adbyby_action", adbyby_action_hook},
-	{ "adbyby_status", adbyby_status_hook},
 #endif
 #if defined (APP_DNSFORWARDER)
 	{ "dnsforwarder_status", dnsforwarder_status_hook},

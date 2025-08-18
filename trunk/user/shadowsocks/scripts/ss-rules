@@ -13,7 +13,7 @@ TAG="_SS_SPEC_"   # comment tag
 ipt_n="iptables -t nat"  # alias of iptables
 ipt_m="iptables -t mangle"  # alias of iptables
 FWI=/tmp/shadowsocks_iptables.save  # firewall include file
-ADNU=$(iptables -t nat -L  PREROUTING -n --line-number | grep "ADBYBY" |cut -c1-1)
+ADNU=$(iptables -t nat -L  PREROUTING -n --line-number | cut -c1-1)
 SSNU=$(($ADNU+1))
 
 usage() {
