@@ -556,11 +556,7 @@ void stop_zerotier(void);
 void start_zerotier(void);
 void restart_zerotier(void);
 #endif
-#if defined(APP_DDNSTO)
-void stop_ddnsto(void);
-void start_ddnsto(void);
-void restart_ddnsto(void);
-#endif
+
 #if defined(APP_ALDRIVER)
 void stop_aldriver(void);
 void start_aldriver(void);

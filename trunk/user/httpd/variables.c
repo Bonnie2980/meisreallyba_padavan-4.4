@@ -907,13 +907,6 @@
 	};
 #endif
 
-#if defined(APP_DDNSTO)
-	struct variable variables_DDNSTO[] = {
-			{"ddnsto_enable", "", NULL, EVM_RESTART_DDNSTO},
-			{"ddnsto_id", "", NULL, EVM_RESTART_DDNSTO},
-			{0,0,0,0}
-		};
-#endif
 
 #if defined(APP_ALDRIVER)
 	struct variable variables_ALDRIVER[] = {
@@ -1236,9 +1229,7 @@
 #if defined(APP_ZEROTIER)
 		{"ZeroConf",		variables_ZeroConf},
 #endif
-#if defined(APP_DDNSTO)
-		{"DDNSTO",		variables_DDNSTO},
-#endif
+
 #if defined(APP_ALDRIVER)
 		{"ALDRIVER",		variables_ALDRIVER},
 #endif
@@ -1346,9 +1337,7 @@
 #if defined(APP_ZEROTIER)
 		{EVM_RESTART_ZEROTIER,		EVT_RESTART_ZEROTIER,		RCN_RESTART_ZEROTIER,	0},
 #endif
-#if defined(APP_DDNSTO)
-		{EVM_RESTART_DDNSTO,		EVT_RESTART_DDNSTO,		RCN_RESTART_DDNSTO,	0},
-#endif
+
 #if defined(APP_ALDRIVER)
 		{EVM_RESTART_ALDRIVER,		EVT_RESTART_ALDRIVER,		RCN_RESTART_ALDRIVER,	0},
 #endif

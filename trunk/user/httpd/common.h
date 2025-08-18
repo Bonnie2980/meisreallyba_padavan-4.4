@@ -95,7 +95,6 @@ typedef u_int8_t u8;
 #define EVM_RESTART_SMARTDNS		    (1ULL << 57)
 #define EVM_RESTART_ADGUARDHOME		    (1ULL << 58)
 #define EVM_RESTART_ZEROTIER		    (1ULL << 59)
-#define EVM_RESTART_DDNSTO		    (1ULL << 60)
 #define EVM_RESTART_ALDRIVER		    (1ULL << 61)
 #define EVM_RESTART_WIREGUARD		    (1ULL << 62)
 #define EVM_RESTART_SQM		    (1ULL << 63)
@@ -156,7 +155,6 @@ typedef u_int8_t u8;
 #define EVT_RESTART_VLMCSD		1
 #define EVT_RESTART_SHADOWSOCKS	2
 #define EVT_RESTART_ZEROTIER    2
-#define EVT_RESTART_DDNSTO     	2
 #define EVT_RESTART_ALDRIVER     	2
 #define EVT_RESTART_WIREGUARD     	2
 #define EVT_RESTART_SQM		2

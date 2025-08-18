@@ -2194,14 +2194,7 @@ static int zerotier_status_hook(int eid, webs_t wp, int argc, char **argv)
 	return 0;
 }
 #endif
-#if defined (APP_DDNSTO)
-static int ddnsto_status_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int ddnsto_status_code = pids("ddnsto");
-	websWrite(wp, "function ddnsto_status() { return %d;}\n", ddnsto_status_code);
-	return 0;
-}
-#endif
+
 #if defined (APP_SQM)
 static int sqm_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2439,11 +2432,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_zerotier = 0;
 #endif
-#if defined(APP_DDNSTO)
-	int found_app_ddnsto = 1;
-#else
-	int found_app_ddnsto = 0;
-#endif
+
 #if defined(APP_ALDRIVER)
 	int found_app_aldriver = 1;
 #else
@@ -2649,7 +2638,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_wireguard() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_zerotier() { return %d;}\n"
-		"function found_app_ddnsto() { return %d;}\n"
 		"function found_app_aldriver() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_frp() { return %d;}\n"
@@ -2679,7 +2667,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_wireguard,
 		found_app_xupnpd,
 		found_app_zerotier,
-		found_app_ddnsto,
 		found_app_aldriver,
 		found_app_aliddns,
 		found_app_frp,
@@ -4376,9 +4363,7 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_ZEROTIER)
 	{ "zerotier_status", zerotier_status_hook},
 #endif
-#if defined (APP_DDNSTO)
-	{ "ddnsto_status", ddnsto_status_hook},
-#endif
+
 #if defined (APP_ALDRIVER)
 	{ "aliyundrive_status", aliyundrive_status_hook},
 #endif

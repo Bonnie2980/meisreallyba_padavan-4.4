@@ -730,10 +730,6 @@ struct nvram_pair router_defaults[] = {
 	{ "zerotier_secret", "" },
 	{ "zero_staticnum_x", "0" },
 
-	/*DDNSTO*/
-	{ "ddnsto_enable", "0" },
-	{ "ddnsto_id", "" },
-
 #if defined(APP_ALDRIVER)
 	/*阿里云盘*/
 	{ "aliyundrive_enable", "0" },
