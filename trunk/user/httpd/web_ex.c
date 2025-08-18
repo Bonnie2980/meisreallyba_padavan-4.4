@@ -1917,31 +1917,6 @@ wan_action_hook(int eid, webs_t wp, int argc, char **argv)
 }
 
 
-#if defined (APP_MENTOHUST)
-static int mentohust_action_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int needed_seconds = 2;
-	char *action = websGetVar(wp, "connect_action", "");
-
-	if (!strcmp(action, "Reconnect")) {
-		notify_rc(RCN_RESTART_MENTOHUST);
-	}
-	else if (!strcmp(action, "Disconnect")) {
-		notify_rc("stop_mentohust");
-	}
-
-	websWrite(wp, "<script>restart_needed_time(%d);</script>\n", needed_seconds);
-	return 0;
-}
-
-static int mentohust_status_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int status_code = pids("bin_mentohust");
-	websWrite(wp, "function mentohust_status() { return %d;}\n", status_code);
-	return 0;
-}
-#endif
-
 #if defined (APP_SHADOWSOCKS)
 static int shadowsocks_action_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2433,11 +2408,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_sshd = 0;
 #endif
-#if defined(APP_MENTOHUST)
-	int found_app_mentohust = 1;
-#else
-	int found_app_mentohust = 0;
-#endif
+
 #if defined(APP_TTYD)
 	int found_app_ttyd = 1;
 #else
@@ -2677,7 +2648,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_sqm() { return %d;}\n"
 		"function found_app_wireguard() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
-		"function found_app_mentohust() { return %d;}\n"
 		"function found_app_zerotier() { return %d;}\n"
 		"function found_app_ddnsto() { return %d;}\n"
 		"function found_app_aldriver() { return %d;}\n"
@@ -2708,7 +2678,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_sqm,
 		found_app_wireguard,
 		found_app_xupnpd,
-		found_app_mentohust,
 		found_app_zerotier,
 		found_app_ddnsto,
 		found_app_aldriver,

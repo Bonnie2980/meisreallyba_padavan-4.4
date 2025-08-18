@@ -513,12 +513,7 @@ int start_services_once(int is_ap_mode);
 void stop_services(int stopall);
 void stop_services_lan_wan(void);
 void stop_misc(void);
-#if defined(APP_MENTOHUST)
-int is_mentohust_run(void);
-void stop_mentohust(void);
-void start_mentohust(void);
-void restart_mentohust(void);
-#endif
+
 #if defined(APP_TTYD)
 void stop_ttyd(void);
 void start_ttyd(void);

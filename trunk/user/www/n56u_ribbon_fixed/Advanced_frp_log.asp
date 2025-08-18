@@ -41,9 +41,9 @@
             //if (!found_app_scutclient()) {
                 id_menu = id_menu - 1;
             //}
-            if (!found_app_mentohust()) {
+            //if (!found_app_mentohust()) {
                 id_menu = id_menu - 1;
-            }
+            //}
             show_menu(5, 10, id_menu);
             show_footer();
         }

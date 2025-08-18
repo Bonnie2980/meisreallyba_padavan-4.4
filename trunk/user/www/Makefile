@@ -184,11 +184,6 @@ endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME),y)
 	rm -f $(INSTALLDIR)/www/Advanced_adguardhome.asp
 endif
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_MENTOHUST),y)
-	rm -f $(INSTALLDIR)/www/mentohust.asp
-	rm -f $(INSTALLDIR)/www/mentohust_log.asp
-	rm -f $(INSTALLDIR)/www/mentohust_action.asp
-endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER),y)
 	rm -f $(INSTALLDIR)/www/dns-forwarder.asp
 endif
