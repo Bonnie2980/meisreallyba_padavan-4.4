@@ -38,9 +38,9 @@
             if (get_ap_mode()) {
                 id_menu = id_menu - 4;
             }
-            if (!found_app_scutclient()) {
+            //if (!found_app_scutclient()) {
                 id_menu = id_menu - 1;
-            }
+            //}
             if (!found_app_mentohust()) {
                 id_menu = id_menu - 1;
             }

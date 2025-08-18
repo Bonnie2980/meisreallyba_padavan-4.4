@@ -501,21 +501,6 @@ struct nvram_pair router_defaults[] = {
 	{ "dr_staticnetmask_x", "0" },
 	{ "dr_staticgateway_x", "" },
 
-#if defined(APP_SCUT)
-	/* scutclient related */
-	{ "scutclient_enable", "0" },
-	{ "scutclient_debug", "0" },
-	{ "scutclient_hostname", "Lenovo-PC" },
-	{ "scutclient_server_auth_ip", "202.38.210.131" },
-	{ "scutclient_skip_udp_hb", "0" },
-	{ "scutclient_version", "4472434f4d0096022a" },
-	{ "scutclient_hash", "2ec15ad258aee9604b18f2f8114da38db16efd00" },
-	{ "scutclient_username", "" },
-	{ "scutclient_password", "" },
-	{ "scutclient_watchcat", "1" },
-	{ "scutclient_wdg_force", "1" },
-#endif
-
 #if defined(APP_MENTOHUST)
 	/* mentohust related */
 	{ "mentohust_enable", "0" },

@@ -233,33 +233,6 @@ restart_sshd(void)
 }
 #endif
 
-#if defined(APP_SCUT)
-int is_scutclient_run(void)
-{
-	if(pids("bin_scutclient"))
-		return 1;
-	return 0;
-}
-void stop_scutclient(void)
-{
-	eval("/usr/bin/scutclient.sh","stop");
-}
-
-void start_scutclient(void)
-{
-	int scutclient_mode = nvram_get_int("scutclient_enable");
-	if (scutclient_mode == 1)
-		eval("/usr/bin/scutclient.sh","start");
-}
-
-void restart_scutclient(void)
-{
-	stop_scutclient();
-	start_scutclient();
-}
-
-#endif
-
 
 #if defined(APP_MENTOHUST)
 
@@ -741,9 +714,6 @@ start_services_once(int is_ap_mode)
 #endif
 	}
 doSystem("/usr/sbin/skipd -d /etc/storage/db");
-#if defined(APP_SCUT)
-	start_scutclient();
-#endif
 #if defined(APP_DNSFORWARDER)
 	start_dnsforwarder();
 #endif
@@ -787,9 +757,7 @@ stop_services(int stopall)
 	stop_u2ec();
 #endif
 #endif
-#if defined(APP_SCUT)
-	stop_scutclient();
-#endif
+
 #if defined(APP_MENTOHUST)
 	stop_mentohust();
 #endif

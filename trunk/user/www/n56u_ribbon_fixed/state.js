@@ -395,9 +395,9 @@ tabtitle[6] = new Array("", "<#menu5_6_2#>", "<#menu5_6_5#>", "<#menu5_6_1#>", "
 tabtitle[7] = new Array("", "<#menu5_10_1#>", "<#menu5_10_2#>", "<#menu5_10_3#>");
 tabtitle[8] = new Array("", "<#menu5_11#>", "<#menu5_12#>", "WAN", "", "", "", "", "", "", "");
 tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "<#menu5_7_6#>", "<#menu5_7_8#>");
-if (found_app_scutclient()){
+/*if (found_app_scutclient()){
 	tabtitle[10] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
-}
+}*/
 if (found_app_dnsforwarder()){
 	tabtitle[11] = new Array("", "<#menu5_1_1#>");
 }
@@ -439,10 +439,10 @@ tablink[6] = new Array("", "Advanced_System_Content.asp", "Advanced_Services_Con
 tablink[7] = new Array("", "Advanced_Tweaks_Content.asp", "Advanced_Scripts_Content.asp", "Advanced_InetDetect_Content.asp");
 tablink[8] = new Array("", "Main_WStatus2g_Content.asp", "Main_WStatus_Content.asp", "", "", "", "", "", "", "", "");
 tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Content.asp", "Main_IPTStatus_Content.asp", "Main_RouteStatus_Content.asp", "Main_CTStatus_Content.asp");
-if (found_app_scutclient()){
+/*if (found_app_scutclient()){
 	scutclient_array = new Array("", "scutclient.asp", "scutclient_log.asp");
 	tablink[10] = (scutclient_array);
-}
+}*/
 if (found_app_dnsforwarder()){
 	dns_forwarder_array = new Array("", "dns-forwarder.asp");
 	tablink[11] = (dns_forwarder_array);
@@ -497,10 +497,10 @@ if (found_app_frp()){
 //Level 2 Menu
 menuL2_title = new Array(20)
 menuL2_title = new Array("", "<#menu5_11#>", "<#menu5_12#>", "<#menu5_2#>", "<#menu5_3#>", "<#menu5_5#>", "<#menu5_4#>", "<#menu5_6#>", "<#menu5_10#>", "<#menu5_9#>", "<#menu5_7#>");
-if (found_app_scutclient()){
+/*if (found_app_scutclient()){
 	menuL2_title.push("<#menu5_13#>");
 } else menuL2_title.push("");
-
+*/
 if (found_app_dnsforwarder()){
 	menuL2_title.push("<#menu5_15#>");
 } else menuL2_title.push("");
@@ -538,10 +538,10 @@ if (found_app_frp()){
 } else menuL2_title.push("");
 
 menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], support_2g_radio() ? tablink[8][1] : "Main_EStatus_Content.asp", tablink[9][1]);
-if (found_app_scutclient()){
+/*if (found_app_scutclient()){
 	menuL2_link.push(scutclient_array[1]);
 } else menuL2_link.push("");
-
+*/
 if (found_app_dnsforwarder()){
 	menuL2_link.push(dns_forwarder_array[1]);
 } else menuL2_link.push("");

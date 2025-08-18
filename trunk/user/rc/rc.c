@@ -658,9 +658,6 @@ int
 init_crontab(void)
 {
 	int ret = 0; //no change
-#if defined (APP_SCUT)
-	ret |= system("/sbin/check_crontab.sh a/1 a a a a scutclient_watchcat.sh");
-#endif
 	return ret;
 }
 
@@ -1070,16 +1067,7 @@ handle_notifications(void)
 			restart_sshd();
 		}
 #endif
-#if defined(APP_SCUT)
-		else if (strcmp(entry->d_name, RCN_RESTART_SCUT) == 0)
-		{
-			restart_scutclient();
-		}
-		else if (strcmp(entry->d_name, "stop_scutclient") == 0)
-		{
-			stop_scutclient();
-		}
-#endif
+
 #if defined(APP_MENTOHUST)
 		else if (strcmp(entry->d_name, RCN_RESTART_MENTOHUST) == 0)
 		{

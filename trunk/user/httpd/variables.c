@@ -883,23 +883,6 @@
 			{0,0,0,0}
 		};
 
-#if defined (APP_SCUT)
-	struct variable variables_ScutclientConf[] = {
-			{"scutclient_enable", "",NULL, EVM_RESTART_SCUT},
-			{"scutclient_debug","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_username","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_password","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_server_auth_ip","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_version","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_hash","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_hostname","",NULL,EVM_RESTART_SCUT },
-			{"scutclient_watchcat","",NULL,FALSE},
-			{"scutclient_wdg_force","",NULL,FALSE},
-			{"scutclient_skip_udp_hb","",NULL,EVM_RESTART_SCUT},
-			{0,0,0,0}
-	};
-#endif
-
 #if defined (APP_MENTOHUST)
 	struct variable variables_mentohustConf[] = {
 			{"mentohust_enable", "", NULL, EVM_RESTART_MENTOHUST},
@@ -1275,9 +1258,7 @@
 #if defined(APP_DNSFORWARDER)
 		{"dnsforwarderConf",		variables_dnsforwarderConf},
 #endif
-#if defined(APP_SCUT)
-		{"ScutclientConf",		variables_ScutclientConf},
-#endif
+
 #if defined(APP_MENTOHUST)
 		{"mentohustConf",		variables_mentohustConf},
 #endif
@@ -1372,9 +1353,6 @@
 #if defined(APP_ARIA)
 		{EVM_RESTART_ARIA,		EVT_RESTART_ARIA,		RCN_RESTART_ARIA,	EVM_RESTART_FIREWALL},
 #endif
-#endif
-#if defined(APP_SCUT)
-		{EVM_RESTART_SCUT,		EVT_RESTART_SCUT,		RCN_RESTART_SCUT,	0},
 #endif
 #if defined(APP_MENTOHUST)
 		{EVM_RESTART_MENTOHUST,		EVT_RESTART_MENTOHUST,		RCN_RESTART_MENTOHUST,	0},

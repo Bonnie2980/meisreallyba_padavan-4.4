@@ -2,8 +2,7 @@
 
 TOPDIR="."
 
-check_dirs="trunk/user/scutclient/scripts \
-	trunk/user/shadowsocks/scripts \
+check_dirs="trunk/user/shadowsocks/scripts \
 	trunk/user/mentohust/scripts \
 	trunk/user/chnroute/scripts \
 	trunk/user/dns-forwarder \
