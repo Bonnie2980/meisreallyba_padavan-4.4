@@ -1112,12 +1112,6 @@ handle_notifications(void)
 			restart_aliddns();
 		}
 #endif
-#if defined(APP_ZEROTIER)
-		else if (strcmp(entry->d_name, RCN_RESTART_ZEROTIER) == 0)
-		{
-			restart_zerotier();
-		}
-#endif
 
 #if defined(APP_ALDRIVER)
 		else if (strcmp(entry->d_name, RCN_RESTART_ALDRIVER) == 0)

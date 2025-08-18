@@ -723,12 +723,6 @@ struct nvram_pair router_defaults[] = {
 	{ "ss_black", "0" },
 #endif
 		
-	/*Zerotier*/
-	{ "zerotier_enable", "0" },
-	{ "zerotier_id", "" },
-	{ "zerotier_nat", "0" },
-	{ "zerotier_secret", "" },
-	{ "zero_staticnum_x", "0" },
 
 #if defined(APP_ALDRIVER)
 	/*阿里云盘*/
