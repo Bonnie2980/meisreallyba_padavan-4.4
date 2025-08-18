@@ -81,7 +81,6 @@
 #define RCN_RESTART_CADDY		"restart_caddy"
 #define RCN_RESTART_ZEROTIER	"restart_zerotier"
 #define RCN_RESTART_ALDRIVER	"restart_aldriver"
-#define RCN_RESTART_WIREGUARD	"restart_wireguard"
 #define RCN_RESTART_SQM		"restart_sqm"
 #define RCN_RESTART_REBOOT		"restart_reboot"
 

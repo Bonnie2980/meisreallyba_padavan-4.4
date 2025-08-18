@@ -414,7 +414,7 @@ if (found_app_smartdns()||found_app_adguardhome()){
 	tabtitle[15] = new Array("", "<#menu5_29#>");
 }
 
-if (found_app_aliddns()||found_app_zerotier()||found_app_wireguard()){
+if (found_app_aliddns()||found_app_zerotier()){
 	tabtitle[16] = new Array("", "<#menu5_30#>");
 }
 if (found_app_aldriver()){
@@ -475,10 +475,10 @@ if (found_app_aliddns()){
 }/*else if (found_app_ddnsto()){
 	ddnsto_array = new Array("","Advanced_ddnsto.asp");
 	tablink[16] = (ddnsto_array);
-}*/else if (found_app_wireguard()){
+}else if (found_app_wireguard()){
 	wireguard_array = new Array("","Advanced_wireguard.asp");
 	tablink[16] = (wireguard_array);
-}
+}*/
 if (found_app_aldriver()){
 	aldriver_arry = new Array("","Advanced_aliyundrive.asp");
 	tablink[17] = (aldriver_arry);
@@ -521,7 +521,7 @@ if (found_app_smartdns()||found_app_adguardhome()){
 	menuL2_title.push("<#menu5_29#>");
 } else menuL2_title.push("");
 
-if (found_app_aliddns()||found_app_zerotier()||found_app_wireguard()){
+if (found_app_aliddns()||found_app_zerotier()){
 	menuL2_title.push("<#menu5_30#>");
 } else menuL2_title.push("");
 
@@ -570,10 +570,10 @@ if (found_app_aliddns()){
 	menuL2_link.push(zerotier_array[1]);
 } /*else if (found_app_ddnsto()){
 	menuL2_link.push(ddnsto_array[1]);
-} */else if (found_app_wireguard()){
+} else if (found_app_wireguard()){
 	menuL2_link.push(wireguard_array[1]);
 } else menuL2_link.push("");
-
+*/
 if (found_app_aldriver()){
 	menuL2_link.push(aldriver_arry[1]);
 } else menuL2_link.push("");

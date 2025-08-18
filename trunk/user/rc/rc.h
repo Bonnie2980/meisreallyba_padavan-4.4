@@ -567,11 +567,7 @@ void stop_sqm(void);
 void start_sqm(void);
 void restart_sqm(void);
 #endif
-#if defined(APP_WIREGUARD)
-void stop_wireguard(void);
-void start_wireguard(void);
-void restart_wireguard(void);
-#endif
+
 #if defined(APP_SMARTDNS)
 void stop_smartdns(void);
 void start_smartdns(void);

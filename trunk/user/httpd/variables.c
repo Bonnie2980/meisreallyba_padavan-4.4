@@ -945,18 +945,6 @@
 	};
 #endif
 
-#if defined(APP_WIREGUARD)
-	struct variable variables_WIREGUARD[] = {
-			{"wireguard_enable", "", NULL, EVM_RESTART_WIREGUARD},
-			{"wireguard_localip", "", NULL, EVM_RESTART_WIREGUARD},
-			{"wireguard_localkey", "", NULL, EVM_RESTART_WIREGUARD},
-			{"wireguard_peerkey", "", NULL, EVM_RESTART_WIREGUARD},
-			{"wireguard_peerip", "", NULL, EVM_RESTART_WIREGUARD},
-			{"wireguard_localip", "", NULL, EVM_RESTART_WIREGUARD},
-			{0,0,0,0}
-		};
-#endif
-
 #if defined(APP_FRP)
 	struct variable variables_FrpConf[] = {
 			{"frpc_enable", "", NULL, EVM_RESTART_FRP},
@@ -1233,9 +1221,7 @@
 #if defined(APP_ALDRIVER)
 		{"ALDRIVER",		variables_ALDRIVER},
 #endif
-#if defined(APP_WIREGUARD)
-		{"WIREGUARD",		variables_WIREGUARD},
-#endif
+
 #if defined(APP_SQM)
 		{"SqmConf",		variables_SqmConf},
 #endif
@@ -1344,9 +1330,7 @@
 #if defined(APP_SQM)
 		{EVM_RESTART_SQM,		EVT_RESTART_SQM,		RCN_RESTART_SQM,	0},
 #endif
-#if defined(APP_WIREGUARD)
-		{EVM_RESTART_WIREGUARD,		EVT_RESTART_WIREGUARD,		RCN_RESTART_WIREGUARD,	0},
-#endif
+
 #if defined(APP_SMARTDNS)
 		{EVM_RESTART_SMARTDNS,		EVT_RESTART_SMARTDNS,		RCN_RESTART_SMARTDNS,	0},
 #endif

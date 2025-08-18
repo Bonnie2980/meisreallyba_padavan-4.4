@@ -750,14 +750,6 @@ struct nvram_pair router_defaults[] = {
 	{ "reboot_schedule_enable", "0" },
 	{ "reboot_schedule", "00000000000" },
 
-#if defined(APP_WIREGUARD)
-	/*WIREGUARD*/
-	{ "wireguard_enable", "0" },
-	{ "wireguard_localip", "" },
-	{ "wireguard_localkey", "" },
-	{ "wireguard_peerip", "" },
-	{ "wireguard_peerkey", "" },
-#endif
 
 #if defined(APP_SQM)
 	/*SQM QoS*/

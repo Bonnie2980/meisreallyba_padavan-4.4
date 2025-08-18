@@ -37,7 +37,6 @@ echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config #aliddns
 ##内网穿透服务##
 echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=n" >> .config  #ALDRIVER  ~3m
 echo "CONFIG_FIRMWARE_INCLUDE_SQM=y" >> .config #SQM
-echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=y" >>.config #wireguard 10k
 echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config #frpc
 echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #frps
 #CPU超频
@@ -172,11 +171,7 @@ if [ "$CONFIG_FIRMWARE_INCLUDE_SFE" = "y" ] ; then
 	func_enable_kernel_param "CONFIG_SHORTCUT_FE"
 fi
 # wireguard
-if [ "$CONFIG_FIRMWARE_INCLUDE_WIREGUARD" = "y" ]; then
-	func_enable_kernel_param "CONFIG_WIREGUARD"
-else
-	func_disable_kernel_param "CONFIG_WIREGUARD"
-fi
+func_disable_kernel_param "CONFIG_WIREGUARD"
 # SQM QOS
 if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "y" ]; then
 	func_enable_kernel_param "CONFIG_NF_CONNTRACK_EVENTS"

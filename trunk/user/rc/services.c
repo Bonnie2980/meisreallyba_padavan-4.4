@@ -400,22 +400,6 @@ void restart_aldriver(void){
 }
 #endif
 
-#if defined(APP_WIREGUARD)
-void stop_wireguard(void){
-	eval("/usr/bin/wireguard.sh","stop");
-}
-
-void start_wireguard(void){
-	int wireguard_enable = nvram_get_int("wireguard_enable");
-	if ( wireguard_enable == 1)
-		eval("/usr/bin/wireguard.sh","start");
-}
-
-void restart_wireguard(void){
-	stop_wireguard();
-	start_wireguard();
-}
-#endif
 
 #if defined(APP_SMARTDNS)
 void stop_smartdns(void){
@@ -730,9 +714,6 @@ stop_services(int stopall)
 #if defined(APP_ALDRIVER)
 	stop_aldriver();
 #endif
-#if defined(APP_WIREGUARD)
-	stop_wireguard();
-#endif
 #if defined(APP_SMARTDNS)
 	stop_smartdns();
 #endif
@@ -742,9 +723,7 @@ stop_services(int stopall)
 #if defined(APP_TTYD)
 	stop_ttyd();
 #endif
-#if defined(APP_WIREGUARD)
-	stop_wireguard();
-#endif
+
 #if defined(APP_FRP)
 	stop_frp();
 #endif

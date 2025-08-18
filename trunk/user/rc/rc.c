@@ -1125,12 +1125,7 @@ handle_notifications(void)
 			restart_aldriver();
 		}
 #endif
-#if defined(APP_WIREGUARD)
-		else if (strcmp(entry->d_name, RCN_RESTART_WIREGUARD) == 0)
-		{
-			restart_wireguard();
-		}
-#endif
+
 #if defined(APP_SQM)
 		else if (strcmp(entry->d_name, RCN_RESTART_SQM) == 0)
 		{
