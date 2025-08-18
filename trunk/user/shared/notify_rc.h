@@ -81,7 +81,6 @@
 #define RCN_RESTART_ALIDDNS		"restart_aliddns"
 #define RCN_RESTART_FRP		"restart_frp"
 #define RCN_RESTART_CADDY		"restart_caddy"
-#define RCN_RESTART_WYY		"restart_wyy"
 #define RCN_RESTART_ZEROTIER	"restart_zerotier"
 #define RCN_RESTART_DDNSTO	"restart_ddnsto"
 #define RCN_RESTART_ALDRIVER	"restart_aldriver"
