@@ -383,24 +383,6 @@ void restart_aldriver(void){
 }
 #endif
 
-
-#if defined(APP_SMARTDNS)
-void stop_smartdns(void){
-	eval("/usr/bin/smartdns.sh","stop");
-}
-
-void start_smartdns(void){
-	int smartdns_mode = nvram_get_int("sdns_enable");
-	if ( smartdns_mode == 1)
-		eval("/usr/bin/smartdns.sh","start");
-}
-
-void restart_smartdns(void){
-	stop_smartdns();
-	start_smartdns();
-}
-#endif
-
 #if defined(APP_ALIDDNS)
 void stop_aliddns(void){
 	eval("/usr/bin/aliddns.sh","stop");
@@ -697,9 +679,7 @@ stop_services(int stopall)
 #if defined(APP_ALDRIVER)
 	stop_aldriver();
 #endif
-#if defined(APP_SMARTDNS)
-	stop_smartdns();
-#endif
+
 #if defined(APP_ALIDDNS)
 	stop_aliddns();
 #endif

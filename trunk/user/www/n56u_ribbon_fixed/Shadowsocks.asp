@@ -1765,15 +1765,7 @@ setTimeout('document.getElementById("btn_ctime").style.display="none";',1000);
 																	(114.114.115.115)</option>
 															</select>
 														</td>
-													</tr>
-													<!--
-			<tr id="row_ssp_dns_ip" style="display:none;"> <th width="50%">SmartDNS加载方式:</th>
-				<td>
-				自动配置<input type="radio" value="2" name="ssp_dns_ip" id="ssp_dns_ip_2" <% nvram_match_x("", "ssp_dns_ip", "2", "checked"); %>>
-				手动配置<input type="radio" value="1" name="ssp_dns_ip" id="ssp_dns_ip_1" <% nvram_match_x("", "ssp_dns_ip", "1", "checked"); %>>
-				</td>
-			</tr>-->
-
+													</tr>	
 												</table>
 												<table class="table">
 													<tr>

@@ -688,42 +688,6 @@ struct nvram_pair router_defaults[] = {
 	{ "frps_enable", "0" },
 #endif
 	
-#if defined(APP_SMARTDNS)	
-	/*SmartDns*/
-	{ "sdns_enable", "0" },
-	{ "snds_name", "smartdns" },
-	{ "sdns_port", "6053" },
-	{ "sdns_tcp_server", "0" },
-	{ "sdns_ipv6_server", "0" },
-	{ "snds_ip_change", "0" },
-	{ "snds_ip_change_time", "30" },
-	{ "sdns_ipv6", "0" },
-	{ "sdns_www", "0" },
-	{ "sdns_www", "0" },
-	{ "sdns_exp", "0" },
-	{ "snds_redirect", "0" },
-	{ "snds_cache", "0" },
-	{ "sdns_ttl", "300" },
-	{ "sdns_ttl_min", "60" },
-	{ "sdns_ttl_max", "86400" },
-	{ "sdns_coredump", "0" },
-	{ "sdnss_staticnum_x", "0" },
-	{ "sdnse_enable", "0" },
-	{ "sdnse_port", "7053" },
-	{ "sdnse_tcp", "0" },
-	{ "sdnse_speed", "0" },
-	{ "sdnse_name", "" },
-	{ "sdnse_address", "0" },
-	{ "sdnse_ns", "0" },
-	{ "sdnse_ipset", "0" },
-	{ "sdnse_as", "0" },
-	{ "sdnse_ipc", "0" },
-	{ "sdnse_cache", "0" },
-	{ "ss_white", "0" },
-	{ "ss_black", "0" },
-#endif
-		
-
 #if defined(APP_ALDRIVER)
 	/*阿里云盘*/
 	{ "aliyundrive_enable", "0" },
@@ -756,51 +720,6 @@ struct nvram_pair router_defaults[] = {
 	{ "sqm_log_level", "5" },
 	{ "sqm_qdisc", "fq_codel" },
 	{ "sqm_script", "simple" },
-#endif
-
-#if defined(APP_SMARTDNS)
-	/*SmartDns*/
-	{ "sdns_enable", "0" },
-	{ "snds_name", "smartdns" },
-	{ "sdns_port", "6053" },
-	{ "sdns_tcp_server", "0" },
-	{ "sdns_ipv6_server", "0" },
-	{ "snds_ip_change", "0" },
-	{ "snds_ip_change_time", "30" },
-	{ "sdns_ipv6", "1" },
-	{ "sdns_www", "1" },
-	{ "sdns_exp", "1" },
-	{ "sdns_exp_ttl", "0" },
-	{ "sdns_exp_ttl_max", "10" },
-	{ "sdns_cache_persist", "1" },
-	{ "snds_redirect", "1" },
-	{ "snds_cache", "10240" },
-	{ "sdns_ttl", "21600" },
-	{ "sdns_ttl_min", "1800" },
-	{ "sdns_ttl_max", "86400" },
-	{ "sdns_coredump", "0" },
-	{ "sdnss_staticnum_x", "0" },
-	{ "sdns_speed", "0" },
-	{ "sdns_address", "0" },
-	{ "sdns_as", "0" },
-	{ "sdns_ipset", "0" },
-	{ "sdns_ns", "0" },
-	{ "sdnse_enable", "0" },
-	{ "sdnse_port", "7053" },
-	{ "sdnse_tcp", "0" },
-	{ "sdnse_speed", "0" },
-	{ "sdnse_name", "" },
-	{ "sdnse_address", "0" },
-	{ "sdnse_ns", "0" },
-	{ "sdnse_ipset", "0" },
-	{ "sdnse_as", "0" },
-	{ "sdnse_ipc", "0" },
-	{ "sdnse_cache", "0" },
-	{ "ss_white", "0" },
-	{ "ss_black", "0" },
-	{ "sdns_change", "2" },
-	{ "sdns_change1", "2" },
-	{ "sdns_change2", "2" },
 #endif
 
 	/* DHCP server parameters */
@@ -1141,14 +1060,6 @@ struct nvram_pair tables_defaults[] = {
 	{ "v2_http2_host_x", "" },
 	{ "v2_http2_path_x", "" },
 	{ "v2_tls_x", "0" },
-#endif
-#if defined(APP_SMARTDNS)
-	{ "sdnss_enable_x", "" },
-	{ "sdnss_name_x", "" },
-	{ "sdnss_ip_x", "" },
-	{ "sdnss_port_x", "" },
-	{ "sdnss_type_x", "" },
-	{ "sdnss_ipc_x", "" },
 #endif
 
 	{ "dhcp_staticmac_x", "" },

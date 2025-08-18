@@ -56,7 +56,6 @@ function applyRule(){
 }
 
 function showmenu(){
-showhide_div('sdnslink', 0);
 }
 
 function done_validating(action){
@@ -120,9 +119,6 @@ function done_validating(action){
 							<div class="round_bottom">
 							<div>
                             <ul class="nav nav-tabs" style="margin-bottom: 10px;">
-								<li id="sdnslink" style="display:none">
-                                    <a href="Advanced_smartdns.asp"><#menu5_24#></a>
-                                </li>
 								 <li class="active">
                                     <a href="Advanced_adguardhome.asp"><#menu5_33#></a>
                                 </li>
