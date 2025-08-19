@@ -115,6 +115,3 @@ ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
 	#ln -sf /var/ss-redir $(ROMFSDIR)/usr/bin/ss-redir
 	#ln -sf /var/ss-tunnel $(ROMFSDIR)/usr/bin/ss-local
 endif
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_SSSERVER),y)
-	$(ROMFSINST) -p +x $(THISDIR)/$(SRC_SS_NAME)/src/ss-server /usr/bin/ss-server
-endif
