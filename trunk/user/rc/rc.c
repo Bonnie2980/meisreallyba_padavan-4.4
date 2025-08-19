@@ -1023,16 +1023,7 @@ handle_notifications(void)
 			restart_nfsd();
 		}
 #endif
-#if defined(APP_MINIDLNA)
-		else if (strcmp(entry->d_name, "restart_dms_rescan") == 0)
-		{
-			restart_dms(1);
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_DMS) == 0)
-		{
-			restart_dms(0);
-		}
-#endif
+
 #if defined(APP_FIREFLY)
 		else if (strcmp(entry->d_name, RCN_RESTART_ITUNES) == 0)
 		{
@@ -1509,11 +1500,6 @@ main(int argc, char **argv)
 #if defined(APP_NFSD)
 	else if (!strcmp(base, "run_nfsd")) {
 		run_nfsd();
-	}
-#endif
-#if defined(APP_MINIDLNA)
-	else if (!strcmp(base, "run_minidlna")) {
-		restart_dms(0);
 	}
 #endif
 #if defined(APP_FIREFLY)

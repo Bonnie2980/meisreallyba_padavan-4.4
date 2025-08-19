@@ -56,7 +56,6 @@
 #define RCN_RESTART_NMBD		"restart_nmbd"
 #define RCN_RESTART_SMBD		"restart_smbd"
 #define RCN_RESTART_NFSD		"restart_nfsd"
-#define RCN_RESTART_DMS			"restart_dms"
 #define RCN_RESTART_ITUNES		"restart_itunes"
 #define RCN_RESTART_TRMD		"restart_trmd"
 #define RCN_RESTART_ARIA		"restart_aria"

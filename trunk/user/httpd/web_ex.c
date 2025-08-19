@@ -249,10 +249,6 @@ sys_script(char *name)
 	{
 		notify_rc("manual_ddns_hostname_check");
 	}
-	else if (strcmp(name,"dlna_rescan") == 0)
-	{
-		notify_rc("restart_dms_rescan");
-	}
 	else if (strstr(scmd, " ") == 0) // no parameter, run script with eval
 	{
 		eval(scmd);
@@ -2314,11 +2310,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_ovpn = 0;
 #endif
-#if defined(APP_MINIDLNA)
-	int found_app_dlna = 1;
-#else
-	int found_app_dlna = 0;
-#endif
+
 #if defined(APP_FIREFLY)
 	int found_app_ffly = 1;
 #else
@@ -2558,7 +2550,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	websWrite(wp,
 		"function found_utl_hdparm() { return %d;}\n"
 		"function found_app_ovpn() { return %d;}\n"
-		"function found_app_dlna() { return %d;}\n"
 		"function found_app_ffly() { return %d;}\n"
 		"function found_app_torr() { return %d;}\n"
 		"function found_app_aria() { return %d;}\n"
@@ -2579,7 +2570,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_frp() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
-		found_app_dlna,
 		found_app_ffly,
 		found_app_trmd,
 		found_app_aria,

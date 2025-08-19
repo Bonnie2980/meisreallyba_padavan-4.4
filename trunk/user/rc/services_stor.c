@@ -785,151 +785,6 @@ int create_mp_link(char *search_dir, char *link_path, int force_first_valid)
 	return link_created;
 }
 
-#if defined (APP_MINIDLNA)
-int is_dms_support(void)
-{
-	return check_if_file_exist("/usr/bin/minidlnad");
-}
-
-int is_dms_run(void)
-{
-	if (!is_dms_support())
-		return 0;
-
-	return (pids("minidlnad")) ? 1 : 0;
-}
-
-void stop_dms(void)
-{
-	char* svcs[] = { "minidlnad", NULL };
-
-	if (!is_dms_support())
-		return;
-
-	kill_services(svcs, 5, 1);
-}
-
-void update_minidlna_conf(const char *link_path, const char *conf_path)
-{
-	FILE *fp;
-	int dlna_disc, dlna_root;
-	char *computer_name;
-	char *dlna_src1 = "V,/media/AiDisk_a1/Video";
-	char *dlna_src2 = "P,/media/AiDisk_a1/Photo";
-	char *dlna_src3 = "A,/media/AiDisk_a1/Audio";
-
-	fp = fopen(conf_path, "w");
-	if (!fp)
-		return;
-
-	computer_name = get_our_hostname();
-
-	dlna_disc = nvram_get_int("dlna_disc");
-	dlna_root = nvram_get_int("dlna_root");
-	dlna_src1 = nvram_safe_get("dlna_src1");
-	dlna_src2 = nvram_safe_get("dlna_src2");
-	dlna_src3 = nvram_safe_get("dlna_src3");
-
-	if (!*dlna_src1 && !*dlna_src2 && !*dlna_src3)
-		dlna_src1 = "/media";
-
-	if (dlna_disc < 10) dlna_disc = 10;
-	if (dlna_disc > 10800) dlna_disc = 10800;
-
-	fprintf(fp, "port=%d\n", 8200);
-	fprintf(fp, "network_interface=%s\n", IFNAME_BR);
-	fprintf(fp, "notify_interval=%d\n", dlna_disc);
-	if (*dlna_src1)
-		fprintf(fp, "media_dir=%s\n", dlna_src1);
-	if (*dlna_src2)
-		fprintf(fp, "media_dir=%s\n", dlna_src2);
-	if (*dlna_src3)
-		fprintf(fp, "media_dir=%s\n", dlna_src3);
-	fprintf(fp, "merge_media_dirs=%s\n", "no");
-	if (dlna_root == 1)
-		fprintf(fp, "root_container=%s\n", "B");
-	else if (dlna_root == 2)
-		fprintf(fp, "root_container=%s\n", "M");
-	else if (dlna_root == 3)
-		fprintf(fp, "root_container=%s\n", "V");
-	else if (dlna_root == 4)
-		fprintf(fp, "root_container=%s\n", "P");
-	if (nvram_get_int("dlna_sort") > 0)
-		fprintf(fp, "force_sort_criteria=%s\n", "+upnp:class,+upnp:originalTrackNumber,+dc:title");
-	fprintf(fp, "friendly_name=%s\n", computer_name);
-	fprintf(fp, "db_dir=%s\n", link_path);
-	fprintf(fp, "log_dir=%s\n", link_path);
-	fprintf(fp, "album_art_names=%s\n", "Cover.jpg/cover.jpg/AlbumArtSmall.jpg/albumartsmall.jpg/AlbumArt.jpg/albumart.jpg/Album.jpg/album.jpg/Folder.jpg/folder.jpg/Thumb.jpg/thumb.jpg");
-	fprintf(fp, "wide_links=%s\n", "yes");
-	fprintf(fp, "inotify=%s\n", "yes");
-	fprintf(fp, "enable_tivo=%s\n", "no");
-	fprintf(fp, "strict_dlna=%s\n", "no");
-	fprintf(fp, "model_number=%d\n", 1);
-
-	fclose(fp);
-}
-
-void run_dms(int force_rescan)
-{
-	int db_rescan_mode;
-	unsigned char mac_bin[ETHER_ADDR_LEN] = {0};
-	char mac_str[16];
-	char *apps_name = "Media Server";
-	char *link_path = "/mnt/minidlna";
-	char *conf_path = "/etc/minidlna.conf";
-	char *dest_dir = ".dms";
-	char *minidlna_argv[] = {
-		"/usr/bin/minidlnad",
-		"-f", conf_path,
-		"-s", NULL,
-		NULL,	/* -U */
-		NULL
-	};
-
-	if (!nvram_match("apps_dms", "1"))
-		return;
-
-	if (!is_dms_support())
-		return;
-
-	if (is_dms_run())
-		return;
-
-	unlink(link_path);
-	if (!create_mp_link(dest_dir, link_path, 0))
-	{
-		if (!create_mp_link(dest_dir, link_path, 1))
-		{
-			logmessage(apps_name, "Cannot start: unable to create DB dir (/%s) on any volumes!", dest_dir);
-			return;
-		}
-	}
-
-	update_minidlna_conf(link_path, conf_path);
-
-	ether_atoe(nvram_safe_get("il0macaddr"), mac_bin);
-	minidlna_argv[4] = ether_etoa3(mac_bin, mac_str);
-
-	db_rescan_mode = nvram_get_int("dlna_rescan");
-	if (force_rescan || db_rescan_mode == 2)
-		minidlna_argv[5] = "-R";
-	else if (db_rescan_mode == 1)
-		minidlna_argv[5] = "-U";
-
-	_eval(minidlna_argv, NULL, 0, NULL);
-
-	if (is_dms_run())
-		logmessage(apps_name, "daemon is started");
-}
-
-void restart_dms(int force_rescan)
-{
-	stop_dms();
-	if (count_stor_mountpoint())
-		run_dms(force_rescan);
-}
-#endif
-
 #if defined (APP_FIREFLY)
 int is_itunes_support(void)
 {
@@ -1369,9 +1224,7 @@ stop_stor_apps(void)
 		need_restart_fw |= is_ftp_run();
 	stop_ftp();
 #endif
-#if defined (APP_MINIDLNA)
-	stop_dms();
-#endif
+
 #if defined (APP_FIREFLY)
 	stop_itunes();
 #endif
@@ -1404,9 +1257,7 @@ start_stor_apps(void)
 #if defined (APP_NFSD)
 	run_nfsd();
 #endif
-#if defined (APP_MINIDLNA)
-	run_dms(0);
-#endif
+
 #if defined (APP_FIREFLY)
 	run_itunes();
 #endif

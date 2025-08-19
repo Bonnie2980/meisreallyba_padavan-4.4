@@ -266,7 +266,7 @@
 		};
 
 	struct variable variables_Storage[] = {
-			{"computer_name", "", NULL, EVM_RESTART_DHCPD|EVM_RESTART_FTPD|EVM_RESTART_NMBD|EVM_RESTART_DMS|EVM_RESTART_ITUNES},
+			{"computer_name", "", NULL, EVM_RESTART_DHCPD|EVM_RESTART_FTPD|EVM_RESTART_NMBD|EVM_RESTART_ITUNES},
 #if defined(APP_SMBD)
 			{"enable_samba", "", NULL, EVM_RESTART_SMBD},
 			{"st_samba_fp", "", NULL, EVM_RESTART_SYSCTL},
@@ -296,16 +296,7 @@
 #if defined(APP_NFSD)
 			{"nfsd_enable", "", NULL, EVM_RESTART_NFSD},
 #endif
-#if defined(APP_MINIDLNA)
-			{"apps_dms", "", NULL, EVM_RESTART_DMS},
-			{"dlna_disc", "", NULL, EVM_RESTART_DMS},
-			{"dlna_root", "", NULL, EVM_RESTART_DMS},
-			{"dlna_sort", "", NULL, EVM_RESTART_DMS},
-			{"dlna_src1", "", NULL, EVM_RESTART_DMS},
-			{"dlna_src2", "", NULL, EVM_RESTART_DMS},
-			{"dlna_src3", "", NULL, EVM_RESTART_DMS},
-			{"dlna_rescan", "", NULL, EVM_RESTART_DMS},
-#endif
+
 #if defined(APP_FIREFLY)
 			{"apps_itunes", "", NULL, EVM_RESTART_ITUNES},
 #endif
@@ -1175,9 +1166,6 @@
 #endif
 #if defined(APP_NFSD)
 		{EVM_RESTART_NFSD,		EVT_RESTART_NFSD,		RCN_RESTART_NFSD,	0},
-#endif
-#if defined(APP_MINIDLNA)
-		{EVM_RESTART_DMS,		EVT_RESTART_DMS,		RCN_RESTART_DMS,	0},
 #endif
 #if defined(APP_FIREFLY)
 		{EVM_RESTART_ITUNES,		EVT_RESTART_ITUNES,		RCN_RESTART_ITUNES,	0},

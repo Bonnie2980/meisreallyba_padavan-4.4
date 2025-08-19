@@ -162,10 +162,6 @@ ifeq ($(CONFIG_FIRMWARE_INCLUDE_NFSD),y)
 	cd $(INSTALLDIR)/sbin && ln -sf rc run_nfsd
 	cd $(INSTALLDIR)/sbin && ln -sf rc stop_nfsd
 endif
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_MINIDLNA),y)
-	cd $(INSTALLDIR)/sbin && ln -sf rc run_minidlna
-	cd $(INSTALLDIR)/sbin && ln -sf rc stop_minidlna
-endif
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_FIREFLY),y)
 	cd $(INSTALLDIR)/sbin && ln -sf rc run_firefly
 	cd $(INSTALLDIR)/sbin && ln -sf rc stop_firefly
