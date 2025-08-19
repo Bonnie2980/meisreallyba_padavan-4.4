@@ -536,14 +536,6 @@ struct nvram_pair router_defaults[] = {
 	{ "vlmcsd_enable", "0" },
 #endif
 
-#if defined(APP_DNSFORWARDER)
-	/* dns-forwarder */
-	{ "dns_forwarder_enable", "0" },
-	{ "dns_forwarder_port", "5353" },
-	{ "dns_forwarder_bind", "0.0.0.0" },
-	{ "dns_forwarder_server", "8.8.4.4:53" },
-#endif
-
 #if defined(APP_SHADOWSOCKS)
 	/* shadowsocks */
 	{ "ss_type", "0" },

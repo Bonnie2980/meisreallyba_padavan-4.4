@@ -2159,15 +2159,6 @@ static int rules_count_hook(int eid, webs_t wp, int argc, char **argv)
 
 #endif
 
-#if defined(APP_DNSFORWARDER)
-static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
-{
-	int status_code = pids("dns-forwarder");
-	websWrite(wp, "function dnsforwarder_status() { return %d;}\n", status_code);
-	return 0;
-}
-#endif
-
 #if defined (APP_SHADOWSOCKS)
 static int pdnsd_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -2421,11 +2412,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	int found_app_sqm = 0;
 #endif
 
-#if defined(APP_DNSFORWARDER)
-	int found_app_dnsforwarder = 1;
-#else
-	int found_app_dnsforwarder = 0;
-#endif
 #if defined(APP_XUPNPD)
 	int found_app_xupnpd = 1;
 #else
@@ -2601,7 +2587,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_sshd() { return %d;}\n"
 		"function found_app_ttyd() { return %d;}\n"
 		"function found_app_vlmcsd() { return %d;}\n"
-		"function found_app_dnsforwarder() { return %d;}\n"
 		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_sqm() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
@@ -2627,7 +2612,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_sshd,
 		found_app_ttyd,
 		found_app_vlmcsd,
-		found_app_dnsforwarder,
 		found_app_shadowsocks,
 		found_app_sqm,
 		found_app_xupnpd,
@@ -4335,9 +4319,7 @@ struct ej_handler ej_handlers[] =
 	{ "frpc_status", frpc_status_hook},
 	{ "frps_status", frps_status_hook},
 #endif
-#if defined (APP_DNSFORWARDER)
-	{ "dnsforwarder_status", dnsforwarder_status_hook},
-#endif
+
 	{ "update_action", update_action_hook},
 	{ "openssl_util_hook", openssl_util_hook},
 	{ "openvpn_srv_cert_hook", openvpn_srv_cert_hook},

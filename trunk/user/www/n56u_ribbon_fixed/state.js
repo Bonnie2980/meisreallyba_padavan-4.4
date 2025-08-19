@@ -393,9 +393,9 @@ tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "
 /*if (found_app_scutclient()){
 	tabtitle[10] = new Array("", "<#menu5_1_1#>","<#menu5_13_log#>");
 }*/
-if (found_app_dnsforwarder()){
+/*if (found_app_dnsforwarder()){
 	tabtitle[11] = new Array("", "<#menu5_1_1#>");
-}
+}*/
 if (found_app_shadowsocks()){
 	tabtitle[12] = new Array("", "<#menu5_1_1#>","<#menu5_16_20#>");
 }
@@ -438,10 +438,10 @@ tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Conten
 	scutclient_array = new Array("", "scutclient.asp", "scutclient_log.asp");
 	tablink[10] = (scutclient_array);
 }*/
-if (found_app_dnsforwarder()){
+/*if (found_app_dnsforwarder()){
 	dns_forwarder_array = new Array("", "dns-forwarder.asp");
 	tablink[11] = (dns_forwarder_array);
-}
+}*/
 if (found_app_shadowsocks()){
 	shadowsocks_array = new Array("","Shadowsocks.asp","Shadowsocks_log.asp");
 	tablink[12] = (shadowsocks_array);
@@ -496,10 +496,10 @@ menuL2_title = new Array("", "<#menu5_11#>", "<#menu5_12#>", "<#menu5_2#>", "<#m
 	menuL2_title.push("<#menu5_13#>");
 } else menuL2_title.push("");
 */
-if (found_app_dnsforwarder()){
+/*if (found_app_dnsforwarder()){
 	menuL2_title.push("<#menu5_15#>");
 } else menuL2_title.push("");
-
+*/
 if (found_app_shadowsocks()){
 	menuL2_title.push("<#menu5_16#>");
 } else menuL2_title.push("");
@@ -537,10 +537,10 @@ menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablin
 	menuL2_link.push(scutclient_array[1]);
 } else menuL2_link.push("");
 */
-if (found_app_dnsforwarder()){
+/*if (found_app_dnsforwarder()){
 	menuL2_link.push(dns_forwarder_array[1]);
 } else menuL2_link.push("");
-
+*/
 if (found_app_shadowsocks()){
 	menuL2_link.push(shadowsocks_array[1]);
 } else menuL2_link.push("");

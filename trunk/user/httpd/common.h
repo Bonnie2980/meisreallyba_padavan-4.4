@@ -87,7 +87,6 @@ typedef u_int8_t u8;
 #define EVM_RESTART_ARIA		(1ULL << 42)
 #define EVM_RESTART_TTYD		(1ULL << 44)
 #define EVM_RESTART_VLMCSD		(1ULL << 45)
-#define EVM_RESTART_DNSFORWARDER	(1ULL << 47)
 #define EVM_RESTART_SHADOWSOCKS	(1ULL << 48)
 #define EVM_RESTART_SS_TUNNEL		(1ULL << 49)
 #define EVM_RESTART_ALIDDNS		    (1ULL << 52)
@@ -155,7 +154,6 @@ typedef u_int8_t u8;
 #define EVT_RESTART_ALIDDNS	2
 #define EVT_RESTART_FRP      		2
 #define EVT_RESTART_SS_TUNNEL		2
-#define EVT_RESTART_DNSFORWARDER	1
 #define EVT_RESTART_ADGUARDHOME      	1
 #define EVT_RESTART_REBOOT		40
 

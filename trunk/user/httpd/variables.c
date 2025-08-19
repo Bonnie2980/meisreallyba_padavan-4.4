@@ -864,16 +864,6 @@
 			{0,0,0,0}
 		};
 
-#if defined(APP_DNSFORWARDER)
-	struct variable variables_dnsforwarderConf[] = {
-			{"dns_forwarder_enable", "", NULL, EVM_RESTART_DNSFORWARDER},
-			{"dns_forwarder_bind", "", NULL, EVM_RESTART_DNSFORWARDER},
-			{"dns_forwarder_port", "", NULL, EVM_RESTART_DNSFORWARDER},
-			{"dns_forwarder_server", "", NULL, EVM_RESTART_DNSFORWARDER},
-			{0,0,0,0}
-	};
-#endif
-
 #if defined(APP_ALDRIVER)
 	struct variable variables_ALDRIVER[] = {
 			{"aliyundrive_enable", "", NULL, EVM_RESTART_ALDRIVER},
@@ -1129,9 +1119,6 @@
 		{"DeviceSecurity11b",		variables_DeviceSecurity11b},
 		{"WLANAuthentication11a",	variables_WLANAuthentication11a},
 		{"WLANAuthentication11b",	variables_WLANAuthentication11b},
-#if defined(APP_DNSFORWARDER)
-		{"dnsforwarderConf",		variables_dnsforwarderConf},
-#endif
 
 #if defined(APP_ALDRIVER)
 		{"ALDRIVER",		variables_ALDRIVER},
@@ -1226,9 +1213,6 @@
 		{EVM_RESTART_ADGUARDHOME,		EVT_RESTART_ADGUARDHOME,		RCN_RESTART_ADGUARDHOME,	0},
 #endif
 
-#if defined(APP_DNSFORWARDER)
-		{EVM_RESTART_DNSFORWARDER,	EVT_RESTART_DNSFORWARDER,	RCN_RESTART_DNSFORWARDER, 0},
-#endif
 #if defined(APP_SHADOWSOCKS)
 		{EVM_RESTART_SHADOWSOCKS,	EVT_RESTART_SHADOWSOCKS,	RCN_RESTART_SHADOWSOCKS,  0},
 		{EVM_RESTART_SS_TUNNEL,		EVT_RESTART_SS_TUNNEL,		RCN_RESTART_SS_TUNNEL,	  0},

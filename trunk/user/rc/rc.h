@@ -536,11 +536,7 @@ void stop_vlmcsd(void);
 void start_vlmcsd(void);
 void restart_vlmcsd(void);
 #endif
-#if defined(APP_DNSFORWARDER)
-void stop_dnsforwarder(void);
-void start_dnsforwarder(void);
-void restart_dnsforwarder(void);
-#endif
+
 #if defined(APP_ADGUARDHOME)
 void stop_adguardhome(void);
 void start_adguardhome(void);

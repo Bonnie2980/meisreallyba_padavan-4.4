@@ -314,23 +314,6 @@ void restart_vlmcsd(void){
 }
 #endif
 
-#if defined(APP_DNSFORWARDER)
-void stop_dnsforwarder(void){
-	eval("/usr/bin/dns-forwarder.sh","stop");
-}
-
-void start_dnsforwarder(void){
-	int dnsforwarder_mode = nvram_get_int("dns_forwarder_enable");
-	if (dnsforwarder_mode == 1)
-		eval("usr/bin/dns-forwarder.sh","start");
-}
-
-void restart_dnsforwarder(void){
-	stop_dnsforwarder();
-	start_dnsforwarder();
-}
-#endif
-
 #if defined(APP_ADGUARDHOME)
 void stop_adguardhome(void){
 	eval("/usr/bin/adguardhome.sh","stop");
@@ -617,9 +600,7 @@ start_services_once(int is_ap_mode)
 #endif
 	}
 doSystem("/usr/sbin/skipd -d /etc/storage/db");
-#if defined(APP_DNSFORWARDER)
-	start_dnsforwarder();
-#endif
+
 #if defined(APP_TTYD)
 	start_ttyd();
 #endif
