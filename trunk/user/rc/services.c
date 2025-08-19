@@ -577,9 +577,6 @@ start_services_once(int is_ap_mode)
 		}
 	} else {
 		start_udpxy(IFNAME_BR);
-#if defined(APP_XUPNPD)
-		start_xupnpd(IFNAME_BR);
-#endif
 	}
 doSystem("/usr/sbin/skipd -d /etc/storage/db");
 

@@ -249,134 +249,6 @@ start_udpxy(char *wan_ifname)
 		);
 }
 
-#if defined(APP_XUPNPD)
-int
-is_xupnpd_support(void)
-{
-	return check_if_file_exist("/usr/bin/xupnpd");
-}
-
-void
-stop_xupnpd(void)
-{
-	char* svcs[] = { "xupnpd", NULL };
-
-	if (!is_xupnpd_support())
-		return;
-
-	kill_services(svcs, 3, 1);
-}
-
-void
-start_xupnpd(char *wan_ifname)
-{
-	int i, xport, has_daemon;
-	FILE *fp1, *fp2;
-	char tmp1[64], tmp2[64], line[256];
-	char *dir_src = "/etc_ro/xupnpd";
-	char *dir_dst = "/etc/storage/xupnpd";
-	char *xdir1[] = { "config", "playlists", NULL };
-	char *xdir2[] = { "plugins", "profiles", NULL };
-	char *xlua[] = { "_http", "_m3u", "_main", "_mime", "_soap", "_ssdp", "_webapp", NULL };
-
-	if (!is_xupnpd_support())
-		return;
-
-	unlink("/var/run/xupnpd.pid");
-
-	xport = nvram_get_int("xupnpd_enable_x");
-	if (xport < 1024)
-		return;
-
-	if (!check_if_dir_exist(dir_dst))
-		mkdir(dir_dst, 0755);
-
-	for (i=0; xdir1[i]; i++) {
-		snprintf(tmp2, sizeof(tmp2), "%s/%s", dir_dst, xdir1[i]);
-		if (!check_if_dir_exist(tmp2))
-			mkdir(tmp2, 0755);
-	}
-
-	for (i=0; xdir2[i]; i++) {
-		snprintf(tmp2, sizeof(tmp2), "%s/%s", dir_dst, xdir2[i]);
-		if (!check_if_dir_exist(tmp2)) {
-			snprintf(tmp1, sizeof(tmp1), "%s/%s", dir_src, xdir2[i]);
-			if (get_mtd_size("Storage") > 0x10000)
-				doSystem("cp -rf %s %s", tmp1, tmp2);
-			else
-				symlink(tmp1, tmp2);
-		}
-	}
-
-	for (i=0; xlua[i]; i++) {
-		snprintf(tmp2, sizeof(tmp2), "%s/xupnpd%s.lua", dir_dst, xlua[i]);
-		unlink(tmp2);
-	}
-
-	snprintf(tmp1, sizeof(tmp1), "%s/xupnpd%s.lua", dir_src, "");
-	snprintf(tmp2, sizeof(tmp2), "%s/xupnpd%s.lua", dir_dst, "");
-	if (!check_if_file_exist(tmp2))
-		doSystem("cp -f %s %s", tmp1, tmp2);
-
-	snprintf(tmp1, sizeof(tmp1), "%s/config/common.lua.tmp", dir_dst);
-	snprintf(tmp2, sizeof(tmp2), "%s/config/common.lua", dir_dst);
-	fp1 = fopen(tmp1, "w");
-	if (fp1) {
-		fp2 = fopen(tmp2, "r");
-		if (fp2) {
-			while (fgets(line, sizeof(line), fp2)){
-				if (strstr(line, "mcast_interface") && !strstr(line, "--"))
-					snprintf(line, sizeof(line), "cfg[\"mcast_interface\"]=\"%s\"\n", wan_ifname);
-				else if (strstr(line, "http_port") && !strstr(line, "--"))
-					snprintf(line, sizeof(line), "cfg[\"http_port\"]=%d\n", xport);
-				fprintf(fp1, "%s", line);
-			}
-			fclose(fp2);
-		}
-		fclose(fp1);
-		doSystem("mv -f %s %s", tmp1, tmp2);
-	}
-
-	has_daemon = 0;
-	snprintf(tmp1, sizeof(tmp1), "%s/xupnpd.lua.tmp", dir_dst);
-	snprintf(tmp2, sizeof(tmp2), "%s/xupnpd.lua", dir_dst);
-	fp1 = fopen(tmp1, "w");
-	if (fp1) {
-		fp2 = fopen(tmp2, "r");
-		if (fp2) {
-			while (fgets(line, sizeof(line), fp2)){
-				if (strstr(line, "cfg.mcast_interface=") && !strstr(line, "--"))
-					snprintf(line, sizeof(line), "cfg.mcast_interface='%s'\n", wan_ifname);
-				else if (strstr(line, "cfg.http_port=") && !strstr(line, "--"))
-					snprintf(line, sizeof(line), "cfg.http_port=%d\n", xport);
-				else if (strstr(line, "cfg.udpxy_url=")) {
-					char *lua_rem = "--";
-					char *lan_addr = nvram_safe_get("lan_ipaddr_t");
-					int udpxy_port = nvram_get_int("udpxy_enable_x");
-					if (udpxy_port > 1023 && nvram_match("xupnpd_udpxy", "1"))
-						lua_rem = "";
-					if (udpxy_port == 0)
-						udpxy_port = 4022;
-					snprintf(line, sizeof(line), "%scfg.udpxy_url='http://%s:%d'\n", lua_rem, lan_addr, udpxy_port);
-				}
-				else if (strstr(line, "cfg.daemon") && !strstr(line, "--")) {
-					snprintf(line, sizeof(line), "cfg.daemon=true\n");
-					has_daemon = 1;
-				}
-				fprintf(fp1, "%s", line);
-			}
-			fclose(fp2);
-		}
-		fclose(fp1);
-		doSystem("mv -f %s %s", tmp1, tmp2);
-		
-		if (has_daemon)
-			eval("/usr/bin/xupnpd");
-		else
-			system("/usr/bin/xupnpd &");
-	}
-}
-#endif
 
 void
 stop_igmpproxy(char *wan_ifname)
@@ -409,9 +281,6 @@ start_igmpproxy(char *wan_ifname)
 	stop_igmpproxy(wan_ifname);
 
 	start_udpxy(wan_ifname);
-#if defined(APP_XUPNPD)
-	start_xupnpd(wan_ifname);
-#endif
 
 	if (nvram_invmatch("mr_enable_x", "1"))
 		return;
@@ -455,9 +324,6 @@ restart_iptv(int is_ap_mode)
 	} else {
 		stop_igmpproxy(NULL);
 		start_udpxy(IFNAME_BR);
-#if defined(APP_XUPNPD)
-		start_xupnpd(IFNAME_BR);
-#endif
 	}
 }
 

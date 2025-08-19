@@ -78,18 +78,6 @@ function initial(){
 	if(document.form.udpxy_enable_x.value == 0)
 		$("web_udpxy_link").style.display = "none";
 
-	if(found_app_xupnpd()){
-		showhide_div('row_xupnpd', 1);
-		if(document.form.xupnpd_enable_x.value == 0)
-			$("web_xupnpd_link").style.display = "none";
-		if(document.form.udpxy_enable_x.value == 0 || document.form.xupnpd_enable_x.value == 0)
-			showhide_div('row_xupnpd_udpxy', 0);
-		else
-			showhide_div('row_xupnpd_udpxy', 1);
-	}else{
-		showhide_div('row_xupnpd', 0);
-	}
-
 	on_click_snoop();
 }
 
@@ -108,18 +96,6 @@ function validForm(){
 	if(document.form.udpxy_enable_x.value != 0){
 		if(!validate_range(document.form.udpxy_enable_x, 1024, 65535))
 			return false;
-	}
-
-	if(found_app_xupnpd()){
-		if(document.form.xupnpd_enable_x.value != 0){
-			if(!validate_range(document.form.xupnpd_enable_x, 1024, 65535))
-				return false;
-			if (document.form.xupnpd_enable_x.value == document.form.udpxy_enable_x.value){
-				document.form.xupnpd_enable_x.focus();
-				alert("<#JS_duplicate#>");
-				return false;
-			}
-		}
 	}
 
 	var switch_type = support_switch_type();
@@ -151,11 +127,6 @@ function done_validating(action){
 function valid_udpxy(){
 	if(document.form.udpxy_enable_x.value != 0)
 		validate_range(document.form.udpxy_enable_x, 1024, 65535);
-}
-
-function valid_xupnpd(){
-	if(found_app_xupnpd() && document.form.xupnpd_enable_x.value != 0)
-		validate_range(document.form.xupnpd_enable_x, 1024, 65535);
 }
 
 function on_click_mroute(){
@@ -300,24 +271,6 @@ function on_xupnpd_link(){
                                             </td>
                                             <td width="15%">
                                                 <a href="javascript:on_udpxy_link();" id="web_udpxy_link">Web status</a>
-                                            </td>
-                                        </tr>
-                                        <tr id="row_xupnpd">
-                                            <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,6, 6);"><#IPTVXUA#></a></th>
-                                            <td>
-                                                <input type="text" maxlength="5" class="input" size="15" name="xupnpd_enable_x" value="<% nvram_get_x("", "xupnpd_enable_x"); %>" onkeypress="return is_number(this,event);" onblur="valid_xupnpd();"/>
-                                            </td>
-                                            <td width="15%">
-                                                <a href="javascript:on_xupnpd_link();" id="web_xupnpd_link">Web status</a>
-                                            </td>
-                                        </tr>
-                                        <tr id="row_xupnpd_udpxy" style="display:none;">
-                                            <th><#IPTVXExt#></th>
-                                            <td colspan="2">
-                                                <select name="xupnpd_udpxy" class="input">
-                                                    <option value="0" <% nvram_match_x("", "xupnpd_udpxy", "0", "selected"); %>><#checkbox_No#></option>
-                                                    <option value="1" <% nvram_match_x("", "xupnpd_udpxy", "1", "selected"); %>><#checkbox_Yes#></option>
-                                                </select>
                                             </td>
                                         </tr>
                                     </table>

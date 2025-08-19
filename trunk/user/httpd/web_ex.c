@@ -2407,12 +2407,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	int found_app_sqm = 0;
 #endif
 
-#if defined(APP_XUPNPD)
-	int found_app_xupnpd = 1;
-#else
-	int found_app_xupnpd = 0;
-#endif
-
 #if defined(APP_FRP)
 	int found_app_frp = 1;
 #else
@@ -2580,7 +2574,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_vlmcsd() { return %d;}\n"
 		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_sqm() { return %d;}\n"
-		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_aldriver() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_frp() { return %d;}\n",
@@ -2602,7 +2595,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_vlmcsd,
 		found_app_shadowsocks,
 		found_app_sqm,
-		found_app_xupnpd,
 		found_app_aldriver,
 		found_app_aliddns,
 		found_app_frp

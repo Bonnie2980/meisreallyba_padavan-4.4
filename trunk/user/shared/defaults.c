@@ -757,10 +757,6 @@ struct nvram_pair router_defaults[] = {
 	{ "udpxy_enable_x", "0" },
 	{ "udpxy_clients", "10" },
 	{ "udpxy_renew_period", "120" },
-#if defined(APP_XUPNPD)
-	{ "xupnpd_enable_x", "0" },
-	{ "xupnpd_udpxy", "0" },
-#endif
 	{ "rstats_enable", "1" },
 	{ "rstats_stored", "1" },
 	{ "stime_stored", "1" },

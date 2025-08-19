@@ -553,8 +553,6 @@
 			{"force_mld", "", NULL, EVM_RESTART_SYSCTL},
 #endif
 			{"udpxy_enable_x", "", NULL, EVM_RESTART_IPTV},
-			{"xupnpd_enable_x", "", NULL, EVM_RESTART_IPTV},
-			{"xupnpd_udpxy", "", NULL, EVM_RESTART_IPTV},
 			{"dhcp_enable_x", "", NULL, EVM_RESTART_DHCPD|EVM_REAPPLY_VPNSVR},
 			{"dhcp_start", "", NULL, EVM_RESTART_DHCPD},
 			{"dhcp_end", "", NULL, EVM_RESTART_DHCPD},
