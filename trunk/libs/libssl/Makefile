@@ -22,10 +22,6 @@ OPENSSL_CIPHERS = no-capieng no-cms no-rfc3779 no-seed \
   no-devcryptoeng no-ssl3-method no-tests no-sm2 \
   no-sm3 no-sm4 no-afalgeng no-comp
 
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_SSWAN),y)
-OPENSSL_CIPHERS += no-rc2
-endif
-
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_OPENSSL_EC),y)
 OPENSSL_CIPHERS += no-ec
 endif

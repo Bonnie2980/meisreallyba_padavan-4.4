@@ -217,10 +217,6 @@ if [ "$CONFIG_FIRMWARE_ENABLE_SWAP" != "y" ] ; then
 	func_disable_busybox_param "CONFIG_SWAPONOFF"
 fi
 fi
-############################# XFRM ####################################
-#if [ "$CONFIG_FIRMWARE_INCLUDE_SSWAN" = "y" ] ; then
-#	CONFIG_FIRMWARE_INCLUDE_XFRM=y
-#fi
 echo --------------------------MAKE-DEP--------------------------------
 make dep
 echo --------------------------MAKE-ALL--------------------------------
