@@ -501,30 +501,6 @@ struct nvram_pair router_defaults[] = {
 	{ "dr_staticnetmask_x", "0" },
 	{ "dr_staticgateway_x", "" },
 
-#if defined(APP_MENTOHUST)
-	/* mentohust related */
-	{ "mentohust_enable", "0" },
-	{ "mentohust_username", "" },
-	{ "mentohust_password", "" },
-	{ "mentohust_nic", "" },
-	{ "mentohust_ip", "" },
-	{ "mentohust_mask", "" },
-	{ "mentohust_gw", "" },
-	{ "mentohust_dns", "" },
-	{ "mentohust_pinghost", "" },
-	{ "mentohust_timeout", "8" },
-	{ "mentohust_interval", "30" },
-	{ "mentohust_restart_wait", "15" },
-	{ "mentohust_maxfail", "0" },
-	{ "mentohust_startmode", "1" },
-	{ "mentohust_dhcp", "0" },
-	{ "mentohust_daemon", "1" },
-	{ "mentohust_service", "0" },
-	{ "mentohust_ver", "0.00" },
-	{ "mentohust_datafile", "/etc/storage/mentohust/" },
-	{ "mentohust_dhcpscript", "" },
-#endif
-
 #if defined(APP_TTYD)
 	/* ttyd related */
 	{ "ttyd_enable", "0" },
@@ -653,12 +629,6 @@ struct nvram_pair router_defaults[] = {
 	{ "aliddns_domain", "" },
 	{ "aliddns_domain2", "" },
 	{ "aliddns_domain6", "" },
-	
-#if defined(APP_ADGUARDHOME)	
-	/* AdguargHome */
-	{ "adg_enable", "0" },
-	{ "adg_redirect", "0" },
-#endif
 	
 #if defined(APP_CADDY)	
 	/*caddy*/

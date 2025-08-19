@@ -314,24 +314,6 @@ void restart_vlmcsd(void){
 }
 #endif
 
-#if defined(APP_ADGUARDHOME)
-void stop_adguardhome(void){
-	eval("/usr/bin/adguardhome.sh","stop");
-}
-
-void start_adguardhome(void){
-	int adg_mode = nvram_get_int("adg_enable");
-	if ( adg_mode == 1)
-		eval("/usr/bin/adguardhome.sh","start");
-}
-
-void restart_adguardhome(void){
-	stop_adguardhome();
-	start_adguardhome();
-}
-
-#endif
-
 #if defined(APP_SQM)
 void stop_sqm(void){
 	eval("/usr/lib/sqm/run.sh","stop");
@@ -612,9 +594,7 @@ doSystem("/usr/sbin/skipd -d /etc/storage/db");
 	start_crond();
 	start_networkmap(1);
 	start_rstats();
-#if defined(APP_MENTOHUST)
-	start_mentohust();
-#endif
+
 	system("/usr/bin/iappd.sh restart");
 	system("modprobe xt_TPROXY");
 	system("/usr/bin/iappd.sh test");
@@ -642,12 +622,6 @@ stop_services(int stopall)
 #endif
 #endif
 
-#if defined(APP_MENTOHUST)
-	stop_mentohust();
-#endif
-#if defined(APP_ADGUARDHOME)
-	stop_adguardhome();
-#endif
 #if defined(APP_SHADOWSOCKS)
 	stop_ss();
 	stop_ss_tunnel();

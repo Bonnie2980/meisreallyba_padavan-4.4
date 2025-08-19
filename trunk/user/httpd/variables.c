@@ -1001,14 +1001,6 @@
 	};
 #endif
 
-#if defined(APP_ADGUARDHOME)
-    struct variable variables_AdguardHomeConf[] = {
-			{"adg_enable", "", NULL, EVM_RESTART_ADGUARDHOME},
-			{"adg_redirect", "", NULL, EVM_RESTART_ADGUARDHOME},
-			{0,0,0,0}
-	};
-#endif
-
 	struct variable variables_WLANConfig11b[] = {
 			{"rt_ssid", "", NULL, EVM_RESTART_WIFI2},
 			{"rt_ssid2", "", NULL, EVM_RESTART_WIFI2},
@@ -1127,9 +1119,6 @@
 #if defined(APP_SQM)
 		{"SqmConf",		variables_SqmConf},
 #endif
-#if defined(APP_ADGUARDHOME)
-		{"AdguardHomeConf",		variables_AdguardHomeConf},
-#endif
 
 #if defined(APP_SHADOWSOCKS)
 		{"ShadowsocksConf",		variables_ShadowsocksConf},
@@ -1208,9 +1197,6 @@
 #endif
 #if defined(APP_VLMCSD)
 		{EVM_RESTART_VLMCSD,	EVT_RESTART_VLMCSD,		RCN_RESTART_VLMCSD,	0},
-#endif
-#if defined(APP_ADGUARDHOME)
-		{EVM_RESTART_ADGUARDHOME,		EVT_RESTART_ADGUARDHOME,		RCN_RESTART_ADGUARDHOME,	0},
 #endif
 
 #if defined(APP_SHADOWSOCKS)

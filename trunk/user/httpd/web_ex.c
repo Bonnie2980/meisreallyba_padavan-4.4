@@ -2395,11 +2395,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_aliddns = 0;
 #endif
-#if defined(APP_ADGUARDHOME)
-	int found_app_adguardhome = 1;
-#else
-	int found_app_adguardhome = 0;
-#endif
 
 #if defined(APP_ALDRIVER)
 	int found_app_aldriver = 1;
@@ -2594,8 +2589,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_frp() { return %d;}\n"
 		"function found_app_vpnsvr() { return %d;}\n"
-		"function found_app_vpncli() { return %d;}\n"
-		"function found_app_adguardhome() { return %d;}\n",
+		"function found_app_vpncli() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
 		found_app_dlna,
@@ -2619,8 +2613,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_aliddns,
 		found_app_frp,
 		found_app_vpnsvr,
-		found_app_vpncli,
-		found_app_adguardhome
+		found_app_vpncli
 	);
 
 	websWrite(wp,
@@ -3944,21 +3937,6 @@ static char no_cache_IE7[] =
 ;
 
 
-#if defined (APP_MENTOHUST)
-static void
-do_mentohust_log_file(const char *url, FILE *stream)
-{
-	dump_file(stream, "/tmp/mentohust.log");
-	fputs("\r\n", stream); /* terminator */
-}
-
-static char mentohust_log_txt[] =
-"Content-Disposition: attachment;\r\n"
-"filename=mentohust.log"
-;
-
-#endif
-
 struct mime_handler mime_handlers[] = {
 	/* cached javascript files w/o translations */
 	{ "jquery.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
@@ -4000,9 +3978,7 @@ struct mime_handler mime_handlers[] = {
 	{ "Settings_**.CFG", "application/force-download", NULL, NULL, do_nvram_file, 1 },
 	{ "Storage_**.TBZ", "application/force-download", NULL, NULL, do_storage_file, 1 },
 	{ "syslog.txt", "application/force-download", syslog_txt, NULL, do_syslog_file, 1 },
-#if defined(APP_MENTOHUST)
-	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
-#endif
+
 #if defined(APP_OPENVPN)
 	{ "client.ovpn", "application/force-download", NULL, NULL, do_export_ovpn_client, 1 },
 #endif
@@ -4296,10 +4272,7 @@ struct ej_handler ej_handlers[] =
 	{ "modify_sharedfolder", ej_modify_sharedfolder},
 	{ "set_share_mode", ej_set_share_mode},
 #endif
-#if defined (APP_MENTOHUST)
-	{ "mentohust_action", mentohust_action_hook},
-	{ "mentohust_status", mentohust_status_hook},
-#endif
+
 #if defined (APP_SHADOWSOCKS)
 	{ "shadowsocks_action", shadowsocks_action_hook},
 	{ "shadowsocks_status", shadowsocks_status_hook},

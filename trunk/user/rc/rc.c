@@ -1126,12 +1126,6 @@ handle_notifications(void)
 			restart_sqm();
 		}
 #endif
-#if defined(APP_ADGUARDHOME)
-		else if (strcmp(entry->d_name, RCN_RESTART_ADGUARDHOME) == 0)
-		{
-			restart_adguardhome();
-		}
-#endif
 
 #if defined(APP_FRP)
 		else if (strcmp(entry->d_name, RCN_RESTART_FRP) == 0)

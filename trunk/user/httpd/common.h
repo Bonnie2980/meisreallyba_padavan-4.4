@@ -91,7 +91,6 @@ typedef u_int8_t u8;
 #define EVM_RESTART_SS_TUNNEL		(1ULL << 49)
 #define EVM_RESTART_ALIDDNS		    (1ULL << 52)
 #define EVM_RESTART_FRP		    (1ULL << 53)
-#define EVM_RESTART_ADGUARDHOME		    (1ULL << 58)
 #define EVM_RESTART_ALDRIVER		    (1ULL << 61)
 #define EVM_RESTART_SQM		    (1ULL << 63)
 
@@ -154,7 +153,6 @@ typedef u_int8_t u8;
 #define EVT_RESTART_ALIDDNS	2
 #define EVT_RESTART_FRP      		2
 #define EVT_RESTART_SS_TUNNEL		2
-#define EVT_RESTART_ADGUARDHOME      	1
 #define EVT_RESTART_REBOOT		40
 
 struct variable

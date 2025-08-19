@@ -537,11 +537,6 @@ void start_vlmcsd(void);
 void restart_vlmcsd(void);
 #endif
 
-#if defined(APP_ADGUARDHOME)
-void stop_adguardhome(void);
-void start_adguardhome(void);
-void restart_adguardhome(void);
-#endif
 #if defined(APP_ALIDDNS)
 void stop_aliddns(void);
 void start_aliddns(void);
