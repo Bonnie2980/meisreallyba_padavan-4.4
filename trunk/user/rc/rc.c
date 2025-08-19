@@ -1542,11 +1542,7 @@ main(int argc, char **argv)
 		stop_nfsd();
 	}
 #endif
-#if defined(APP_MINIDLNA)
-	else if (!strcmp(base, "stop_minidlna")) {
-		stop_dms();
-	}
-#endif
+
 #if defined(APP_FIREFLY)
 	else if (!strcmp(base, "stop_firefly")) {
 		stop_itunes();
