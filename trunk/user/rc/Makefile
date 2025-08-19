@@ -162,10 +162,7 @@ ifeq ($(CONFIG_FIRMWARE_INCLUDE_NFSD),y)
 	cd $(INSTALLDIR)/sbin && ln -sf rc run_nfsd
 	cd $(INSTALLDIR)/sbin && ln -sf rc stop_nfsd
 endif
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_FIREFLY),y)
-	cd $(INSTALLDIR)/sbin && ln -sf rc run_firefly
-	cd $(INSTALLDIR)/sbin && ln -sf rc stop_firefly
-endif
+
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION),y)
 	cd $(INSTALLDIR)/sbin && ln -sf rc run_transmission
 	cd $(INSTALLDIR)/sbin && ln -sf rc stop_transmission

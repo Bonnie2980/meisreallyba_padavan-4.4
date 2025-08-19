@@ -608,12 +608,7 @@ void run_nfsd(void);
 void reload_nfsd(void);
 void restart_nfsd(void);
 #endif
-#if defined (APP_FIREFLY)
-int is_itunes_run(void);
-void stop_itunes(void);
-void run_itunes(void);
-void restart_itunes(void);
-#endif
+
 #if defined (APP_TRMD)
 int is_torrent_run(void);
 int is_torrent_support(void);

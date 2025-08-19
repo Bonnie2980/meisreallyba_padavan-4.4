@@ -81,7 +81,6 @@ typedef u_int8_t u8;
 #define EVM_RESTART_NMBD		(1ULL << 36)
 #define EVM_RESTART_SMBD		(1ULL << 37)
 #define EVM_RESTART_NFSD		(1ULL << 38)
-#define EVM_RESTART_ITUNES		(1ULL << 40)
 #define EVM_RESTART_TRMD		(1ULL << 41)
 #define EVM_RESTART_ARIA		(1ULL << 42)
 #define EVM_RESTART_TTYD		(1ULL << 44)
@@ -140,7 +139,6 @@ typedef u_int8_t u8;
 #define EVT_RESTART_NMBD		2
 #define EVT_RESTART_SMBD		2
 #define EVT_RESTART_NFSD		2
-#define EVT_RESTART_ITUNES		2
 #define EVT_RESTART_TRMD		3
 #define EVT_RESTART_ARIA		3
 #define EVT_RESTART_TTYD		1

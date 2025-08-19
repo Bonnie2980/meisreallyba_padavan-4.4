@@ -78,10 +78,6 @@ function initial(){
 		$("tbl_nfsd").style.display = "";
 	}
 
-	if(found_app_ffly()){
-		$("tbl_itunes").style.display = "";
-	}
-
 	if(found_app_torr()){
 		$("tbl_trmd").style.display = "";
 		change_trmd_enabled();
@@ -599,33 +595,6 @@ function done_validating(action){
                                                     <input type="radio" name="nfsd_enable" id="nfsd_enable_1" value="1" <% nvram_match_x("", "nfsd_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="nfsd_enable" id="nfsd_enable_0" value="0" <% nvram_match_x("", "nfsd_enable", "0", "checked"); %>/><#checkbox_No#>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-
-                                    <table width="100%" id="tbl_itunes" cellpadding="4" cellspacing="0" class="table" style="display:none;">
-                                        <tr>
-                                            <th colspan="3" style="background-color: #E3E3E3;"><#StorageFFly#></th>
-                                        </tr>
-                                        <tr>
-                                            <th width="50%">
-                                                <#StorageEnableFFly#>
-                                            </th>
-                                            <td>
-                                                <div class="main_itoggle">
-                                                    <div id="apps_itunes_on_of">
-                                                        <input type="checkbox" id="apps_itunes_fake" <% nvram_match_x("", "apps_itunes", "1", "value=1 checked"); %><% nvram_match_x("", "apps_itunes", "0", "value=0"); %>>
-
-                                                    </div>
-                                                </div>
-
-                                                <div style="position: absolute; margin-left: -10000px;">
-                                                    <input type="radio" name="apps_itunes" id="apps_itunes_1" value="1" <% nvram_match_x("", "apps_itunes", "1", "checked"); %>/><#checkbox_Yes#>
-                                                    <input type="radio" name="apps_itunes" id="apps_itunes_0" value="0" <% nvram_match_x("", "apps_itunes", "0", "checked"); %>/><#checkbox_No#>
-                                                </div>
-                                            </td>
-                                            <td width="15%">
-                                                <a href="javascript:on_ffly_link();" id="web_ffly_link"><#WebControl#></a>
                                             </td>
                                         </tr>
                                     </table>

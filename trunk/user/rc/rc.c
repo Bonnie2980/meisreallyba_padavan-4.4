@@ -1024,12 +1024,6 @@ handle_notifications(void)
 		}
 #endif
 
-#if defined(APP_FIREFLY)
-		else if (strcmp(entry->d_name, RCN_RESTART_ITUNES) == 0)
-		{
-			restart_itunes();
-		}
-#endif
 #if defined(APP_TRMD)
 		else if (strcmp(entry->d_name, RCN_RESTART_TRMD) == 0)
 		{
@@ -1502,11 +1496,6 @@ main(int argc, char **argv)
 		run_nfsd();
 	}
 #endif
-#if defined(APP_FIREFLY)
-	else if (!strcmp(base, "run_firefly")) {
-		restart_itunes();
-	}
-#endif
 #if defined(APP_TRMD)
 	else if (!strcmp(base, "run_transmission")) {
 		restart_torrent();
@@ -1543,11 +1532,6 @@ main(int argc, char **argv)
 	}
 #endif
 
-#if defined(APP_FIREFLY)
-	else if (!strcmp(base, "stop_firefly")) {
-		stop_itunes();
-	}
-#endif
 #if defined(APP_TRMD)
 	else if (!strcmp(base, "stop_transmission")) {
 		stop_torrent();

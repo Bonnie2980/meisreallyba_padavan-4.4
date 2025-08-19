@@ -266,7 +266,7 @@
 		};
 
 	struct variable variables_Storage[] = {
-			{"computer_name", "", NULL, EVM_RESTART_DHCPD|EVM_RESTART_FTPD|EVM_RESTART_NMBD|EVM_RESTART_ITUNES},
+			{"computer_name", "", NULL, EVM_RESTART_DHCPD|EVM_RESTART_FTPD|EVM_RESTART_NMBD},
 #if defined(APP_SMBD)
 			{"enable_samba", "", NULL, EVM_RESTART_SMBD},
 			{"st_samba_fp", "", NULL, EVM_RESTART_SYSCTL},
@@ -297,9 +297,6 @@
 			{"nfsd_enable", "", NULL, EVM_RESTART_NFSD},
 #endif
 
-#if defined(APP_FIREFLY)
-			{"apps_itunes", "", NULL, EVM_RESTART_ITUNES},
-#endif
 #if defined(APP_TRMD)
 			{"trmd_enable", "", NULL,EVM_RESTART_TRMD},
 			{"trmd_pport", "", NULL, EVM_RESTART_TRMD},
@@ -1166,9 +1163,6 @@
 #endif
 #if defined(APP_NFSD)
 		{EVM_RESTART_NFSD,		EVT_RESTART_NFSD,		RCN_RESTART_NFSD,	0},
-#endif
-#if defined(APP_FIREFLY)
-		{EVM_RESTART_ITUNES,		EVT_RESTART_ITUNES,		RCN_RESTART_ITUNES,	0},
 #endif
 #if defined(APP_TRMD)
 		{EVM_RESTART_TRMD,		EVT_RESTART_TRMD,		RCN_RESTART_TRMD,	EVM_RESTART_FIREWALL},
