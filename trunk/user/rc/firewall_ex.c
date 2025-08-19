@@ -2137,9 +2137,7 @@ start_firewall_ex(void)
 	char wan_ip[16], man_ip[16], lan_ip[16], lan_net[24] = {0};
 	const char *opt_iptables_script = "/opt/bin/update_iptables.sh";
 	const char *int_iptables_script = SCRIPT_POST_FIREWALL;
-#if defined (APP_SHADOWSOCKS)
-	const char *shadowsocks_iptables_script = "/tmp/shadowsocks_iptables.save";
-#endif
+
 	unit = 0;
 
 	snprintf(lan_if, sizeof(lan_if), "%s", IFNAME_BR);
@@ -2201,10 +2199,6 @@ start_firewall_ex(void)
 	ip6t_filter_rules(man_if, wan_if, lan_if, logaccept, logdrop, i_tcp_mss);
 #endif
 
-#if defined (APP_SHADOWSOCKS)
-	if (check_if_file_exist(shadowsocks_iptables_script))
-		doSystem("sh %s", shadowsocks_iptables_script);
-#endif
 	if (check_if_file_exist(int_iptables_script))
 		doSystem("%s", int_iptables_script);
 

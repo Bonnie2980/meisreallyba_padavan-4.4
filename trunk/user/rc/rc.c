@@ -1059,32 +1059,7 @@ handle_notifications(void)
 			restart_ttyd();
 		}
 #endif
-#if defined(APP_SHADOWSOCKS)
-		else if (strcmp(entry->d_name, RCN_RESTART_SHADOWSOCKS) == 0)
-		{
-			restart_ss();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_SS_TUNNEL) == 0)
-		{
-			restart_ss_tunnel();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_CHNROUTE_UPD) == 0)
-		{
-			update_chnroute();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_GFWLIST_UPD) == 0)
-		{
-			update_gfwlist();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_DLINK) == 0)
-		{
-			update_dlink();
-		}
-		else if (strcmp(entry->d_name, RCN_RESTART_REDLINK) == 0)
-		{
-			reset_dlink();
-		}
-#endif
+
 #if defined(APP_VLMCSD)
 		else if (strcmp(entry->d_name, RCN_RESTART_VLMCSD) == 0)
 		{

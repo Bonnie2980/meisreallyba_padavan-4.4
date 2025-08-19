@@ -2,8 +2,7 @@
 
 TOPDIR="."
 
-check_dirs="trunk/user/shadowsocks/scripts \
-	trunk/user/chnroute/scripts \
+check_dirs="trunk/user/chnroute/scripts \
 	trunk/user/ttyd \
 	trunk/user/vlmcsd \
 	trunk/user/aria2 \

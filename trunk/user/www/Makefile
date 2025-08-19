@@ -182,11 +182,6 @@ ifneq ($(STORAGE_ENABLED),y)
 	rm -rf $(INSTALLDIR)/www/images/Tree
 endif
 
-ifneq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
-	rm -f $(INSTALLDIR)/www/Shadowsocks.asp
-	rm -f $(INSTALLDIR)/www/Shadowsocks_action.asp
-	rm -f $(INSTALLDIR)/www/Shadowsocks_log.asp
-endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ALIDDNS),y)
 	rm -f $(INSTALLDIR)/www/Advanced_aliddns.asp
 endif

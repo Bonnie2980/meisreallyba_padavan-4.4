@@ -250,53 +250,6 @@ void restart_ttyd(void){
 }
 #endif
 
-#if defined(APP_SHADOWSOCKS)
-void stop_ss(void){
-	eval("/usr/bin/shadowsocks.sh","stop");
-}
-
-void start_ss(void){
-	int ss_enable = nvram_get_int("ss_enable");
-	if ( ss_enable == 1)
-		eval("/usr/bin/shadowsocks.sh","start");
-}
-
-void restart_ss(void){
-	stop_ss();
-	start_ss();
-}
-
-void stop_ss_tunnel(void){
-	eval("/usr/bin/ss-tunnel.sh","stop");
-}
-
-void start_ss_tunnel(void){
-	int ss_tunnel_mode = nvram_get_int("ss-tunnel_enable");
-	if ( ss_tunnel_mode == 1)
-		eval("/usr/bin/ss-tunnel.sh","start");
-}
-
-void restart_ss_tunnel(void){
-	stop_ss_tunnel();
-	start_ss_tunnel();
-}
-
-void update_chnroute(void){
-	eval("/bin/sh","-c","/usr/bin/update_chnroute.sh force &");
-}
-
-void update_gfwlist(void){
-	eval("/bin/sh","-c","/usr/bin/update_gfwlist.sh force &");
-}
-void update_dlink(void){
-	eval("/bin/sh","-c","/usr/bin/update_dlink.sh start &");
-}
-
-void reset_dlink(void){
-	eval("/bin/sh","-c","/usr/bin/update_dlink.sh reset &");
-}
-#endif
-
 #if defined(APP_VLMCSD)
 void stop_vlmcsd(void){
 	eval("/usr/bin/vlmcsd.sh","stop");
@@ -617,11 +570,6 @@ stop_services(int stopall)
 #if defined (SRV_U2EC)
 	stop_u2ec();
 #endif
-#endif
-
-#if defined(APP_SHADOWSOCKS)
-	stop_ss();
-	stop_ss_tunnel();
 #endif
 
 #if defined(APP_SQM)

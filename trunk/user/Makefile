@@ -23,7 +23,6 @@ STORAGE_ENABLED=n
 OPENSSH_ENABLED=n
 DROPBEAR_ENABLED=n
 SAMBA_ENABLED=n
-SHADOWSOCKS_ENABLE=n
 FRP_ENABLE=n
 TROJAN_ENABLE=n
 
@@ -73,15 +72,11 @@ SAMBA_ENABLED=y
 endif
 endif
 
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
-SHADOWSOCKS_ENABLE=y
-endif
-
 ifneq ($(filter y,$(CONFIG_FIRMWARE_INCLUDE_FRPC) $(CONFIG_FIRMWARE_INCLUDE_FRPS)),)
 FRP_ENABLE=y
 endif
 
-ifneq ($(filter y,$(CONFIG_FIRMWARE_INCLUDE_WING) $(CONFIG_FIRMWARE_INCLUDE_TROJAN)),)
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_WING),y)
 TROJAN_ENABLE=y
 endif
 
@@ -123,18 +118,7 @@ dir_y						+= xl2tpd
 dir_$(CONFIG_FIRMWARE_INCLUDE_RPL2TP)		+= rp-l2tp
 dir_y						+= lldt
 dir_y						+= scripts
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)						+= skipdbv2
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)						+= lua51
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)            +=ipt2socks
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)            +=resolveip
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)	        += dns2tcp
 
-ifeq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
-dir_$(CONFIG_FIRMWARE_INCLUDE_V2RAY)	        += v2ray
-dir_$(CONFIG_FIRMWARE_INCLUDE_XRAY)	        += xray
-dir_$(CONFIG_FIRMWARE_INCLUDE_TROJAN)	        += trojan
-endif
-dir_$(CONFIG_FIRMWARE_INCLUDE_SSOBFS)                      += simple-obfs
 dir_$(CONFIG_FIRMWARE_INCLUDE_ALDRIVER)	                       += aliyundrive-webdav
 dir_$(CONFIG_FIRMWARE_INCLUDE_ALIDDNS)		+= aliddns
 dir_$(CONFIG_FIRMWARE_INCLUDE_SQM)				+= sqm-qos
@@ -149,11 +133,9 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_SOCAT)	+= socat
 
 dir_$(SAMBA_ENABLED)				+= samba36
 dir_$(SAMBA_ENABLED)				+= wsdd2
-dir_$(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS)	+= chnroute
 dir_$(CONFIG_FIRMWARE_INCLUDE_TTYD)		+= ttyd
 dir_$(FRP_ENABLE)				+= frp
 dir_$(CONFIG_FIRMWARE_INCLUDE_VLMCSD)			+= vlmcsd
-dir_$(SHADOWSOCKS_ENABLE)				+= shadowsocks
 dir_$(CONFIG_FIRMWARE_INCLUDE_LRZSZ)			+= lrzsz
 dir_$(CONFIG_FIRMWARE_INCLUDE_IPERF3)			+= iperf3
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_WING),y)

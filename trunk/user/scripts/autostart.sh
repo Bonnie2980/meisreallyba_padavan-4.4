@@ -33,11 +33,6 @@ logger -t "自动启动" "正在启动阿里ddns"
 /usr/bin/aliddns.sh start
 fi
 
-if [ $(nvram get ss_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动科学上网"
-/usr/bin/shadowsocks.sh start
-fi
-
 if [ $(nvram get aliyundrive_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动阿里云盘"
 /usr/bin/aliyundrive-webdav.sh start

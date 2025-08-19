@@ -516,18 +516,7 @@ void stop_ttyd(void);
 void start_ttyd(void);
 void restart_ttyd(void);
 #endif
-#if defined(APP_SHADOWSOCKS)
-void stop_ss(void);
-void start_ss(void);
-void restart_ss(void);
-void stop_ss_tunnel(void);
-void start_ss_tunnel(void);
-void restart_ss_tunnel(void);
-void update_chnroute(void);
-void update_gfwlist(void);
-void update_dlink(void);
-void reset_dlink(void);
-#endif
+
 #if defined(APP_VLMCSD)
 void stop_vlmcsd(void);
 void start_vlmcsd(void);
