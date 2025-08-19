@@ -3,10 +3,7 @@
 TOPDIR="."
 
 check_dirs="trunk/user/shadowsocks/scripts \
-	trunk/user/mentohust/scripts \
 	trunk/user/chnroute/scripts \
-	trunk/user/dns-forwarder \
-	trunk/user/softethervpn \
 	trunk/user/ttyd \
 	trunk/user/vlmcsd \
 	trunk/user/aria2 \

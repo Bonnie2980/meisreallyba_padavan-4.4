@@ -2418,11 +2418,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_frp = 0;
 #endif
-#if defined(APP_VPNSVR)
-	int found_app_vpnsvr = 1;
-#else
-	int found_app_vpnsvr = 0;
-#endif
+
 #if defined(APP_VPNCLI)
 	int found_app_vpncli = 1;
 #else
@@ -2587,9 +2583,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_aldriver() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
-		"function found_app_frp() { return %d;}\n"
-		"function found_app_vpnsvr() { return %d;}\n"
-		"function found_app_vpncli() { return %d;}\n",
+		"function found_app_frp() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
 		found_app_dlna,
@@ -2611,9 +2605,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_xupnpd,
 		found_app_aldriver,
 		found_app_aliddns,
-		found_app_frp,
-		found_app_vpnsvr,
-		found_app_vpncli
+		found_app_frp
 	);
 
 	websWrite(wp,
