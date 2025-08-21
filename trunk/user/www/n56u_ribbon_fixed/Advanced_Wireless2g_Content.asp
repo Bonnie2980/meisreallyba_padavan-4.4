@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+	</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -35,7 +37,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(1);
-	show_menu(5,1,1);
+			show_menu('if-m1-syssettings', 'if-m2-2gwifi', 1);
 	show_footer();
 
 	if (!support_2g_11ax()){
@@ -250,7 +252,8 @@ function validate_wlphrase(s, v, obj){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+	<div id="Loading" class="popup_bg">
+	</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -261,7 +264,6 @@ function validate_wlphrase(s, v, obj){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" action="/start_apply.htm" target="hidden_frame">
@@ -320,11 +322,9 @@ function validate_wlphrase(s, v, obj){
                                         <tr>
                                             <th width="50%" style="border-top: 0 none;"><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 0, 22);"><#WLANConfig11b_x_RadioEnable_itemname#></a></th>
                                             <td style="border-top: 0 none;">
-                                                <div class="main_itoggle">
-                                                    <div id="rt_radio_x_on_of">
+                                               
                                                         <input type="checkbox" id="rt_radio_x_fake" <% nvram_match_x("","rt_radio_x", "1", "value=1 checked"); %><% nvram_match_x("","rt_radio_x", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                  
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="rt_radio_x_1" name="rt_radio_x" class="input" <% nvram_match_x("","rt_radio_x", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" value="0" id="rt_radio_x_0" name="rt_radio_x" class="input" <% nvram_match_x("","rt_radio_x", "0", "checked"); %>/><#checkbox_No#>
@@ -377,11 +377,9 @@ function validate_wlphrase(s, v, obj){
                                         <tr>
                                             <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 0, 2);"><#WLANConfig11b_x_BlockBCSSID_itemname#></a></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="rt_closed_on_of">
+                                               
                                                         <input type="checkbox" id="rt_closed_fake" <% nvram_match_x("", "rt_closed", "1", "value=1 checked"); %><% nvram_match_x("", "rt_closed", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                   
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="rt_closed_1" name="rt_closed" <% nvram_match_x("", "rt_closed", "1", "checked"); %>><#checkbox_Yes#>
                                                     <input type="radio" value="0" id="rt_closed_0" name="rt_closed" <% nvram_match_x("", "rt_closed", "0", "checked"); %>><#checkbox_No#>

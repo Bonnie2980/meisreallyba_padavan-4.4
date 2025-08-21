@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+	</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -46,7 +48,7 @@ var https_port = '<% nvram_get_x("", "https_lport"); %>';
 
 function initial(){
 	show_banner(1);
-	show_menu(5,7,2);
+			show_menu('if-m1-syssettings', 'if-m2-sysconfig', 2);
 	show_footer();
 	load_body();
 
@@ -269,7 +271,8 @@ function on_ttyd_link(){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+	<div id="Loading" class="popup_bg">
+	</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -280,7 +283,6 @@ function on_ttyd_link(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
@@ -433,11 +435,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th width="50%"><#Adm_System_telnetd#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="telnetd_on_of">
+                                               
                                                         <input type="checkbox" id="telnetd_fake" <% nvram_match_x("", "telnetd", "1", "value=1 checked"); %><% nvram_match_x("", "telnetd", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="telnetd" id="telnetd_1" class="input" value="1" <% nvram_match_x("", "telnetd", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="telnetd" id="telnetd_0" class="input" value="0" <% nvram_match_x("", "telnetd", "0", "checked"); %>/><#checkbox_No#>
@@ -471,11 +471,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th width="50%"><#Adm_Svc_wins#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="wins_enable_on_of">
+                                              
                                                         <input type="checkbox" id="wins_enable_fake" <% nvram_match_x("", "wins_enable", "1", "value=1 checked"); %><% nvram_match_x("", "wins_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                    
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="wins_enable" id="wins_enable_1" class="input" value="1" onclick="change_wins_enabled();" <% nvram_match_x("", "wins_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="wins_enable" id="wins_enable_0" class="input" value="0" onclick="change_wins_enabled();" <% nvram_match_x("", "wins_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -511,11 +509,9 @@ function on_ttyd_link(){
                                         <tr id="div_ttyd">
                                             <th width="50%"><#Adm_Svc_ttyd_enable#></th>
                                             <td colspan="2">
-                                                <div class="main_itoggle">
-                                                    <div id="ttyd_enable_on_of">
+                                               
                                                         <input type="checkbox" id="ttyd_enable_fake" <% nvram_match_x("", "ttyd_enable", "1", "value=1 checked"); %><% nvram_match_x("", "ttyd_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                   
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="ttyd_enable" id="ttyd_enable_1" class="input" value="1" onclick="change_ttyd_enabled();" <% nvram_match_x("", "ttyd_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="ttyd_enable" id="ttyd_enable_0" class="input" value="0" onclick="change_ttyd_enabled();" <% nvram_match_x("", "ttyd_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -542,11 +538,9 @@ function on_ttyd_link(){
                                         <tr id="div_vlmcsd">
                                             <th><#Adm_Svc_vlmcsd#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="vlmcsd_enable_on_of">
+                                              
                                                         <input type="checkbox" id="vlmcsd_enable_fake" <% nvram_match_x("", "vlmcsd_enable", "1", "value=1 checked"); %><% nvram_match_x("", "vlmcsd_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="vlmcsd_enable" id="vlmcsd_enable_1" class="input" value="1" <% nvram_match_x("", "vlmcsd_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="vlmcsd_enable" id="vlmcsd_enable_0" class="input" value="0" <% nvram_match_x("", "vlmcsd_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -556,11 +550,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th><#Adm_Svc_lltd#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="lltd_enable_on_of">
+                                              
                                                         <input type="checkbox" id="lltd_enable_fake" <% nvram_match_x("", "lltd_enable", "1", "value=1 checked"); %><% nvram_match_x("", "lltd_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                  
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="lltd_enable" id="lltd_enable_1" class="input" value="1" <% nvram_match_x("", "lltd_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="lltd_enable" id="lltd_enable_0" class="input" value="0" <% nvram_match_x("", "lltd_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -570,11 +562,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th><#Adm_Svc_adsc#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="adsc_enable_on_of">
+                                               
                                                         <input type="checkbox" id="adsc_enable_fake" <% nvram_match_x("", "adsc_enable", "1", "value=1 checked"); %><% nvram_match_x("", "adsc_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                   
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="adsc_enable" id="adsc_enable_1" class="input" value="1" <% nvram_match_x("", "adsc_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="adsc_enable" id="adsc_enable_0" class="input" value="0" <% nvram_match_x("", "adsc_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -584,11 +574,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th><#Adm_Svc_crond#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="crond_enable_on_of">
+                                               
                                                         <input type="checkbox" id="crond_enable_fake" <% nvram_match_x("", "crond_enable", "1", "value=1 checked"); %><% nvram_match_x("", "crond_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                  
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="crond_enable" id="crond_enable_1" class="input" value="1" <% nvram_match_x("", "crond_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="crond_enable" id="crond_enable_0" class="input" value="0" <% nvram_match_x("", "crond_enable", "0", "checked"); %>/><#checkbox_No#>
@@ -606,11 +594,9 @@ function on_ttyd_link(){
                                         <tr>
                                             <th width="50%"><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,23,1);"><#TweaksWdg#></a></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="watchdog_cpu_on_of">
+                                               
                                                         <input type="checkbox" id="watchdog_cpu_fake" <% nvram_match_x("", "watchdog_cpu", "1", "value=1 checked"); %><% nvram_match_x("", "watchdog_cpu", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                  
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="watchdog_cpu" id="watchdog_cpu_1" class="input" value="1" <% nvram_match_x("", "watchdog_cpu", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="watchdog_cpu" id="watchdog_cpu_0" class="input" value="0" <% nvram_match_x("", "watchdog_cpu", "0", "checked"); %>/><#checkbox_No#>

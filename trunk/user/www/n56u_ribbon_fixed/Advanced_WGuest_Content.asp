@@ -9,8 +9,9 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <style>
 .table th, .table td{vertical-align: middle;}
@@ -19,7 +20,8 @@
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -43,7 +45,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(1);
-	show_menu(5,2,2);
+    show_menu('if-m1-syssettings', 'if-m2-5gwifi', 2);
 	show_footer();
 
 	if (!support_5g_11ac()){
@@ -235,7 +237,8 @@ function change_guest_auth_mode(mflag) {
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -246,7 +249,6 @@ function change_guest_auth_mode(mflag) {
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
     <iframe name="hidden_frame" id="hidden_frame" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" action="/start_apply.htm" target="hidden_frame">
 
@@ -296,11 +298,9 @@ function change_guest_auth_mode(mflag) {
                                         <tr>
                                             <th width="50%" style="border-top: 0 none;"><#WIFIGuestEnable#></th>
                                             <td style="border-top: 0 none;">
-                                                <div class="main_itoggle">
-                                                    <div id="wl_guest_enable_on_of">
+                                               
                                                         <input type="checkbox" id="wl_guest_enable_fake" <% nvram_match_x("", "wl_guest_enable", "1", "value=1 checked"); %><% nvram_match_x("", "wl_guest_enable", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="wl_guest_enable_1" name="wl_guest_enable" class="input" onClick="change_guest_enabled(1);" <% nvram_match_x("","wl_guest_enable", "1", "checked"); %>/><#checkbox_Yes#>
@@ -354,11 +354,9 @@ function change_guest_auth_mode(mflag) {
                                         <tr id="row_guest_6" style="display:none;">
                                             <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 0, 2);"><#WLANConfig11b_x_BlockBCSSID_itemname#></a></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="wl_guest_closed_on_of">
+                                               
                                                         <input type="checkbox" id="wl_guest_closed_fake" <% nvram_match_x("", "wl_guest_closed", "1", "value=1 checked"); %><% nvram_match_x("", "wl_guest_closed", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                 
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="wl_guest_closed_1" name="wl_guest_closed" class="input" <% nvram_match_x("","wl_guest_closed", "1", "checked"); %>/><#checkbox_Yes#>
@@ -369,11 +367,9 @@ function change_guest_auth_mode(mflag) {
                                         <tr id="row_guest_7" style="display:none;">
                                             <th id="col_isolate"><#WIFIGuestIsoLAN#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="wl_guest_lan_isolate_on_of">
+                                               
                                                         <input type="checkbox" id="wl_guest_lan_isolate_fake" <% nvram_match_x("", "wl_guest_lan_isolate", "1", "value=1 checked"); %><% nvram_match_x("", "wl_guest_lan_isolate", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                 
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="wl_guest_lan_isolate_1" name="wl_guest_lan_isolate" class="input" <% nvram_match_x("","wl_guest_lan_isolate", "1", "checked"); %>/><#checkbox_Yes#>
@@ -384,11 +380,9 @@ function change_guest_auth_mode(mflag) {
                                         <tr id="row_guest_8" style="display:none;">
                                             <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 3, 5);"><#WLANConfig11b_x_IsolateAP_itemname#></a></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="wl_guest_ap_isolate_on_of">
+                                                
                                                         <input type="checkbox" id="wl_guest_ap_isolate_fake" <% nvram_match_x("", "wl_guest_ap_isolate", "1", "value=1 checked"); %><% nvram_match_x("", "wl_guest_ap_isolate", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                    
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="wl_guest_ap_isolate_1" name="wl_guest_ap_isolate" class="input" <% nvram_match_x("","wl_guest_ap_isolate", "1", "checked"); %>/><#checkbox_Yes#>
@@ -446,11 +440,9 @@ function change_guest_auth_mode(mflag) {
                                         <tr id="row_guest_13" style="display:none;">
                                             <th><#WIFIGuestMAC#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="wl_guest_macrule_on_of">
+                                             
                                                         <input type="checkbox" id="wl_guest_macrule_fake" <% nvram_match_x("", "wl_guest_macrule", "1", "value=1 checked"); %><% nvram_match_x("", "wl_guest_macrule", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                  
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="wl_guest_macrule_1" name="wl_guest_macrule" class="input" <% nvram_match_x("","wl_guest_macrule", "1", "checked"); %>/><#checkbox_Yes#>

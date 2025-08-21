@@ -12,12 +12,13 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/simple.switch.min.js"></script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -39,7 +40,7 @@ var $j = jQuery.noConflict();
 
         function initial() {
             show_banner(2);
-            show_menu(5, 19);
+        show_menu('if-m1-syssettings', 'if-m2-networkQoS');
             show_footer();
             fill_sqm_status(sqm_status());
             showTab(getHash());
@@ -95,7 +96,7 @@ function getHash(){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+    <div id="Loading" class="popup_bg"></div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -110,7 +111,6 @@ function getHash(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 
@@ -173,13 +173,11 @@ function getHash(){
                                             <tr>
                                                 <th>启用SQM</th>
                                                 <td colspan="2">
-                                                    <div class="main_itoggle">
-                                                        <div id="sqm_enable_on_of">
+                                                  
                                                             <input type="checkbox" id="sqm_enable_fake"
                                                             <% nvram_match_x("", "sqm_enable", "1", "value=1 checked"); %><% nvram_match_x("", "sqm_enable", "0", "value=0"); %>
                                                             />
-                                                        </div>
-                                                    </div>
+                                                      
                                                     <div style="position: absolute; margin-left: -10000px;">
                                                         <input type="radio" value="1" name="sqm_enable" id="sqm_enable_1" class="input" value="1" <% nvram_match_x("", "sqm_enable", "1", "checked"); %> /> Yes
                                                         <input type="radio" value="0" name="sqm_enable" id="sqm_enable_0" class="input" value="0" <% nvram_match_x("", "sqm_enable", "0", "checked"); %> /> No
@@ -240,13 +238,11 @@ function getHash(){
                                             <tr>
                                                 <th>启用日志</th>
                                                 <td>
-                                                    <div class="main_itoggle">
-                                                        <div id="sqm_debug_log_on_of">
+                                                 
                                                             <input type="checkbox" id="sqm_debug_log_fake"
                                                             <% nvram_match_x("", "sqm_debug_log", "1", "value=1 checked"); %><% nvram_match_x("", "sqm_debug_log", "0", "value=0"); %>
                                                             />
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div style="position: absolute; margin-left: -10000px;">
                                                         <input type="radio" value="1" name="sqm_debug_log" id="sqm_debug_log_1" class="input" value="1" <% nvram_match_x("", "sqm_debug_log", "1", "checked"); %> /> Yes
                                                         <input type="radio" value="0" name="sqm_debug_log" id="sqm_debug_log_0" class="input" value="0" <% nvram_match_x("", "sqm_debug_log", "0", "checked"); %> /> No

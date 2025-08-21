@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+	</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -36,7 +38,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(1);
-	show_menu(5,7,1);
+				show_menu('if-m1-syssettings', 'if-m2-sysconfig', 1);
 	show_footer();
 	
 	if(reboot_schedule_support){
@@ -248,7 +250,8 @@ function updateDateTime()
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+	<div id="Loading" class="popup_bg">
+	</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -259,7 +262,6 @@ function updateDateTime()
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
@@ -470,48 +472,61 @@ function updateDateTime()
 
                                     <table width="100%" cellpadding="4" cellspacing="0" class="table">
                                         <tr>
-                                            <th colspan="2" style="background-color: #E3E3E3;"><#t2Misc#></th>
+                                            <th colspan="2" style="background-color: #E3E3E3;">
+                                                <#t2Misc#>
+                                            </th>
                                         </tr>
-										<tr id="reboot_schedule_enable_tr">
-				                        <tr>
+                                        <tr id="reboot_schedule_enable_tr">
+                                        <tr>
                                             <th>启用定时重启</th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="reboot_schedule_enable_on_of">
-                                                        <input type="checkbox" id="reboot_schedule_enable_fake" <% nvram_match_x("", "reboot_schedule_enable", "1", "value=1 checked"); %><% nvram_match_x("", "reboot_schedule_enable", "0", "value=0"); %>>
+                                    
+                                                <input type="checkbox" id="reboot_schedule_enable_fake" <% nvram_match_x("", "reboot_schedule_enable" , "1"
+                                                    , "value=1 checked" ); %>
+                                                <% nvram_match_x("", "reboot_schedule_enable" , "0" , "value=0" ); %>>
+                                    
+                                                    <div style="position: absolute; margin-left: -10000px;">
+                                                        <input type="radio" name="reboot_schedule_enable_x" id="reboot_schedule_enable_1" class="input"
+                                                            value="1" <% nvram_match_x("", "reboot_schedule_enable" , "1" , "checked" ); %>/>
+                                                        <#checkbox_Yes#>
+                                                            <input type="radio" name="reboot_schedule_enable_x" id="reboot_schedule_enable_0" class="input"
+                                                                value="0" <% nvram_match_x("", "reboot_schedule_enable" , "0" , "checked" ); %>/>
+                                                            <#checkbox_No#>
                                                     </div>
-                                                </div>
-
-                                                <div style="position: absolute; margin-left: -10000px;">
-                                                    <input type="radio" name="reboot_schedule_enable_x" id="reboot_schedule_enable_1" class="input" value="1" <% nvram_match_x("", "reboot_schedule_enable", "1", "checked"); %>/><#checkbox_Yes#>
-                                                    <input type="radio" name="reboot_schedule_enable_x" id="reboot_schedule_enable_0" class="input" value="0" <% nvram_match_x("", "reboot_schedule_enable", "0", "checked"); %>/><#checkbox_No#>
-                                                </div>
                                             </td>
                                         </tr>
-				<tr id="reboot_schedule_date_tr">
-					<th>自动重启星期</th>
-					<td>
-						<input type="checkbox" name="reboot_date_x_Sun" class="input" onclick="check_Timefield_checkbox();">日
-						<input type="checkbox" name="reboot_date_x_Mon" class="input" onclick="check_Timefield_checkbox();">一
-						<input type="checkbox" name="reboot_date_x_Tue" class="input" onclick="check_Timefield_checkbox();">二
-						<input type="checkbox" name="reboot_date_x_Wed" class="input" onclick="check_Timefield_checkbox();">三
-						<input type="checkbox" name="reboot_date_x_Thu" class="input" onclick="check_Timefield_checkbox();">四
-						<input type="checkbox" name="reboot_date_x_Fri" class="input" onclick="check_Timefield_checkbox();">五
-						<input type="checkbox" name="reboot_date_x_Sat" class="input" onclick="check_Timefield_checkbox();">六
-					</td>
-				</tr>
-				<tr id="reboot_schedule_time_tr">
-					<th>自动重启时间</th>
-					<td>
-						<input type="text" maxlength="2" class="input_3_table" style="width: 30px" name="reboot_time_x_hour" onKeyPress="return validator.isNumber(this,event);" onblur="validator.timeRange(this, 0);" autocorrect="off" autocapitalize="off">时:
-						<input type="text" maxlength="2" class="input_3_table" style="width: 30px" name="reboot_time_x_min" onKeyPress="return validator.isNumber(this,event);" onblur="validator.timeRange(this, 1);" autocorrect="off" autocapitalize="off">分
-					</td>
-				</tr>
-                                        <tr>
-                                            <th width="50%"><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,11,1)"><#LANHostConfig_x_ServerLogEnable_itemname#></a></th>
+                                        <tr id="reboot_schedule_date_tr">
+                                            <th>自动重启星期</th>
                                             <td>
-                                                <input type="text" maxlength="15" class="input" size="15" name="log_ipaddr" style="width: 145px" value="<% nvram_get_x("", "log_ipaddr"); %>" onKeyPress="return is_ipaddr(this,event);" />&nbsp;:
-                                                <input type="text" maxlength="5" class="input" size="10" name="log_port" style="width: 44px;"  value="<% nvram_get_x("","log_port"); %>" onkeypress="return is_number(this,event);"/>
+                                                <input type="checkbox" name="reboot_date_x_Sun" class="input" onclick="check_Timefield_checkbox();">日
+                                                <input type="checkbox" name="reboot_date_x_Mon" class="input" onclick="check_Timefield_checkbox();">一
+                                                <input type="checkbox" name="reboot_date_x_Tue" class="input" onclick="check_Timefield_checkbox();">二
+                                                <input type="checkbox" name="reboot_date_x_Wed" class="input" onclick="check_Timefield_checkbox();">三
+                                                <input type="checkbox" name="reboot_date_x_Thu" class="input" onclick="check_Timefield_checkbox();">四
+                                                <input type="checkbox" name="reboot_date_x_Fri" class="input" onclick="check_Timefield_checkbox();">五
+                                                <input type="checkbox" name="reboot_date_x_Sat" class="input" onclick="check_Timefield_checkbox();">六
+                                            </td>
+                                        </tr>
+                                        <tr id="reboot_schedule_time_tr">
+                                            <th>自动重启时间</th>
+                                            <td>
+                                                <input type="text" maxlength="2" class="input_3_table" style="width: 30px" name="reboot_time_x_hour"
+                                                    onKeyPress="return validator.isNumber(this,event);" onblur="validator.timeRange(this, 0);"
+                                                    autocorrect="off" autocapitalize="off">时:
+                                                <input type="text" maxlength="2" class="input_3_table" style="width: 30px" name="reboot_time_x_min"
+                                                    onKeyPress="return validator.isNumber(this,event);" onblur="validator.timeRange(this, 1);"
+                                                    autocorrect="off" autocapitalize="off">分
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="50%"><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,11,1)">
+                                                    <#LANHostConfig_x_ServerLogEnable_itemname#>
+                                                </a></th>
+                                            <td>
+                                                <input type="text" maxlength="15" class="input" size="15" name="log_ipaddr" style="width: 145px"
+                                                    value="<% nvram_get_x("", " log_ipaddr"); %>" onKeyPress="return is_ipaddr(this,event);" />&nbsp;:
+                                                <input type="text" maxlength="5" class="input" size="10" name="log_port" style="width: 44px;"
+                                                    value="<% nvram_get_x(""," log_port"); %>" onkeypress="return is_number(this,event);"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -535,12 +550,9 @@ function updateDateTime()
                                         <tr>
                                             <th><#Adm_System_help#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="help_enable_on_of">
+                                               
                                                         <input type="checkbox" id="help_enable_fake" <% nvram_match_x("General", "help_enable", "1", "value=1 checked"); %><% nvram_match_x("General", "help_enable", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
-
+                                                 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="help_enable" id="help_enable_1" class="input" value="1" <% nvram_match_x("General", "help_enable", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" name="help_enable" id="help_enable_0" class="input" value="0" <% nvram_match_x("General", "help_enable", "0", "checked"); %>/><#checkbox_No#>

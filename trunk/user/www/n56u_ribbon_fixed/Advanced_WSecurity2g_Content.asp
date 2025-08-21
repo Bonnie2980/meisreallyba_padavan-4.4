@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
@@ -23,7 +24,7 @@ var $j = jQuery.noConflict();
 
 function initial(){
 	show_banner(1);
-	show_menu(5,1,5);
+    show_menu('if-m1-syssettings', 'if-m2-2gwifi', 5);
 	show_footer();
 
 	if (!support_5g_radio()){
@@ -64,7 +65,8 @@ function done_validating(action){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -75,7 +77,6 @@ function done_validating(action){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">

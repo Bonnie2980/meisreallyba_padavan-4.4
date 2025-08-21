@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
@@ -35,7 +36,7 @@ var ccount = <% get_static_ccount(); %>;
 
 function initial(){
 	show_banner(0);
-	show_menu(1, -1, 0);
+    show_menu('if-m1-netmap', '', 0);
 	show_footer();
 	show_usb_ports();
 	show_ata_pool();
@@ -49,7 +50,7 @@ function initial(){
 	}
 
 	if(sw_mode == '3')
-		$("linkInternet").href = "/device-map/intranet.asp"
+		$("linkInternet").href = "/device-map/intranet.asp";
 
 	update_internet_status();
 }
@@ -91,20 +92,15 @@ function set_default_choice(){
 }
 
 function showMapWANStatus(flag){
-	$j("#internetStatus").removeClass("badge badge-success badge-warning badge-important");
+    $j("#internetStatus").removeClass("badge-success badge-warning badge-important");
 
-	if(flag == 1){
-		$j("#internetStatus").addClass("badge badge-success");
-		$j("#internetStatus").html('<i class="icon-ok icon-white"></i>');
-	}
-	else if(flag == 2){
-		$j("#internetStatus").addClass("badge badge-warning");
-		$j("#internetStatus").html('<i class="icon-minus icon-white"></i>');
-	}
-	else{
-		$j("#internetStatus").addClass("badge badge-important");
-		$j("#internetStatus").html('<i class="icon-remove icon-white"></i>');
-	}
+    if (flag == 1) {
+        $j("#internetStatus").addClass("badge-success").html('<i class="if if-center if-status-online"></i>');
+    } else if (flag == 2) {
+        $j("#internetStatus").addClass("badge-warning").html('<i class="if if-center if-status-connecting"></i>');
+    } else {
+        $j("#internetStatus").addClass("badge-important").html('<i class="if if-center if-status-offline"></i>');
+    }
 }
 
 function show_middle_status(){
@@ -140,30 +136,16 @@ function show_middle_status(){
 	else if(auth_mode == "radius")
 		security_mode = "Radius with 802.1x";
 
-	//$("wl_securitylevel_span").innerHTML = security_mode;
-
-	if(auth_mode == "open" && wl_wep_x == 0) {
-		$j("#wl_securitylevel_span").addClass("badge badge-important");
-		$j("#wl_securitylevel_span").html('<i class="icon-exclamation-sign icon-white"></i>');
-	} else {
-		$j("#wl_securitylevel_span").addClass("badge badge-success");
-		$j("#wl_securitylevel_span").html('<i class="icon-lock icon-white"></i>');
-	}
+    if (auth_mode == "open" && wl_wep_x == 0) {
+        $j("#wl_securitylevel_span").addClass("badge-important").html('<i class="if if-center if-status-unlock"></i>');
+    } else {
+        $j("#wl_securitylevel_span").addClass("badge-success").html('<i class="if if-center if-status-lock"></i>');
+    }
 }
 
-function show_client_status(clients_count){
-	var client_str = "";
-	var wired_num = 0, wireless_num = 0;
-
-	client_str += "<#Full_Clients#>: <span>"+clients_count+"</span>";
-
-	$j("#clientNumber").addClass("badge badge-success");
-	if(clients_count < 10)
-		$j("#clientNumber").css({paddingLeft: '6px', paddingRight: '7px'});
-	else
-		$j("#clientNumber").css({paddingLeft: '3px', paddingRight: '4px'});
-
-	$j("#clientNumber").html(clients_count);
+function show_client_status(clients_count) {
+    $j("#clientNumber").addClass("badge-success");
+    $j("#clientNumber").html('<span class="if if-center">' + clients_count + '</span>');
 }
 
 function show_usb_ports(){
@@ -325,18 +307,17 @@ function dec_html(all_disk_order){
 	return dec_html_code;
 }
 
-function dec_share_icon(device_dec){
-	device_dec.addClass("badge badge-success");
-	device_dec.css({paddingLeft: '3px'});
-	device_dec.html('<i class="icon-share icon-white"></i>');
+function dec_share_icon(device_dec) {
+    device_dec.addClass("badge-success");
+    device_dec.html('<i class="if if-center if-btn-share"></i>');
 }
 
-function disk_html(device_order,all_disk_order){
-	var device_icon = $("deviceIcon_"+device_order);
-	var device_dec = $j("#deviceDec_"+device_order);
-	var icon_html_code = '';
-	var dec_html_code = '';
-	var disk_model_name = "";
+function disk_html(device_order, all_disk_order) {
+    var device_icon = $j("#deviceIcon_" + device_order),
+        device_dec = $j("#deviceDec_" + device_order),
+        icon_html_code = '',
+        dec_html_code = '',
+        disk_model_name = '';
 
 	if(all_disk_order < foreign_disks().length)
 		disk_model_name = foreign_disk_model_info()[all_disk_order];
@@ -346,76 +327,81 @@ function disk_html(device_order,all_disk_order){
 	dec_html_code = dec_html(all_disk_order);
 
 	icon_html_code += '<a href="device-map/disk.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconUSBdisk'+all_disk_order+'" class="big-icons big-icons-usbhdd" rel="rollover_disk" data-original-title="'+disk_model_name+'" data-content="'+(dec_html_code.replace(new RegExp('"', 'g'), "'"))+'" onclick="setSelectedDiskOrder(this.id);clickEvent(this);"></div>\n';
+    icon_html_code += '    <i id="iconUSBdisk' + all_disk_order + '" class="if if-shortcut-harddisk" rel="rollover_disk" data-original-title="' + disk_model_name + '" data-content="' + (dec_html_code.replace(new RegExp('"', 'g'), "'")) + '" onclick="setSelectedDiskOrder(this.id);clickEvent(this);"></i>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function printer_html(device_seat, printer_order){
-	var device_icon = $("deviceIcon_"+device_seat);
-	var device_dec = $j("#deviceDec_"+device_seat);
-	var icon_html_code = '';
+    var device_icon = $j("#deviceIcon_" + device_seat),
+        device_dec = $j("#deviceDec_" + device_seat),
+        icon_html_code = '';
 
 	icon_html_code += '<a href="device-map/printer.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconPrinter'+printer_order+'" class="big-icons big-icons-printer" onclick="clickEvent(this);"></div>\n';
+    icon_html_code += '    <div id="iconPrinter' + printer_order + '" class="if if-shortcut-printer" onclick="clickEvent(this);"></div>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function modem_html(device_seat, modem_order){
-	var device_icon = $("deviceIcon_"+device_seat);
-	var device_dec = $j("#deviceDec_"+device_seat);
-	var icon_html_code = '';
+    var device_icon = $j("#deviceIcon_" + device_seat),
+        device_dec = $j("#deviceDec_" + device_seat),
+        icon_html_code = '';
 
 	icon_html_code += '<a href="device-map/modem.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconModem'+modem_order+'" class="big-icons big-icons-modem" onclick="clickEvent(this);"></div>\n';
+    icon_html_code += '    <div id="iconModem' + modem_order + '" class="if if-shortcut-modem" onclick="clickEvent(this);"></div>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function hub_html(device_seat){
-	var device_icon = $("deviceIcon_"+device_seat);
-	var device_dec = $j("#deviceDec_"+device_seat);
-	var icon_html_code = '';
+    var device_icon = $j("#deviceIcon_" + device_seat),
+        device_dec = $j("#deviceDec_" + device_seat),
+        icon_html_code = '';
 
 	icon_html_code += '<a href="device-map/hub.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconHub'+device_seat+'" class="big-icons big-icons-hub" onclick="clickEvent(this);"></div>\n';
+    icon_html_code += '    <i id="iconHub' + device_seat + '" class="if if-shortcut-hub" onclick="clickEvent(this);"></i>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function ata_html(){
-	var device_icon = $("sataIcon");
-	var device_dec = $j("#sataDec");
-	var icon_html_code = '';
+    var device_icon = $j("#sataIcon"),
+        device_dec = $j("#sataDec"),
+        icon_html_code = '';
 
 	icon_html_code += '<a href="device-map/sata.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconSATA" class="big-icons big-icons-ata" onclick="clickEvent(this);"></div>\n';
+    icon_html_code += '    <i id="iconSATA" class="if if-shortcut-satadisk" onclick="clickEvent(this);"></i>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function mmc_html(all_disk_order){
-	var device_icon = $("cardIcon");
-	var device_dec = $j("#cardDec");
-	var icon_html_code = '';
-	var dec_html_code = '';
-	var disk_model_name = "";
+    var device_icon = $j("#cardIcon"),
+        device_dec = $j("#cardDec"),
+        icon_html_code = '',
+        dec_html_code = '',
+        disk_model_name = '';
 
 	if(all_disk_order < foreign_disks().length)
 		disk_model_name = foreign_disk_model_info()[all_disk_order];
@@ -425,27 +411,24 @@ function mmc_html(all_disk_order){
 	dec_html_code = dec_html(all_disk_order);
 
 	icon_html_code += '<a href="device-map/disk.asp" target="statusframe" style="outline:0;">\n';
-	icon_html_code += '    <div id="iconCard'+all_disk_order+'" class="big-icons big-icons-mmc" rel="rollover_disk" data-original-title="'+disk_model_name+'" data-content="'+(dec_html_code.replace(new RegExp('"', 'g'), "'"))+'" onclick="setSelectedDiskOrder(this.id);clickEvent(this);"></div>\n';
+    icon_html_code += '    <i id="iconCard' + all_disk_order + '" class="if if-shortcut-tfcard" rel="rollover_disk" data-original-title="' + disk_model_name + '" data-content="' + (dec_html_code.replace(new RegExp('"', 'g'), "'")) + '" onclick="setSelectedDiskOrder(this.id);clickEvent(this);"></i>\n';
 	icon_html_code += '</a>\n';
 
-	device_icon.innerHTML = icon_html_code;
-
+    //device_icon.innerHTML = icon_html_code;
+    device_icon.after(icon_html_code);
+    device_icon.remove();
 	dec_share_icon(device_dec);
 }
 
 function no_device_html(device_name){
 	var device_icon = $(device_name);
-	device_icon.innerHTML = '<div class="iconNo"></div>'
+    if (device_icon) device_icon.innerHTML = '<div class="iconNo"></div>';
 }
 
 function no_usb_device_html(device_seat){
-	no_device_html("deviceIcon_"+device_seat);
+    //no_device_html("deviceIcon_" + device_seat);
 }
 
-
-var avoidkey;
-var lastClicked;
-var lastName;
 var clicked_device_order;
 
 function get_clicked_device_order(){
@@ -453,7 +436,8 @@ function get_clicked_device_order(){
 }
 
 function clickEvent(obj){
-	var icon;
+    if (obj == null) return;
+    //var icon;
 	var ContainerWidth;
 	var Containerpadding;
 	var stitle;
@@ -466,7 +450,6 @@ function clickEvent(obj){
 	}
 
 	if(obj.id.indexOf("Internet") > 0){
-		icon = "big-icons-globe-active";
 		ContainerWidth = "300px";
 		Containerpadding = "5px";
 		if (sw_mode == '3'){
@@ -478,19 +461,16 @@ function clickEvent(obj){
 		}
 	}
 	else if(obj.id.indexOf("Router") > 0){
-		icon = "big-icons-router-active";
 		ContainerWidth = "320px";
 		Containerpadding = "4px";
 		stitle = "<#statusTitle_System#>";
 	}
 	else if(obj.id.indexOf("Client") > 0){
-		icon = "big-icons-laptop-active";
 		ContainerWidth = "396px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_Client#>";
 	}
 	else if(obj.id.indexOf("USBdisk") > 0){
-		icon = "big-icons-usbhdd-active";
 		ContainerWidth = "556px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_USB_Disk#>";
@@ -499,7 +479,6 @@ function clickEvent(obj){
 	else if(obj.id.indexOf("Printer") > 0){
 		seat = obj.id.indexOf("Printer")+7;
 		clicked_device_order = parseInt(obj.id.substring(seat, seat+1));
-		icon = "big-icons-printer-active";
 		ContainerWidth = "666px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_Printer#>";
@@ -508,7 +487,6 @@ function clickEvent(obj){
 	else if(obj.id.indexOf("Modem") > 0){
 		seat = obj.id.indexOf("Modem")+5;
 		clicked_device_order = parseInt(obj.id.substring(seat, seat+1));
-		icon = "big-icons-modem-active";
 		ContainerWidth = "777px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_Modem#>";
@@ -517,75 +495,42 @@ function clickEvent(obj){
 	else if(obj.id.indexOf("Hub") > 0){
 		seat = obj.id.indexOf("Hub")+3;
 		clicked_device_order = parseInt(obj.id.substring(seat, seat+1));
-		icon = "big-icons-hub-active";
 		ContainerWidth = "892px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_Hub#>";
 		$("statusframe").src = "/device-map/hub.asp";
 	}
 	else if(obj.id.indexOf("SATA") > 0){
-		icon = "big-icons-ata-active";
 		ContainerWidth = "892px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_SATA#>";
 		$("statusframe").src = "/device-map/sata.asp";
 	}
 	else if(obj.id.indexOf("Card") > 0){
-		icon = "big-icons-mmc-active";
 		ContainerWidth = "892px";
 		Containerpadding = "0px";
 		stitle = "<#statusTitle_Card#>";
 		$("statusframe").src = "/device-map/disk.asp";
 	}
 	else if(obj.id.indexOf("No") > 0){
-		icon = "iconNo";
+        //icon = "iconNo";
 	}
 
 	$('statusContainer').style.width = ContainerWidth;
 	$('statusContainer').style.paddingRight = Containerpadding;
 
-	$j(".big-icons").removeClass("big-icons-globe-active big-icons-router-active big-icons-laptop-active big-icons-usb-active big-icons-usbhdd-active big-icons-printer-active big-icons-modem-active big-icons-hub-active big-icons-mmc-active big-icons-ata-active");
-	$j(obj).addClass(icon);
+    $j("#tblshortcut").find('[class*=" if-shortcut-"]').addClass("inactive");
+    $j(obj).removeClass('inactive');
 
 	// show arrow right icon
 	$j(".arrow-right").hide();
 	$j(obj).parents('tr').find(".arrow-right").show();
 
 	$('helpname').innerHTML = stitle;
-
-	avoidkey = icon;
-	lastClicked = obj;
-	lastName = icon;
 }
 
-function mouseEvent(obj, key){
-	var icon;
-
-	if(obj.id.indexOf("Internet") > 0)
-		icon = "iconInternet";
-	else if(obj.id.indexOf("Router") > 0)
-		icon = "iconRouter";
-	else if(obj.id.indexOf("Client") > 0)
-		icon = "iconClient";
-	else if(obj.id.indexOf("USBdisk") > 0)
-		icon = "iconUSBdisk";
-	else if(obj.id.indexOf("Printer") > 0)
-		icon = "iconPrinter";
-	else if(obj.id.indexOf("No") > 0)
-		icon = "iconNo";
-	else
-		alert("mouse over on wrong place!");
-
-	if(avoidkey != icon){
-		if(key)
-			obj.style.background = 'url("/images/map-'+icon+'_r.gif") no-repeat';
-		else
-			obj.style.background = 'url("/images/map-'+icon+'.gif") no-repeat';
-	}
-}
-
-$j(document).ready(function(){
-	$j('div[rel=rollover_disk]').popover();
+$j(document).ready(function() {
+    $j('div[rel=rollover_disk]').popover();
 });
 </script>
 
@@ -620,7 +565,8 @@ $j(document).ready(function(){
 </head>
 
 <body onunload="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <noscript>
         <div class="popup_bg" style="visibility:visible; z-index:999;">
@@ -637,7 +583,6 @@ $j(document).ready(function(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" width="0" height="0" frameborder="0" scrolling="no" style="position: absolute;"></iframe>
 
@@ -715,7 +660,8 @@ $j(document).ready(function(){
                                     <tr id="row_internet">
                                         <td width="30%">
                                             <a id="linkInternet" href="/device-map/internet.asp" target="statusframe" style="outline:0;">
-                                                <div id="iconInternet" class="big-icons big-icons-globe" onclick="clickEvent(this);"></div>
+														<i id="iconInternet" class="if if-shortcut-internet" onclick="clickEvent(this);">
+														</i>
                                             </a>
                                             <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
                                             <div style="position: absolute; margin-top: -47px; margin-left: 50px;"><div id="internetStatus" style="padding-left: 3px;"></div></div>

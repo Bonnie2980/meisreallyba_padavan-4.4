@@ -9,15 +9,18 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/popup.js"></script>
 <script>
 function initial(){
 	show_banner(1);
-	show_menu(5,10,2);
+    show_menu('if-m1-syssettings', 'if-m2-syslog', 2);
 	show_footer();
 }
 </script>

@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -33,7 +35,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(1);
-	show_menu(5,4,2);
+    show_menu('if-m1-syssettings', 'if-m2-wan', 2);
 	show_footer();
 
 	document.form.ip6_lan_sfps_fake.value = decimalToHex(document.form.ip6_lan_sfps.value, 4);
@@ -189,8 +191,10 @@ function change_ip6_service(){
 		$('row_ip6_lan_auto').style.display="none";
 		inputRCtrl2(document.form.ip6_dns_auto, 1);
 		inputRCtrl2(document.form.ip6_lan_auto, 1);
-		$j('#ip6_dns_auto_on_of').iState(0);
-		$j('#ip6_lan_auto_on_of').iState(0);
+        //$j('#ip6_dns_auto_on_of').iState(0);
+        //$j('#ip6_lan_auto_on_of').iState(0);
+        $j('#ip6_dns_auto_fake').prop('checked', false);
+        $j('#ip6_lan_auto_fake').prop('checked', false);
 		if (ppp) pppif = true;
 	}
 	else if (ip6_con=="dhcp6") {
@@ -209,9 +213,10 @@ function change_ip6_service(){
 		$('row_ip6_6to4_relay').style.display="none";
 		inputRCtrl2(document.form.ip6_dns_auto, 1);
 		inputRCtrl2(document.form.ip6_lan_auto, 1);
-		$j('#ip6_dns_auto_on_of').iState(0);
-		$j('#ip6_lan_auto_on_of').iState(0);
-	}
+        //$j('#ip6_dns_auto_on_of').iState(0);
+        //$j('#ip6_lan_auto_on_of').iState(0);
+        $j('#ip6_dns_auto_fake').prop('checked', false);
+        $j('#ip6_lan_auto_fake').prop('checked', false);
 	else if (ip6_con=="6to4") {
 		$('tbl_ip6_sit').style.display="";
 		$('row_ip6_wan_dhcp').style.display="none";
@@ -221,8 +226,10 @@ function change_ip6_service(){
 		$('row_ip6_6to4_relay').style.display="";
 		inputRCtrl2(document.form.ip6_dns_auto, 1);
 		inputRCtrl2(document.form.ip6_lan_auto, 0);
-		$j('#ip6_dns_auto_on_of').iState(0);
-		$j('#ip6_lan_auto_on_of').iState(1);
+		        //$j('#ip6_dns_auto_on_of').iState(0);
+        //$j('#ip6_lan_auto_on_of').iState(1);
+        $j('#ip6_dns_auto_fake').prop('checked', false);
+        $j('#ip6_lan_auto_fake').prop('checked', true);
 	}
 	else if (ip6_con=="6rd") {
 		$('tbl_ip6_sit').style.display="";
@@ -233,8 +240,10 @@ function change_ip6_service(){
 		$('row_ip6_6to4_relay').style.display="none";
 		inputRCtrl2(document.form.ip6_dns_auto, 1);
 		inputRCtrl2(document.form.ip6_lan_auto, 0);
-		$j('#ip6_dns_auto_on_of').iState(0);
-		$j('#ip6_lan_auto_on_of').iState(1);
+        //$j('#ip6_dns_auto_on_of').iState(0);
+        // $j('#ip6_lan_auto_on_of').iState(1);
+        $j('#ip6_dns_auto_fake').prop('checked', false);
+        $j('#ip6_lan_auto_fake').prop('checked', true);
 		
 		if (wan_proto == "static") {
 			document.form.ip6_6rd_dhcp.selectedIndex = 0;
@@ -356,7 +365,8 @@ function change_ip6_lan_dhcp(){
 		location.href = "/as.asp";
 	}
 </script>
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -367,7 +377,6 @@ function change_ip6_lan_dhcp(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 
@@ -540,11 +549,9 @@ function change_ip6_lan_dhcp(){
                                         <tr id="row_ip6_dns_auto">
                                             <th width="50%"><#IP6_DNS_Auto#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="ip6_dns_auto_on_of">
+                                               
                                                         <input type="checkbox" id="ip6_dns_auto_fake" <% nvram_match_x("", "ip6_dns_auto", "1", "value=1 checked"); %><% nvram_match_x("", "ip6_dns_auto", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="ip6_dns_auto" id="ip6_dns_auto_1" class="input" value="1" onclick="change_ip6_dns_auto();" <% nvram_match_x("", "ip6_dns_auto", "1", "checked"); %>/><#checkbox_Yes#>
@@ -579,11 +586,9 @@ function change_ip6_lan_dhcp(){
                                         <tr id="row_ip6_lan_auto">
                                             <th width="50%"><#IP6_LAN_Auto#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="ip6_lan_auto_on_of">
+                                               
                                                         <input type="checkbox" id="ip6_lan_auto_fake" <% nvram_match_x("", "ip6_lan_auto", "1", "value=1 checked"); %><% nvram_match_x("", "ip6_lan_auto", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                  
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="ip6_lan_auto" id="ip6_lan_auto_1" class="input" value="1" onclick="change_ip6_lan_auto();" <% nvram_match_x("", "ip6_lan_auto", "1", "checked"); %>/><#checkbox_Yes#>
@@ -606,11 +611,9 @@ function change_ip6_lan_dhcp(){
                                         <tr>
                                             <th width="50%"><#IP6_LAN_RAdv#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="ip6_lan_radv_on_of">
+                                                
                                                         <input type="checkbox" id="ip6_lan_radv_fake" <% nvram_match_x("", "ip6_lan_radv", "1", "value=1 checked"); %><% nvram_match_x("", "ip6_lan_radv", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                  
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" name="ip6_lan_radv" id="ip6_lan_radv_1" class="input" value="1" onclick="change_ip6_lan_radv();" <% nvram_match_x("", "ip6_lan_radv", "1", "checked"); %>/><#checkbox_Yes#>

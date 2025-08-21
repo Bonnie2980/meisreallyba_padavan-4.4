@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
@@ -25,7 +26,7 @@ var wds_aplist = [["", "", ""]];
 
 function initial(){
 	show_banner(1);
-	show_menu(5,2,3);
+    show_menu('if-m1-syssettings', 'if-m2-5gwifi', 3);
 
 	show_footer();
 	load_body();
@@ -228,18 +229,17 @@ function showLANIPList(){
 		code += '<div style="font-weight:bold;cursor:pointer;" onclick="rescan();"><#AP_survey#>&nbsp;</div>';
 	}
 	else{
-		code += '<div style="width: 207px"><center><img style="padding-top: 4px; display: block;" src="/bootstrap/img/ajax-loader.gif"></center></div>';
+        code += '<div style="width: 207px"><center><i class="if if-spin if-spinner"></i></center></div>';
 	}
 
-	code +='<!--[if lte IE 6.5]><iframe class="hackiframe_wdssurvey"></iframe><![endif]-->';
-	document.getElementById("WDSAPList").innerHTML = code;
+    document.getElementById("WDSAPList").innerHTML = code;
 }
 
 var isMenuopen = 0;
 
 function pullLANIPList(obj){
 	if(isMenuopen == 0){
-		$j(obj).children('i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+        $j(obj).children('i').removeClass('if-btn-down').addClass('if-btn-up');
 		document.getElementById("WDSAPList").style.display = 'block';
 		document.form.wl_wdslist_x_0.focus();
 		isMenuopen = 1;
@@ -249,7 +249,7 @@ function pullLANIPList(obj){
 }
 
 function hideClients_Block(){
-	$j("#ctl_wds_2").children('i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
+    $j("#ctl_wds_2").children('i').removeClass('if-btn-up').addClass('if-btn-down');
 	document.getElementById('WDSAPList').style.display='none';
 	isMenuopen = 0;
 }
@@ -257,7 +257,8 @@ function hideClients_Block(){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -268,7 +269,6 @@ function hideClients_Block(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">

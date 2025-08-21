@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
@@ -38,7 +39,7 @@ function initial(){
 	}
 
 	show_banner(1);
-	show_menu(5,3,id_menu);
+    show_menu('if-m1-syssettings', 'if-m2-lan', id_menu);
 	show_footer();
 }
 
@@ -248,7 +249,8 @@ $j(document).ready(function() {
 </head>
 
 <body onload="initial();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -259,7 +261,6 @@ $j(document).ready(function() {
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 

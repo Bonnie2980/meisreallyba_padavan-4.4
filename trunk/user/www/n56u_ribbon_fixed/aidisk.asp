@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
@@ -46,7 +47,7 @@ function initial(){
 		$("dummyShareway").value = 0;
 	
 	show_banner(0);
-	show_menu(2, -1, 0);
+    show_menu("if-m1-hdd", "", 0);
 	show_footer();
 }
 
@@ -233,7 +234,8 @@ function getASUSDDNS_enable(){
 </head>
 
 <body onload="initial();" onunload="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <!-- top bar -->
     <div class="container-fluid" style="padding-right: 0px">
@@ -245,7 +247,6 @@ function getASUSDDNS_enable(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" width="0" height="0" frameborder="0" scrolling="no" style="position: absolute;"></iframe>
 

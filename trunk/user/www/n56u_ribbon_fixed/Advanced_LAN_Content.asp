@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+	</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -35,7 +37,7 @@ var old_lan_mask = "<% nvram_get_x("","lan_netmask"); %>";
 
 function initial(){
 	show_banner(1);
-	show_menu(5,3,1);
+			show_menu('if-m1-syssettings', 'if-m2-lan', 1);
 	show_footer();
 }
 
@@ -147,7 +149,8 @@ function done_validating(action){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+	<div id="Loading" class="popup_bg">
+	</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -158,7 +161,6 @@ function done_validating(action){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 
@@ -220,11 +222,9 @@ function done_validating(action){
                                         <tr>
                                             <th><#LAN_STP#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="lan_stp_on_of">
+                                               
                                                         <input type="checkbox" id="lan_stp_fake" <% nvram_match_x("", "lan_stp", "1", "value=1 checked"); %><% nvram_match_x("", "lan_stp", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="lan_stp" id="lan_stp_1" <% nvram_match_x("", "lan_stp", "1", "checked"); %>><#checkbox_Yes#>

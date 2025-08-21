@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/help.js"></script>
 <script type="text/javascript" src="/general.js"></script>
@@ -77,7 +79,7 @@ function initial(){
 		id_menu--;
 
 	show_banner(2);
-	show_menu(5,4,id_menu);
+    show_menu('if-m1-syssettings', 'if-m2-wan', id_menu);
 	show_footer();
 
 	loadAppOptions();
@@ -384,13 +386,12 @@ function showLANIPList(){
 	}
 	if (code == "")
 		code = '<div style="text-align: center;" onclick="hideClients_Block();"><#Nodata#></div>';
-	code +='<!--[if lte IE 6.5]><iframe class="hackiframe2"></iframe><![endif]-->';
 	$("ClientList_Block").innerHTML = code;
 }
 
 function pullLANIPList(obj){
 	if(isMenuopen == 0){
-		$j(obj).children('i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+        $j(obj).children('i').removeClass('if-btn-down').addClass('if-btn-up');
 		$("ClientList_Block").style.display = 'block';
 		document.form.vts_ipaddr_x_0.focus();
 		isMenuopen = 1;
@@ -400,7 +401,7 @@ function pullLANIPList(obj){
 }
 
 function hideClients_Block(){
-	$j("#chevron").children('i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
+    $j("#chevron").children('i').removeClass('if-btn-up').addClass('if-btn-down');
 	$('ClientList_Block').style.display='none';
 	isMenuopen = 0;
 }
@@ -439,9 +440,9 @@ function showVSList(){
 		code +='</tr>';
 	    }
 		code += '<tr>';
-		code += '<td colspan="6">&nbsp;</td>'
-		code += '<td><button class="btn btn-danger" type="submit" onclick="markGroupVS(this, 64,\' Del \');" name="VSList"><i class="icon icon-minus icon-white"></i></button></td>';
-		code += '</tr>'
+		code += '<td colspan="6">&nbsp;</td>';
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markGroupVS(this, 64,\' Del \');" name="VSList"><i class="if if-btn-minus"></i></button></td>';
+		code += '</tr>';
 	}
 	$j('#VSList_Block').append(code);
 }
@@ -488,7 +489,8 @@ function valid_IP_subnet(obj){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -499,7 +501,6 @@ function valid_IP_subnet(obj){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 
@@ -545,11 +546,9 @@ function valid_IP_subnet(obj){
                                         <tr>
                                             <th width="50%"><#UPnP_Enable#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="upnp_enable_x_on_of">
+                                               
                                                         <input type="checkbox" id="upnp_enable_x_fake" <% nvram_match_x("", "upnp_enable_x", "1", "value=1 checked"); %><% nvram_match_x("", "upnp_enable_x", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="upnp_enable_x" id="upnp_enable_x_1" onclick="change_upnp_enabled();" <% nvram_match_x("", "upnp_enable_x", "1", "checked"); %>/><#checkbox_Yes#>
@@ -616,12 +615,9 @@ function valid_IP_subnet(obj){
                                                 <input type="hidden" name="vts_num_x_0" value="<% nvram_get_x("IPConnection", "vts_num_x"); %>" readonly="1" />
                                             </th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="vts_enable_x_on_of">
+                                                
                                                         <input type="checkbox" id="vts_enable_x_fake" <% nvram_match_x("", "vts_enable_x", "1", "value=1 checked"); %><% nvram_match_x("", "vts_enable_x", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
-
+                                                  
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="vts_enable_x" id="vts_enable_x_1" onclick="change_vts_enabled();" <% nvram_match_x("", "vts_enable_x", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" value="0" name="vts_enable_x" id="vts_enable_x_0" onclick="change_vts_enabled();" <% nvram_match_x("", "vts_enable_x", "0", "checked"); %>/><#checkbox_No#>

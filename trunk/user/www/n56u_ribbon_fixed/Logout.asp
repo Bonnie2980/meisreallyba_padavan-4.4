@@ -9,7 +9,12 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
+		<script src="jquery.js">
+		</script>
+		<script src="state.js">
+		</script>
 <script>
 function initial(){
 	var xmlhttp;
@@ -24,19 +29,26 @@ function initial(){
 	if (xmlhttp != null){
 		xmlhttp.open("HEAD","logout",true,"logout","");
 		xmlhttp.send(null);
+        setTimeout(function() {
+            window.location.href = "Login.asp";
+        }, 1500);
 	}
 }
 </script>
 </head>
 <body onload="initial()">
-    <div style="margin-top: 50px;">
-        <center>
-            <div class="well" style="max-width: 600px;">
-                <h2><#logoutmessage#></h2>
+		<div style="max-width:300px;margin:150px auto 0 auto;">
+			<center>
+				<div class="well">
+					<h2>
+						<#logoutmessage#>
+					</h2>
+					<div>
+						<#Not_authpage_login_again#>
+					</div>
+				</div>
+			</center>
+		</div>
+	</body>
 
-                <div><#Not_authpage_login_again#></div>
-            </div>
-        </center>
-    </div>
-</body>
 </html>

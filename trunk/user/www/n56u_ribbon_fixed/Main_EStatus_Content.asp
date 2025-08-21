@@ -9,9 +9,12 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/popup.js"></script>
 <script>
@@ -27,7 +30,7 @@ $j(window).bind('hashchange', function(){
 
 function initial(){
 	show_banner(1);
-	show_menu(5,9,get_page_id());
+    show_menu('if-m1-syssettings', 'if-m2-netinfo', get_page_id());
 	show_footer();
 	update_page();
 	set_mib_data();
@@ -92,7 +95,8 @@ function set_mib_data(){
 </head>
 
 <body onload="initial();" >
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -103,7 +107,6 @@ function set_mib_data(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
 

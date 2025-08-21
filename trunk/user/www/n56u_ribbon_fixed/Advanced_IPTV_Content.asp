@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+		<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+		<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+		</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -45,7 +47,7 @@ function initial(){
 	}
 
 	show_banner(1);
-	show_menu(5,3,id_menu);
+    show_menu('if-m1-syssettings', 'if-m2-lan', id_menu);
 	show_footer();
 
 	var o1 = document.form.ether_uport;
@@ -171,7 +173,8 @@ function on_xupnpd_link(){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+		<div id="Loading" class="popup_bg">
+		</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -182,7 +185,6 @@ function on_xupnpd_link(){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
@@ -227,11 +229,9 @@ function on_xupnpd_link(){
                                         <tr id="row_mroute">
                                             <th><#RouterConfig_GWMulticastEnable_itemname#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="mr_enable_x_on_of">
+                                                
                                                         <input type="checkbox" id="mr_enable_x_fake" <% nvram_match_x("", "mr_enable_x", "1", "value=1 checked"); %><% nvram_match_x("", "mr_enable_x", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="mr_enable_x" id="mr_enable_x_1" class="input" onclick="on_click_mroute();" <% nvram_match_x("", "mr_enable_x", "1", "checked"); %> /><#checkbox_Yes#>
@@ -282,11 +282,9 @@ function on_xupnpd_link(){
                                         <tr>
                                             <th width="50%"><#SwitchIgmp#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="ether_igmp_on_of">
+                                               
                                                         <input type="checkbox" id="ether_igmp_fake" <% nvram_match_x("", "ether_igmp", "1", "value=1 checked"); %><% nvram_match_x("", "ether_igmp", "0", "value=0"); %> />
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="ether_igmp" id="ether_igmp_1" class="input" onclick="on_click_snoop();" <% nvram_match_x("", "ether_igmp", "1", "checked"); %> /><#checkbox_Yes#>

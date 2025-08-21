@@ -152,6 +152,7 @@ function BuildTree(){
 	
 	var TempObject = '<table cellpadding=0 cellspacing=0 border=0>\n';
 	
+    var ifIcons = ["if-device-spinner", "if-device-computer", "if-device-disk", "if-device-router", "if-device-server", "if-device-phone", "if-device-unknown", "if-device-printer", "if-device-gamepad", "if-device-usb", "if-device-folder"];
 	for(var i = 0; i < this.Items.length; ++i){
 		this.Items[i] = this.Items[i].split("#");
 		
@@ -224,7 +225,7 @@ function BuildTree(){
 			
 			TempObject += 
 		'<div id="b'+ItemBarCode+'" style="float:left; width:170px; overflow:hidden;" class="FdText">\n'+
-			'<img id="c'+ItemBarCode+'" onclick=\'$("d'+ItemBarCode+'").onclick();\' src="/bootstrap/img/wl_device/'+ItemIcon+'.gif" align=top>\n'+
+                '<i id="c' + ItemBarCode + '" onclick=\'$("d' + ItemBarCode + '").onclick();\' class="if ' + ifIcons[parseInt(ItemIcon)] + '" align=top></i>\n' +
 			'<span id="d'+ItemBarCode+'"'+SubClick+' title="'+ItemText+'">'+shown_ItemText+'</span>\n'+
 		'</div>\n';
 			
@@ -236,7 +237,7 @@ function BuildTree(){
 			
 			TempObject += 
 		'<div id="b'+ItemBarCode+'" class="FdText">\n'+
-			'<img id="c'+ItemBarCode+'" onclick=\'$("d'+ItemBarCode+'").onclick();\' src="/bootstrap/img/wl_device/'+ItemIcon+'.gif" align=top>\n'+
+                '<i id="c' + ItemBarCode + '" onclick=\'$("d' + ItemBarCode + '").onclick();\' class="if ' + ifIcons[parseInt(ItemIcon)] + '" align=top></i>\n' +
 			'<span id="d'+ItemBarCode+'"'+SubClick+' title="'+ItemText+'">'+shown_ItemText+'</span>\n'+
 		'</div>\n';			
 			TempObject += 

@@ -9,12 +9,14 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="icon" href="images/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-<link rel="stylesheet" type="text/css" href="/bootstrap/css/engage.itoggle.css">
 
 <script type="text/javascript" src="/jquery.js"></script>
 <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/bootstrap/js/engage.itoggle.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js">
+	</script>
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
@@ -36,7 +38,7 @@ var usb3_disable = '<% nvram_get_x("", "usb3_disable"); %>';
 function initial(){
 	show_banner(1);
 
-	show_menu(5,1,6);
+			show_menu('if-m1-syssettings', 'if-m2-2gwifi', 6);
 
 	show_footer();
 
@@ -126,7 +128,8 @@ function done_validating(action){
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
-
+	<div id="Loading" class="popup_bg">
+	</div>
 <div class="wrapper">
     <div class="container-fluid" style="padding-right: 0px">
         <div class="row-fluid">
@@ -137,7 +140,6 @@ function done_validating(action){
         </div>
     </div>
 
-    <div id="Loading" class="popup_bg"></div>
 
     <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
     <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
@@ -214,11 +216,9 @@ function done_validating(action){
                                         <tr id="row_greenap">
                                             <th><#WIFIGreenAP#></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="rt_greenap_on_of">
+                                              
                                                         <input type="checkbox" id="rt_greenap_fake" <% nvram_match_x("", "rt_greenap", "1", "value=1 checked"); %><% nvram_match_x("", "rt_greenap", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                   
 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" name="rt_greenap" id="rt_greenap_1" class="input" <% nvram_match_x("", "rt_greenap", "1", "checked"); %>><#checkbox_Yes#>
@@ -229,11 +229,9 @@ function done_validating(action){
                                         <tr>
                                             <th><a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this, 3, 5);"><#WLANConfig11b_x_IsolateAP_itemname#></a></th>
                                             <td>
-                                                <div class="main_itoggle">
-                                                    <div id="rt_ap_isolate_on_of">
+                                              
                                                         <input type="checkbox" id="rt_ap_isolate_fake" <% nvram_match_x("","rt_ap_isolate", "1", "value=1 checked"); %><% nvram_match_x("","rt_ap_isolate", "0", "value=0"); %>>
-                                                    </div>
-                                                </div>
+                                                 
                                                 <div style="position: absolute; margin-left: -10000px;">
                                                     <input type="radio" value="1" id="rt_ap_isolate_1" name="rt_ap_isolate" class="input" <% nvram_match_x("","rt_ap_isolate", "1", "checked"); %>/><#checkbox_Yes#>
                                                     <input type="radio" value="0" id="rt_ap_isolate_0" name="rt_ap_isolate" class="input" <% nvram_match_x("","rt_ap_isolate", "0", "checked"); %>/><#checkbox_No#>
