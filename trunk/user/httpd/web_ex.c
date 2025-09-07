@@ -3486,10 +3486,10 @@ do_upgrade_fw_cgi(const char *url, FILE *stream)
 {
 	if (f_exists(FW_IMG_NAME) && get_login_safe()) {
 		notify_rc("flash_firmware");
-		websApply(stream, "Updating.asp");
+		websApply(stream, "updating.asp");
 	} else {
 		unlink(FW_IMG_NAME);
-		websApply(stream, "UpdateError.asp");
+		websApply(stream, "update_error.asp");
 	}
 }
 
@@ -3514,10 +3514,10 @@ do_restore_nv_cgi(const char *url, FILE *stream)
 
 	/* Reboot if successful */
 	if (ret == 0) {
-		websApply(stream, "Uploading.asp");
+		websApply(stream, "uploading.asp");
 		sys_reboot();
 	} else {
-		websApply(stream, "UploadError.asp");
+		websApply(stream, "upload_error.asp");
 	}
 }
 
@@ -3534,9 +3534,9 @@ do_restore_st_cgi(const char *url, FILE *stream)
 	unlink(upload_file);
 
 	if (ret == 0) {
-		websApply(stream, "UploadDone.asp");
+		websApply(stream, "upload_done.asp");
 	} else {
-		websApply(stream, "UploadError.asp");
+		websApply(stream, "upload_error.asp");
 	}
 }
 

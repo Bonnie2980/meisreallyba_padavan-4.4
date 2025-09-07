@@ -106,7 +106,7 @@ ShareNode_Seeding_itemdesc=Le permite habilitar o deshabilitar la función de pr
 ShareNode_MaxUpload_itemname=Tasa máxima de carga
 ShareNode_MaxUpload_itemdesc=Especifique un valor comprendido entre 0 y 999. El valor predeterminado es 0, que indica que no hay límite de carga.
 HSDPAConfig_hsdpa_enable_hint1=Después de habilitar el módem USB, la configuración WAN original se deshabilitará.
-HSDPAConfig_hsdpa_enable_hint2=Si desea cambiar el tipo de conexión, vaya a <a href="/Advanced_Modem_others.asp">Módem USB</a> para deshabilitar el adaptador USB.
+HSDPAConfig_hsdpa_enable_hint2=Si desea cambiar el tipo de conexión, vaya a <a href="/modem_others.asp">Módem USB</a> para deshabilitar el adaptador USB.
 HSDPAConfig_USBAdapter_itemname=Adaptador USB
 HSDPAConfig_USBAdapter_itemdesc=Después de habilitar el módem USB, seleccione el adaptador compatible con ZVMODELVZ.
 APSurvey_msg_connected=Ya se ha conectado a este punto de acceso.
@@ -200,7 +200,7 @@ Device_service_Wireless=Inalámbrico:
 ddnsname_computername=Después de aplicar la configuración, el nombre de dispositivo también cambiará al mismo tiempo. ¿Desea continuar?
 JS_storageright=Es el nombre de ZVMODELVZ y los caracteres de entrada estándar incluyen letras (A-Z, a-z), dígitos (0-9), espacios, caracteres de subrayado (_) y guiones (-). El primer y último carácter no debe ser un espacio. El uso de un nombre no estándar impedirá a otros usuarios encontrar su equipo en la red.
 not_support_script=Su explorador no admite JavaScript. Elija un explorador que admita JavaScript o habilítelo para usar el enrutador multifuncional, ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Es el nombre de grupo de su ZVMODELVZ en el entorno de red; los caracteres de entrada estándar incluyen letras (A-Z, a-z), números (0-9), espacios, barras bajas (_) y guiones (-). El primer y último carácter no debe ser un espacio. El uso de un nombre no estándar impedirá a otros usuarios encontrar su equipo en la red.
 Help_of_Run_prog=Puede guardar el archivo de script en la primera partición del disco USB; introduzca el nombre de archivo aquí. ZVMODELVZ ejecuta este script cuando el sistema monta el disco USB.
 [AiDisk Wizard]
@@ -436,7 +436,7 @@ AiDisk_Step3_helptitle=Configurando el disco compartido
 AiDisk_Step1_help=Su ZVMODELVZ le proporciona tres modalidades de derechos de acceso a los recursos compartidos:<p> a) derechos de acceso ilimitado (cualquiera puede acceder a su disco USB en el servidor FTP).</p> <p>b) derechos de acceso limitado (el acceso al disco USB se limita a quienes se haya asignado derechos de acceso). En este caso, su ZVMODELVZ crea las cuentas \"admin/Family\". </p> <p>c) derechos de administración en los que ZVMODELVZ crea la cuenta \"admin\" para derechos de acceso plenos.</p><p>Nota: La configuración de permisos borrará el conjunto original de cuentas.</p>
 AiDisk_Step1_help2=P.D. La administración de cuentas no funciona en la partición NTFS.
 AiDisk_Step2_help=DDNS de ASUS crea un nombre de dominio con una dirección IP dinámica. <p>Si necesita definir otra configuración de servicio DDNS, consulte  <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>DDNS avanzado</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Compartir entorno de red</a>: Puede utilizar el servidor Samba de forma profesional. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Compartir FTP</a>: Puede utilizar el servidor FTP de forma profesional.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Compartir entorno de red</a>: Puede utilizar el servidor Samba de forma profesional. <br/><a href='../aidisk_ftp.asp' target='_top'>Compartir FTP</a>: Puede utilizar el servidor FTP de forma profesional.
 Step2_method=El servidor FTP está compartido.
 Step2_method1=derechos de acceso ilimitados
 Step2_method2=derechos de acceso limitados
@@ -939,7 +939,7 @@ LANHostConfig_x_NTPServer_itemdesc=Para sincronizar la hora del sistema con el s
 LANHostConfig_x_DDNSEnable_sectionname=Configuración DDNS
 LANHostConfig_x_DDNSEnable_sectiondesc=DNS dinámico (DDNS) permite asignar un nombre del dominio de Internet a un equipo con una dirección IP dinámica. Actualmente, su ZVMODELVZ cuenta con varios servicios DDNS incrustados. Puede hacer clic en Prueba gratuita a continuación para iniciar una cuenta de prueba gratuita.
 LANHostConfig_x_DDNSEnable_sectiondesc2=El enrutador inalámbrico actualmente utiliza una dirección IP WAN privada (192.168.x.x, 10,x,x,x o 172.16.x.x). Este enrutador puede estar en un entorno con varios NAT y el servicio DDNS no puede funcionar en este entorno.
-LANHostConfig_x_DDNSEnable_sectiondesc3=El nombre de host se ha registrado correctamente. Puede usar "[nombre de host].asuscomm.com" para acceder al servicio en la red doméstica desde la red WAN. Utilice "[nombre de host].asuscomm.com" para acceder a su red de forma remota.<p> Vaya a [Configuración avanzada] > [WAN] para configurar el envío de puertos o configuración DMZ para permitir a otros clientes de la red WAN acceder a su red de forma remota.<p> Si desea configurar el  router inalámbrico de forma remota, vaya <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">aquí</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=El nombre de host se ha registrado correctamente. Puede usar "[nombre de host].asuscomm.com" para acceder al servicio en la red doméstica desde la red WAN. Utilice "[nombre de host].asuscomm.com" para acceder a su red de forma remota.<p> Vaya a [Configuración avanzada] > [WAN] para configurar el envío de puertos o configuración DMZ para permitir a otros clientes de la red WAN acceder a su red de forma remota.<p> Si desea configurar el  router inalámbrico de forma remota, vaya <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">aquí</a>.
 LANHostConfig_x_DDNSEnable_itemname=¿Desea habilitar el cliente DDNS?
 LANHostConfig_x_DDNSServer_itemname=Servidor:
 LANHostConfig_x_DDNSUserName_itemname=Nombre de usuario o dirección de correo electrónico:

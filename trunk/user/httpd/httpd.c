@@ -538,7 +538,7 @@ http_login_check(const uaddr *ip_now)
 		return 2;
 	}
 
-	return 0;
+	return 3;
 }
 
 static int
@@ -636,19 +636,6 @@ send_error( int status, const char *title, const char *extra_header, const char 
 	fprintf( conn_fp, "%s\n", text );
 	fprintf( conn_fp, "</BODY></HTML>\n" );
 	fflush( conn_fp );
-}
-
-static void
-send_authenticate( FILE *conn_fp )
-{
-	char header[128], *realm;
-
-	realm = nvram_safe_get("computer_name");
-	if (strlen(realm) < 1)
-		realm = nvram_safe_get("productid");
-
-	snprintf(header, sizeof(header), "WWW-Authenticate: Basic realm=\"%s\"", realm);
-	send_error( 401, "Unauthorized", header, "Authorization required.", conn_fp );
 }
 
 static int
@@ -978,19 +965,26 @@ handle_request(FILE *conn_fp, const conn_item_t *item)
 	http_is_ssl = item->ssl;
 #endif
 
-	do_logout = (strcmp(file, "Logout.asp") == 0) ? 1 : 0;
+	do_logout = (strcmp(file, "signout.asp") == 0) ? 1 : 0;
 
 	if (handler->need_auth && login_state > 1 && !do_logout) {
-		if (!auth_check(authorization)) {
-			http_logout(&conn_ip);
-			if (method_id == HTTP_METHOD_POST)
-				eat_post_data(conn_fp, clen);
-			send_authenticate(conn_fp);
-			return;
+		/*
+			没登录需要验证
+		*/
+		if (login_state == 2){
+			if(auth_check(authorization)){
+				http_login(&conn_ip);
+				send_headers( 200, "OK", NULL, NULL, NULL, conn_fp );
+				return;
+			}else {
+				http_logout(&conn_ip);
+				if (method_id == HTTP_METHOD_POST)
+					eat_post_data(conn_fp, clen);
+				file = "signin.asp";
+				query = NULL;
+			}
+
 		}
-		
-		if (login_state == 2)
-			http_login(&conn_ip);
 	}
 
 	if (method_id == HTTP_METHOD_POST) {

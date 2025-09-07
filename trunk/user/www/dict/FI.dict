@@ -104,7 +104,7 @@ ShareNode_Seeding_itemdesc=Antaa ottaa käyttöön tai pois käytöstä alustust
 ShareNode_MaxUpload_itemname=Maksiminopeus palvelimeen lataamiseen
 ShareNode_MaxUpload_itemdesc=Anna arvo välillä 0-999. Oletusarvo on 0, mikä tarkoittaa, palvelimelle lataamisella ei ole ylärajaa.
 HSDPAConfig_hsdpa_enable_hint1=Kun USB Modem on otettu käyttöön, alkuperäiset WAN-asetukset otetaan pois käytöstä.
-HSDPAConfig_hsdpa_enable_hint2=Jos haluat muuttaa yhteystyyppiä, siirry kohtaan <a href="/Advanced_Modem_others.asp">USB Modem</a> ottaaksesi 3G/3.5G-sovittimen pois käytöstä.
+HSDPAConfig_hsdpa_enable_hint2=Jos haluat muuttaa yhteystyyppiä, siirry kohtaan <a href="/modem_others.asp">USB Modem</a> ottaaksesi 3G/3.5G-sovittimen pois käytöstä.
 HSDPAConfig_USBAdapter_itemname=3G/3.5G USB -sovitin
 HSDPAConfig_USBAdapter_itemdesc=Kun USB Modem on otettu käyttöön, valitse sovitin, jota ZVMODELVZ tukee.
 APSurvey_msg_connected=Olet jo muodostanut yhteyden tähän tukiasemaan.
@@ -198,7 +198,7 @@ Device_service_Wireless=Langaton:
 ddnsname_computername=Kun asetus otetaan käyttöön, myös laitteen nimi muuttuu samalla. Haluatko jatkaa?
 JS_storageright=Se on ZVMODELVZ-reitittimen nimi, ja vakiosyöttömerkkejä ovat kirjaimet (A-Z, a-z), numerot (0-9), välilyönnit, alaviiva (_) ja yhdysviiva (-). Ensimmäinen ja viimeinen merkki eivät voi olla välilyöntejä. Muun kuin standardi-nimen käyttö estää muita käyttäjiä löytämästä tietokonettasi verkosta.
 not_support_script=Selaimesi ei tue JavaScriptiä. Valitse selain, joka tukee JavaScriptiä tai ota se käyttöön voidaksesi käyttää ZVMODELVZ-monitoimireititintä.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Se on ZVMODELVZ-reitittimen ryhmänimi verkkoympäristössä, ja vakiosyöttömerkkejä ovat kirjaimet (A-Z,a-z), numerot (0-9), välilyönnit, alaviiva (_) ja yhdysviiva (-). Ensimmäinen ja viimeinen merkki ei voi olla välilyönti. Muun kuin standardi-nimen käyttö estää muita käyttäjiä löytämästä tietokonettasi LAN-verkossa.
 Help_of_Run_prog=Voit tallentaa komentosarjatiedoston USB-levyn ensimmäiselle osiolle ja antaa sille nimen tässä. ZVMODELVZ suorittaa tämän komentosarjan, kun järjestelmä kiinnittää USB-levyn.
 [AiDisk Wizard]
@@ -436,7 +436,7 @@ AiDisk_Step3_helptitle=Jaetun levyn asettaminen
 AiDisk_Step1_help=ZVMODELVZ-reititin tarjoaa jaetuille resursseille nämä kolme käyttöoikeustyyppiä:<p> a) rajattomat käyttöoikeudet, jossa kuka tahansa voi käyttää FTP-palvelimella olevaa USB-levyäsi.</p> <p>b) rajoitetut käyttöoikeudet, jossa USB-levyn käyttöoikeudet rajoittuvat niihin, joille olet määrittänyt käyttöoikeudet. Tätä tyyppiä varten ZVMODELVZ luo \"admin/Family\" (järjestelmänvalvoja/Perhe) -tilit. </p> <p>c) järjestelmänvalvojan oikeudet, jossa ZVMODELVZ luo tilin \"admin\" (Järjestelmänvalvoja), jolla on täydet käyttöoikeudet.</p><p>Huomautus: Käyttöoikeusasetukset tyhjentävät alkuperäiset tiliasetuksesi.</p>
 AiDisk_Step1_help2=PS. Tilinhallintatoiminto ei toimi NTFS-osiossa.
 AiDisk_Step2_help=ASUS DDNS luo toimialuenimen, jolla on dynaaminen IP-osoite. <p>Jos sinun on määritettävä muita DDNS-palveluasetuksia, katso lisätietoja kohdasta <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Edistynyt DDNS</a></p>'_top'>Edistynyt DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Verkkoympäristöjako</a>: Voit käyttää Samba-palvelinta ammattimaisesti. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>FTP-jako</a>: Voit käyttää FTP-palvelinta ammattimaisesti. '_top'>Verkkoympäristöjako</a>: Voit käyttää Samba-palvelinta ammattimaisesti. <br/><a href'../Advanced_AiDisk_ftp.asp' target'_top'>FTP-jako</a>: Voit käyttää FTP-palvelinta ammattimaisesti.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Verkkoympäristöjako</a>: Voit käyttää Samba-palvelinta ammattimaisesti. <br/><a href='../aidisk_ftp.asp' target='_top'>FTP-jako</a>: Voit käyttää FTP-palvelinta ammattimaisesti. '_top'>Verkkoympäristöjako</a>: Voit käyttää Samba-palvelinta ammattimaisesti. <br/><a href'../aidisk_ftp.asp' target'_top'>FTP-jako</a>: Voit käyttää FTP-palvelinta ammattimaisesti.
 Step2_method=Oma FTP –palvelin on jaettu.
 Step2_method1=rajattomat käyttöoikeudet
 Step2_method2=rajoitetut käyttöoikeudet
@@ -940,7 +940,7 @@ LANHostConfig_x_NTPServer_itemdesc=Järjestelmäajan synkronointiin NTP-palvelim
 LANHostConfig_x_DDNSEnable_sectionname=DDNS-asetus
 LANHostConfig_x_DDNSEnable_sectiondesc=Dynaamisella DNS (DDNS) -toiminnolla voit määrittää internet-toimialueen nimen tietokoneelle, jolla on dynaaminen IP-osoite. Tällä hetkellä ZVMODELVZ-reitittimessä on upotettuna useita DDNS-palveluita. Voit aloittaa ilmaisella tilillä napsauttamalla alla olevaa Free Trial (Ilmainen kokeilu) -painiketta.
 LANHostConfig_x_DDNSEnable_sectiondesc2=Langaton reititin käyttää parhaillaan yksityistä WAN IP -osoitetta (192.168.x.x, 10,x,x,x tai 172.16.x.x). Tämä reititin voi olla usea-NAT-ympäristössä ja DDNS-palvelu ei voi toimia tässä ympäristössä.
-LANHostConfig_x_DDNSEnable_sectiondesc3=Isäntänimen rekisteröinti onnistui. Voit käyttää isäntänimeä "[hostname].asuscomm.com" käyttääksesi kotiverkon palvelua WAN-verkosta. Käytä isäntänimeä "[hostname].asuscomm.com" käyttääksesi verkkoasi etänä.<p>Siirry kohtaan Advanced Setting (Lisäasetukset) > WAN määrittääksesi portinsiirron tai DMZ-asetukset salliaksesi toisten WAN-asiakkaiden käyttää verkkoasi etänä.<p>Jos haluat määrittää langattoman reitittimen etänä, siirry kohtaan <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">täällä</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Isäntänimen rekisteröinti onnistui. Voit käyttää isäntänimeä "[hostname].asuscomm.com" käyttääksesi kotiverkon palvelua WAN-verkosta. Käytä isäntänimeä "[hostname].asuscomm.com" käyttääksesi verkkoasi etänä.<p>Siirry kohtaan Advanced Setting (Lisäasetukset) > WAN määrittääksesi portinsiirron tai DMZ-asetukset salliaksesi toisten WAN-asiakkaiden käyttää verkkoasi etänä.<p>Jos haluat määrittää langattoman reitittimen etänä, siirry kohtaan <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">täällä</a>.
 LANHostConfig_x_DDNSEnable_itemname=Otetaanko DDNS-asiakas käyttöön?
 LANHostConfig_x_DDNSServer_itemname=Server (Palvelin):
 LANHostConfig_x_DDNSUserName_itemname=User Name or E-mail Address (Käyttäjänimi tai sähköpostiosoite):

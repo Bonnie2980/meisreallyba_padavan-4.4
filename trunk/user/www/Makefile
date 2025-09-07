@@ -16,7 +16,7 @@ COPYR_PATTERN=s/ZVCOPYRVZ/$(LABEL_COPYRIGHT_TEXT)/g
 DWURL_PATTERN=s/ZVDWURLVZ/$(PROJECT_HOME_URL)/g
 DWURL_MOD_PATTERN=s/ZVMODWURLVZ/$(PROJECT_HOME_URL_MOD)/g
 
-WEBUI_NAME=n56u_ribbon_fixed
+WEBUI_NAME=n56u_rainbow
 
 all:
 
@@ -127,52 +127,51 @@ endif
 	sed $(DWURL_MOD_PATTERN) -i $(ROMFS_DIR)/www/EN.dict
 	rm -f $(ROMFS_DIR)/www/EN.header
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/bootstrap.js
-	rm -f $(ROMFS_DIR)/www/bootstrap/js/engage.itoggle.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/jquery.backgroundpos.min.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/js/jquery.easing.1.3.js
 	rm -f $(ROMFS_DIR)/www/bootstrap/css/bootstrap.css
 ifeq ($(BOARD_HAS_2G_RADIO),0)
-	rm -f $(INSTALLDIR)/www/Advanced_ACL2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WAdvanced2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WGuest2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_Wireless2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WMode2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WSecurity2g_Content.asp
-	rm -f $(INSTALLDIR)/www/Main_WStatus2g_Content.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_acl.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_advanced.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_guest.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_general.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_mode.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_security.asp
+	rm -f $(INSTALLDIR)/www/wireless2g_status.asp
 	rm -f $(INSTALLDIR)/www/wireless_2g.js
 	rm -f $(INSTALLDIR)/www/wds_aplist_2g.asp
 	rm -f $(INSTALLDIR)/www/device-map/router2g.asp
 endif
 ifeq ($(BOARD_HAS_5G_RADIO),0)
-	rm -f $(INSTALLDIR)/www/Advanced_ACL_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WAdvanced_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WGuest_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_Wireless_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WMode_Content.asp
-	rm -f $(INSTALLDIR)/www/Advanced_WSecurity_Content.asp
-	rm -f $(INSTALLDIR)/www/Main_WStatus_Content.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_acl.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_advanced.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_guest.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_general.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_mode.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_securit.asp
+	rm -f $(INSTALLDIR)/www/wireless5g_status.asp
 	rm -f $(INSTALLDIR)/www/wireless.js
 	rm -f $(INSTALLDIR)/www/wds_aplist.asp
 	rm -f $(INSTALLDIR)/www/device-map/router.asp
 endif
 ifndef CONFIG_IPV6
-	rm -f $(INSTALLDIR)/www/Advanced_IPv6_Content.asp
+	rm -f $(INSTALLDIR)/www/ipv6.asp
 endif
 ifndef CONFIG_ATA
 	rm -f $(INSTALLDIR)/www/device-map/sata.asp
 endif
 ifndef CONFIG_USB_SUPPORT
-	rm -f $(INSTALLDIR)/www/Advanced_Modem_others.asp
-	rm -f $(INSTALLDIR)/www/Advanced_Printer_others.asp
+	rm -f $(INSTALLDIR)/www/modem_others.asp
+	rm -f $(INSTALLDIR)/www/printer_others.asp
 	rm -f $(INSTALLDIR)/www/modem_isp.js
 	rm -f $(INSTALLDIR)/www/device-map/modem.asp
 	rm -f $(INSTALLDIR)/www/device-map/printer.asp
 	rm -f $(INSTALLDIR)/www/device-map/hub.asp
 endif
 ifneq ($(STORAGE_ENABLED),y)
-	rm -f $(INSTALLDIR)/www/Advanced_AiDisk_ftp.asp
-	rm -f $(INSTALLDIR)/www/Advanced_AiDisk_others.asp
-	rm -f $(INSTALLDIR)/www/Advanced_AiDisk_samba.asp
+	rm -f $(INSTALLDIR)/www/aidisk_ftp.asp
+	rm -f $(INSTALLDIR)/www/aidisk_others.asp
+	rm -f $(INSTALLDIR)/www/aidisk_samba.asp
 	rm -f $(INSTALLDIR)/www/aidisk.asp
 	rm -f $(INSTALLDIR)/www/disk_folder_tree.js
 	rm -f $(INSTALLDIR)/www/device-map/disk.asp
@@ -183,19 +182,19 @@ ifneq ($(STORAGE_ENABLED),y)
 endif
 
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ALIDDNS),y)
-	rm -f $(INSTALLDIR)/www/Advanced_aliddns.asp
+	rm -f $(INSTALLDIR)/www/aliddns.asp
 endif
 
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_FRPC)_$(CONFIG_FIRMWARE_INCLUDE_FRPS), n_n)
-	rm -f $(INSTALLDIR)/www/Advanced_frp.asp
-	rm -f $(INSTALLDIR)/www/Advanced_frp_log.asp
+	rm -f $(INSTALLDIR)/www/frp.asp
+	rm -f $(INSTALLDIR)/www/frp_log.asp
 endif
 
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ALDRIVER),y)
-	rm -f $(INSTALLDIR)/www/Advanced_aliyundrive.asp
+	rm -f $(INSTALLDIR)/www/aliyundrive.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_SQM),y)
-	rm -f $(INSTALLDIR)/www/Advanced_SQM.asp
+	rm -f $(INSTALLDIR)/www/sqm.asp
 endif
 
 clean:

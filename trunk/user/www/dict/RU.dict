@@ -589,7 +589,7 @@ ShareNode_Seeding_itemdesc=Позволяет Вам включать или о�
 ShareNode_MaxUpload_itemname=Максимальный уровень загрузки
 ShareNode_MaxUpload_itemdesc=Введите значение в диапазоне от 0 до 999. Значение по умолчанию 0 (ноль), означающее, что нет ограничений.
 HSDPAConfig_hsdpa_enable_hint1=После включения USB-модем, Ваши настройки WAN будут отключены.
-HSDPAConfig_hsdpa_enable_hint2=Если Вы хотите создать тип подключения, перейдите на <a href="/Advanced_Modem_others.asp">USB-модем</a> для отключения USB-адаптера.
+HSDPAConfig_hsdpa_enable_hint2=Если Вы хотите создать тип подключения, перейдите на <a href="/modem_others.asp">USB-модем</a> для отключения USB-адаптера.
 HSDPAConfig_USBAdapter_itemname=USB-адаптер
 HSDPAConfig_USBAdapter_itemdesc=После включения USB-модем, выберите адаптер, поддерживаемый ZVMODELVZ.
 APSurvey_msg_connected=Вы уже подключены к этой точке доступа.
@@ -924,7 +924,7 @@ AiDisk_Step3_helptitle=Настройка общего диска
 AiDisk_Step1_help=ZVMODELVZ предоставляет следующие три типа прав доступа к общим ресурсам:<p>а) неограниченные права доступа, которые позволяют любому пользователю получить доступ к USB-диску через FTP-сервер.</p><p>б) ограниченные права доступа, которые ограничивают доступ к USB-диску FTP-сервера. Для этого типа ZVMODELVZ создает учетные записи «admin/Family».</p><p>в) права администратора для полного доступа, создаваемые ZVMODELVZ в учетной записи «admin».</p><p>Примечание: Настройки доступа очистят данные Ваших оригинальных учетных записей</p>
 AiDisk_Step1_help2=Примечание: Функция управления учетными записями не работает на разделе NTFS.
 AiDisk_Step2_help=Служба ASUS DDNS создает имя домена с динамическим IP-адресом.<p>Сведения о настройке других параметров службы DDNS см. в <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Дополнительные параметры DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Общий ресурс в сетевом окружении</a>: вы можете профессионально использовать сервер SMB. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Общий ресурс посредством FTP</a>: вы можете профессионально использовать сервер FTP.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Общий ресурс в сетевом окружении</a>: вы можете профессионально использовать сервер SMB. <br/><a href='../aidisk_ftp.asp' target='_top'>Общий ресурс посредством FTP</a>: вы можете профессионально использовать сервер FTP.
 Step2_method=К моему FTP-серверу разрешен общий доступ.
 Step2_method1=Неограниченные права доступа
 Step2_method2=Ограниченные права доступа
@@ -1431,7 +1431,7 @@ LANHostConfig_x_NTPServer_itemdesc=Синхронизация системног
 LANHostConfig_x_DDNSEnable_sectionname=Настройка DDNS
 LANHostConfig_x_DDNSEnable_sectiondesc=Динамическая служба DNS (DDNS) позволяет назначать имя домена Интернета компьютеру с динамическим IP-адресом. В настоящее время в ZVMODELVZ встроено несколько служб DDNS.
 LANHostConfig_x_DDNSEnable_sectiondesc2=ZVMODELVZ использует приватный WAN IP-адрес (192.168.x.x, 10.x.x.x или 172.16.x.x). Этот маршрутизатор находится в NAT окружении и служба DDNS будет использовать внешний IP провайдера!
-LANHostConfig_x_DDNSEnable_sectiondesc3=Имя узла успешно зарегистрировано. Используйте «[hostname].asuscomm.com» для удаленного доступа к Вашей сети. Перейдите на страницу <a href="../Advanced_VirtualServer_Content.asp" target="_blank" style="text-decoration: underline;">Переадресация портов</a> для конфигурации переадресации портов или DMZ чтобы разрешить другим WAN клиентам удаленный доступ к сети. Если Вы хотите настроить беспроводной маршрутизатор удаленно, перейдите на страницу <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline;">Брандмауэр</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Имя узла успешно зарегистрировано. Используйте «[hostname].asuscomm.com» для удаленного доступа к Вашей сети. Перейдите на страницу <a href="../upnp.asp" target="_blank" style="text-decoration: underline;">Переадресация портов</a> для конфигурации переадресации портов или DMZ чтобы разрешить другим WAN клиентам удаленный доступ к сети. Если Вы хотите настроить беспроводной маршрутизатор удаленно, перейдите на страницу <a href="../firewall.asp" target="_blank" style="text-decoration: underline;">Брандмауэр</a>.
 LANHostConfig_x_DDNSEnable_itemname=Включить DDNS-клиент?
 LANHostConfig_x_DDNSServer_itemname=Профиль сервиса:
 LANHostConfig_x_DDNSUserName_itemname=Логин или адрес e-mail или токен DDNS:

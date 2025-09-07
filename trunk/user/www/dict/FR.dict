@@ -106,7 +106,7 @@ ShareNode_Seeding_itemdesc=Active ou désactive la fonction de seeding. ZVMODELV
 ShareNode_MaxUpload_itemname=Taux de chargement maximum
 ShareNode_MaxUpload_itemdesc=Saisissez une valeur comprise entre 0 et 999. La valeur par défaut est 0, ce qui signifie qu'il n'y a pas de limite pour le chargement.
 HSDPAConfig_hsdpa_enable_hint1=Une fois le "USB Modem" activé, vos paramètres WAN d'origine seront désactivés.
-HSDPAConfig_hsdpa_enable_hint2=Si vous souhaitez changer le type de connexion, allez à <a href="/Advanced_Modem_others.asp">USB Modem</a> pour désactiver l'adaptateur.
+HSDPAConfig_hsdpa_enable_hint2=Si vous souhaitez changer le type de connexion, allez à <a href="/modem_others.asp">USB Modem</a> pour désactiver l'adaptateur.
 HSDPAConfig_USBAdapter_itemname=Adaptateur USB
 HSDPAConfig_USBAdapter_itemdesc=Après aoir activé le USB Modem, sélectionnez l'adaptateu que le ZVMODELVZ supporte.
 APSurvey_msg_connected=Vous êtes déjà connecté à ce point d'accès
@@ -200,7 +200,7 @@ Device_service_Wireless=Sans fil:
 ddnsname_computername=Lorsque la configuration est appliquée, le Nom de périphérique est modifié simultanément. Voulez-vous continuer ?
 JS_storageright=Le nom du ZVMODELVZ. Les caractères standards incluent les lettres (A-Z,a-z), les chiffres (0-9), les tirets bas (_)  et les tirets (-). Le premier et le dernier caractère ne doivent pas contenir d'espace. Utiliser un nom non standard empêchera les autr
 not_support_script=Votre navigateur Internet ne supporte pas Java Script. Choisissez un navigateur supportant JavaScript, ou permettez à JavaScript d'utiliser le routeur multifonction ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Le nom du groupe du ZVMODELVZ dans l'environnement réseau. Ce nom est composé des caractères standards incluant les lettres (A-Z,a-z), les chiffres (0-9), les espaces, les tirets bas (_), et les tirets (-). Le premier et le dernier caractère ne peuvent 
 Help_of_Run_prog=Vous pouvez sauvegarder le fichier script dans la première partition de votre disque USB et entrer le nom du fichier. Le ZVMODELVZ exécute le script lorsque le système monte le disque USB.
 [AiDisk Wizard]
@@ -438,7 +438,7 @@ AiDisk_Step3_helptitle=Configurer le disque partagé
 AiDisk_Step1_help=Le ZVMODELVZ vous offre les trois niveaux d'accès aux ressources partagées suivants: <p> a) droits d'accès illimités ou n'importe qui peut accéder à votre disque USB via le serveur FTP. </p> <p>b) droits d'accès limités où l'accès à votre disque est ré<p>Note: The permission settings will clear your original set of accounts.</p>
 AiDisk_Step1_help2=PS:la fonction de gestion des comptes ne fonctionne pas sur une partition NTFS.
 AiDisk_Step2_help=Le service DDNS ASUS crée un nom de domaine avec une adresse IP dynamique. Si vous devez configurer d'autres paramètres du service DDNS, allez à la page de configuration avancée DDNS.
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Partage via l'environnement réseau</a>: vous pouvez utiliser le serveur Samba de manière professionnelle. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Partage FTP</a>: vous pouvez utiliser le serveur FTP de manière professionnelle.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Partage via l'environnement réseau</a>: vous pouvez utiliser le serveur Samba de manière professionnelle. <br/><a href='../aidisk_ftp.asp' target='_top'>Partage FTP</a>: vous pouvez utiliser le serveur FTP de manière professionnelle.
 Step2_method=Mon serveur FTP est partagé.
 Step2_method1=Droits d'accès illimités
 Step2_method2=Droits d'accès limités
@@ -942,7 +942,7 @@ LANHostConfig_x_NTPServer_itemdesc=Pour synchroniser votre système avec le serv
 LANHostConfig_x_DDNSEnable_sectionname=Configuration DDNS
 LANHostConfig_x_DDNSEnable_sectiondesc=le Dynamic DNS (DDNS) vous permet d'assigner un nom de domaine Internet à un ordinateur à l'aide d'une adresse IP dynamique. A l'heure actuelle, plusieurs services DDNS sont intégrés dans le ZVMODELVZ. Vous pouvez cliquer sur  Free Trial pour créer un c
 LANHostConfig_x_DDNSEnable_sectiondesc2=Le routeur utilise actuellement une adresse IP WAN privée (192.168.X.X, 10.X.X.X ou 172.16.X.X) et peut faire parti de multiples environnements NAT résultant dans l'impossibilité d'utiliser le service DDNS.
-LANHostConfig_x_DDNSEnable_sectiondesc3=L'enregistrement du nom d'hôte a réussi. Vous pouvez utiliser "[nom d'hôte].asuscomm.com" pour accéder au service à partir d'Internet. Utilisez "[nom d'hôte].asuscomm.com" pour accéder au réseau local à distance.<p>Allez dans Paramètres avancés > Réseau étendu pour configurer la redirection de port ou les paramètres DMZ afin d'autoriser d'autres clients WAN à accéder à votre réseau.<p>Si vous souhaitez configurer le routeur à distance, allez <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">ici</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=L'enregistrement du nom d'hôte a réussi. Vous pouvez utiliser "[nom d'hôte].asuscomm.com" pour accéder au service à partir d'Internet. Utilisez "[nom d'hôte].asuscomm.com" pour accéder au réseau local à distance.<p>Allez dans Paramètres avancés > Réseau étendu pour configurer la redirection de port ou les paramètres DMZ afin d'autoriser d'autres clients WAN à accéder à votre réseau.<p>Si vous souhaitez configurer le routeur à distance, allez <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">ici</a>.
 LANHostConfig_x_DDNSEnable_itemname=Activer le client DDNS ?
 LANHostConfig_x_DDNSServer_itemname=Serveur:
 LANHostConfig_x_DDNSUserName_itemname=Nom d'utilisateur ou adresse email:

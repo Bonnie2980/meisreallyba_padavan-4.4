@@ -605,7 +605,7 @@ ShareNode_Seeding_itemdesc=Allows you to enable or disable the seeding function.
 ShareNode_MaxUpload_itemname=Maximum Upload Rate
 ShareNode_MaxUpload_itemdesc=Enter a value between 0 to 999. The default value is 0 (zero), which denotes that there is no upload limit.
 HSDPAConfig_hsdpa_enable_hint1=After enabling USB Modem, your original WAN settings will be disabled.
-HSDPAConfig_hsdpa_enable_hint2=If you want to change the connection type, please go to <a href="/Advanced_Modem_others.asp">USB Modem</a> to disable USB Adapter.
+HSDPAConfig_hsdpa_enable_hint2=If you want to change the connection type, please go to <a href="/modem_others.asp">USB Modem</a> to disable USB Adapter.
 HSDPAConfig_USBAdapter_itemname=USB Adapter
 HSDPAConfig_USBAdapter_itemdesc=After enabling USB Modem, select the adapter that ZVMODELVZ supports.
 APSurvey_msg_connected=You already connected to this AP.
@@ -987,7 +987,7 @@ AiDisk_Step3_helptitle=Setting up the shared disk
 AiDisk_Step1_help=ZVMODELVZ provides you with these three types of access rights to the shared resources:<p>a) limitless access rights, in which anyone can access your USB Disk in the FTP server.</p><p>b) limited access rights, in which access to your USB Disk is limited to those you have assigned access rights. For this type, the ZVMODELVZ creates the [admin/Family] accounts.</p><p>c) admin rights in which the ZVMODELVZ creates the [admin] account for full access rights.</p><p>Note: The permission settings will clear your original set of accounts.</p>
 AiDisk_Step1_help2=Note: Account management function cannot work on NTFS partition.
 AiDisk_Step2_help=ASUS DDNS creates a domain name with a dynamic IP Address.<p>If you need to configure other DDNS service settings, please refer to <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Advanced DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Network Neighborhood Share</a>: You can operate the Samba server professionally. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>FTP Share</a>: You can operate the FTP server professionally.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Network Neighborhood Share</a>: You can operate the Samba server professionally. <br/><a href='../aidisk_ftp.asp' target='_top'>FTP Share</a>: You can operate the FTP server professionally.
 Step2_method=My FTP server is shared.
 Step2_method1=Limitless access rights
 Step2_method2=Limited access rights
@@ -1497,7 +1497,7 @@ LANHostConfig_x_NTPServer_itemdesc=To synchronize your system time with NTP Serv
 LANHostConfig_x_DDNSEnable_sectionname=DDNS Setting
 LANHostConfig_x_DDNSEnable_sectiondesc=Dynamic DNS (DDNS) allows you to assign an Internet domain name to a computer with a dynamic IP Address. Currently, several DDNS services are embedded in ZVMODELVZ.
 LANHostConfig_x_DDNSEnable_sectiondesc2=The wireless router currently uses a private WAN IP Address (192.168.x.x, 10.x.x.x or 172.16.x.x). This router may be in the multiple-NAT environment and DDNS service will use the external IP from ISP!
-LANHostConfig_x_DDNSEnable_sectiondesc3=The host name is successfully registered. You can use [hostname].asuscomm.com to access the service in home network from WAN. Go to <a href="../Advanced_VirtualServer_Content.asp" target="_blank" style="text-decoration: underline;">Port Forwarding</a> to configure the port forwarding or DMZ settings to allow other WAN clients to remotely access your network. If you want to remotely configure the wireless router, go to <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline;">Firewall</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=The host name is successfully registered. You can use [hostname].asuscomm.com to access the service in home network from WAN. Go to <a href="../upnp.asp" target="_blank" style="text-decoration: underline;">Port Forwarding</a> to configure the port forwarding or DMZ settings to allow other WAN clients to remotely access your network. If you want to remotely configure the wireless router, go to <a href="../firewall.asp" target="_blank" style="text-decoration: underline;">Firewall</a>.
 LANHostConfig_x_DDNSEnable_itemname=Enable the DDNS Client?
 LANHostConfig_x_DDNSServer_itemname=Service Profile:
 LANHostConfig_x_DDNSUserName_itemname=DDNS User Name or E-mail Address or Token:

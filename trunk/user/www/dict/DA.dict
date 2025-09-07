@@ -104,7 +104,7 @@ ShareNode_Seeding_itemdesc=Giver mulighed for at aktivere eller deaktivere funkt
 ShareNode_MaxUpload_itemname=Maksimal upload-rate
 ShareNode_MaxUpload_itemdesc=Indtast en værdi mellem 0 og 999. Standardværdien er 0, hvilket angiver, at der ikke er nogen upload-begrænsning.
 HSDPAConfig_hsdpa_enable_hint1=Når USB Modem er aktiveret, deaktiveres de oprindelige WAN-indstillinger.
-HSDPAConfig_hsdpa_enable_hint2=Hvis forbindelsestypen skal ændres, så gå til <a href="/Advanced_Modem_others.asp">USB Modem</a> for at deaktivere 3 G/3,5 G-adapteren.
+HSDPAConfig_hsdpa_enable_hint2=Hvis forbindelsestypen skal ændres, så gå til <a href="/modem_others.asp">USB Modem</a> for at deaktivere 3 G/3,5 G-adapteren.
 HSDPAConfig_USBAdapter_itemname=3 G/3,5 G USB-adapter
 HSDPAConfig_USBAdapter_itemdesc=Når USB Modem er aktiveret, vælges den adapter, som ZVMODELVZ'en understøtter.
 APSurvey_msg_connected=Du er allerede tilsluttet dette adgangspunkt.
@@ -198,7 +198,7 @@ Device_service_Wireless=Trådløs:
 ddnsname_computername=Når indstillingen tages i anvendelse, ændres samtidigt enhedens navn. Skal der fortsættes?
 JS_storageright=Det er navnet på ZVMODELVZ'en, og de standardmæssige indtastningstegn omfatter bogstaverne (A-Z, a-z), tallene (0-9), mellemrum, understregninger (_) og bindestreger (-). Det første og sidste tegn må dog ikke være et mellemrum. Anvendelsen af et ikke standardiseret navn afholder andre brugere fra at finde computeren på netværket.
 not_support_script=Browseren understøtter ikke JavaScript. Vælg en browser, der understøtter JavaScript, eller aktiver den til at anvende den flerfunktionelle router ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Det er gruppenavnet på ZVMODELVZ'en under Andre computere, og de standardmæssige indtastningstegn omfatter bogstaverne (A-Z, a-z), tallene (0-9), mellemrum, understregninger (_) og bindestreger (-). Det første og sidste tegn må dog ikke være et mellemrum. Anvendelsen af et ikke standardiseret navn afholder andre brugere fra at finde computeren på lokalnetværket.
 Help_of_Run_prog=Sciptfilen kan gemmes i den første partition på USB-disken, og filnavnet kan indtastes her. ZVMODELVZ'en kører dette script, når systemet tilsluttes USB-disken.
 [AiDisk Wizard]
@@ -436,7 +436,7 @@ AiDisk_Step3_helptitle=Indstiller den delte disk
 AiDisk_Step1_help=ZVMODELVZ'er giver disse 3 typer adgangsrettigheder til de delte ressourcer: <p> a) ubegrænsede adgangsrettigheder, hvor enhver har adgang til din USB-disk på ftp-serveren.</p> <p>b) begrænsede adgangsrettigheder, hvor adgangen til din USB-disk er begrænset til dem, du har tildelt adgangsrettigheder. Til denne type opretter ZVMODELVZ'en kontiene \"admin/Family\". </p> <p>c) administratorrettgheder, hvor ZVMODELVZ'en opretter kontoen \"admin\" til fuldstændige adgangsrettigheder.</p> <p>Bemærk: Tilladelsesindstillingerne nulstiller de oprindelige kontosæt.</p>
 AiDisk_Step1_help2=PS. Kontostyringsfunktionen virker ikke med NTFS-partition.
 AiDisk_Step2_help=ASUS DDNS opretter et domænenavn med en dynamisk IP-adresse. <p>Hvis det er nødvendigt at konfigurere indstillinger af andre DDNS-tjenester så se nærmere <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Avanceret DDNS</a></p>'_top'>Avanceret DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Deling med Andre computere</a>: Sambaserveren kan betjenes professionelt. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Ftp-deling</a>: Ftp-serveren kan betjenes professionelt. '_top'>Deling med andre computeren</a>: Sambaserveren kan betjenes professionelt. <br/><a href'../Advanced_AiDisk_ftp.asp' target='_top'>Ftp-deling</a>: Ftp-serveren kan betjenes professionelt.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Deling med Andre computere</a>: Sambaserveren kan betjenes professionelt. <br/><a href='../aidisk_ftp.asp' target='_top'>Ftp-deling</a>: Ftp-serveren kan betjenes professionelt. '_top'>Deling med andre computeren</a>: Sambaserveren kan betjenes professionelt. <br/><a href'../aidisk_ftp.asp' target='_top'>Ftp-deling</a>: Ftp-serveren kan betjenes professionelt.
 Step2_method=Min ftp-server er delt.
 Step2_method1=ubegrænsede adgangsrettigheder
 Step2_method2=begrænsede adgangsrettigheder
@@ -940,7 +940,7 @@ LANHostConfig_x_NTPServer_itemdesc=Til synkronisering af systemtiden med NTP-ser
 LANHostConfig_x_DDNSEnable_sectionname=DDNS-indstilling
 LANHostConfig_x_DDNSEnable_sectiondesc=Den dynamiske DNS (DDNS) gør det muligt at tildele et internetdomænenavn til en computer med en dynamisk IP-adresse. Der er for tiden indlagt flere DDNS-tjenester i ZVMODELVZ'en Klik på Prøv gratis nedenfor for at starte en gratis prøveversion af tjenesten.
 LANHostConfig_x_DDNSEnable_sectiondesc2=Den trådløse router bruger i øjeblikket en privat WAN IP-adresse (192.168.x.x, 10,x,x,x eller 172.16.x.x). Denne router findes muligvis i multi-NAT miljøet, og DDNS tjenesten virker ikke i dette miljø.
-LANHostConfig_x_DDNSEnable_sectiondesc3=Værtsnavnet er blevet registreret. Du kan bruge "[værtsnavn].asuscomm.com" til, at tilslutte til tjenesten på et hjemmenetværk fra et WAN netværk. Brug "[værtsnavn].asuscomm.com" til, at oprette en fjernadgang til dit netværk.<p>Gå til Advanced Setting (avancerede indstillinger) > WAN for, at konfigurer port videresendelsen eller DMZ indstillingerne, så andre WAN klienter kan få adgang til dit netværk.<p>Hvis du ønsker, at fjern-konfigurere den trådløse router, skal du gå til <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">her</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Værtsnavnet er blevet registreret. Du kan bruge "[værtsnavn].asuscomm.com" til, at tilslutte til tjenesten på et hjemmenetværk fra et WAN netværk. Brug "[værtsnavn].asuscomm.com" til, at oprette en fjernadgang til dit netværk.<p>Gå til Advanced Setting (avancerede indstillinger) > WAN for, at konfigurer port videresendelsen eller DMZ indstillingerne, så andre WAN klienter kan få adgang til dit netværk.<p>Hvis du ønsker, at fjern-konfigurere den trådløse router, skal du gå til <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">her</a>.
 LANHostConfig_x_DDNSEnable_itemname=Skal DDNS-klienten aktiveres?
 LANHostConfig_x_DDNSServer_itemname=Server:
 LANHostConfig_x_DDNSUserName_itemname=Brugernavn eller e-postadresse:

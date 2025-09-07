@@ -106,7 +106,7 @@ ShareNode_Seeding_itemdesc=Umożliwia wlączenie lub wyłączenie funkcji seedin
 ShareNode_MaxUpload_itemname=Maksymalna szybkość transmisji
 ShareNode_MaxUpload_itemdesc=Wprowadź wartość z zakresu 0 do 999. Wartość domyślna to 0, która oznacza brak limitu przesyłania.
 HSDPAConfig_hsdpa_enable_hint1=Po włączeniu USB Modem, wyłączone zostaną oryginalne ustawienia WAN.
-HSDPAConfig_hsdpa_enable_hint2=Aby zmienić typ połączenia, przejdź do <a href="/Advanced_Modem_others.asp">USB Modem</a> w celu wyłączenia adaptera USB.
+HSDPAConfig_hsdpa_enable_hint2=Aby zmienić typ połączenia, przejdź do <a href="/modem_others.asp">USB Modem</a> w celu wyłączenia adaptera USB.
 HSDPAConfig_USBAdapter_itemname=Adapter USB
 HSDPAConfig_USBAdapter_itemdesc=Po włączeniu USB Modem, wybierz adapter obsługiwany przez ZVMODELVZ.
 APSurvey_msg_connected=Wykonane zostało połączenie z tym punktem dostępowym.
@@ -200,7 +200,7 @@ Device_service_Wireless=Bezprzewodowe:
 ddnsname_computername=Po zatwierdzeniu ustawień zmieni się też nazwa urządzenia. Czy chcesz kontynuować?
 JS_storageright=Nazwa ZVMODELVZ może składać się z liter (A-Z, a-z), cyfer (0-9), spacji, dolnych podkreśleń (_) oraz myślników (-). Pierwszy i ostatni znak nie powinien zawierać spacji. Użycie niestandardowej nazwy może spowodować trudności z odszukaniem komputera w sieci.
 not_support_script=Twoja przeglądarka nie obsługuje JavaScript. Wybierz przeglądarkę posiadającą wsparcie JavaScript bądź włącz tą funkcję by użyć wielofunkcyjnego routera ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Jest to nazwa grupy ZVMODELVZ w otoczeniu sieciowym. Nazwa może składać się z liter (A-Z,a-z), cyfr (0-9), spacji, dolnych podkreśleń (_), oraz myślników (-). Nie powinieneś użyć żadnych spacji w miejscu pierwszego i ostatniego znaku. Użycie niestandardowej nazwy spowoduje brak możliwości odszukania tego komputera w sieci LAN.
 Help_of_Run_prog=Możesz zapisać skrypt w pliku na pierwszej partycji dysku USB i podać jego nazwę w tym miejscu. ZVMODELVZ uruchomi ten skrypt po podmontowaniu dysku USB.
 [AiDisk Wizard]
@@ -438,7 +438,7 @@ AiDisk_Step3_helptitle=Ustawienia udostępnionego dysku
 AiDisk_Step1_help=ZVMODELVZ oferuje trzy rodzaje praw dostępu udostępnianych zasobów:<P>a) nieograniczone prawa dostępu, każdy może uzyskać dostęp do dysku USB na serwerze FTP.</p> <p>b) ograniczone prawa dostępu, gdzie dostęp do dysku USB jest uzależniony od nadanych uprawnień. Dla tego ustawienia ZVMODELVZ tworzy konta \"\admin/Family/\". </p> <p>c) Uprawnienia administracyjne, ZVMODELVZ tworzy konto \"admin\" z pełnymi prawami dostępu.</p><p>Note: The permission settings will clear your original set of accounts.</p>
 AiDisk_Step1_help2=PS. Funkcja zarządzanie kontem nie działa z systemem plików NTFS.
 AiDisk_Step2_help=ASUS DDNS tworzy nazwę domeny z dynamicznym adresem IP. Jeśli potrzebujesz skonfigurować inne usługi DDNS, odnieś się do <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Udostępniony przez otoczenie sieciowe</a>: Możesz korzystać z zasobów serwera samba.<br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Udostępniony przez FTP</a>: Możesz korzystać z zasobów poprzez serwer FTP.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Udostępniony przez otoczenie sieciowe</a>: Możesz korzystać z zasobów serwera samba.<br/><a href='../aidisk_ftp.asp' target='_top'>Udostępniony przez FTP</a>: Możesz korzystać z zasobów poprzez serwer FTP.
 Step2_method=Mój serwer FTP jest udostępniony.
 Step2_method1=Nieograniczone prawa dostępu
 Step2_method2=Ograniczone prawa dostępu
@@ -942,7 +942,7 @@ LANHostConfig_x_NTPServer_itemdesc=W celu zsynchronizowania czasu systemowego z 
 LANHostConfig_x_DDNSEnable_sectionname=Ustawienia DDNS.
 LANHostConfig_x_DDNSEnable_sectiondesc=Usługa dynamicznego DNS (DDNS) pozwala na przypisanie Internetowej nazwy domenowej do routera pracującego ze zmiennym adresem IP. Obsługiwane jest kilka rodzajów usługi DDNS.
 LANHostConfig_x_DDNSEnable_sectiondesc2=Router sieci bezprzewodowej aktualnie wykorzystuje prywatny adres IP WAN (192.168.x.x, 10,x,x,x, lub 172.16.x.x). Router ten może znajdować się w środowisku wielu NAT, a w tym środowisku usługa DDNS nie może działać.
-LANHostConfig_x_DDNSEnable_sectiondesc3=Nazwa hosta została pomyślnie zarejestrowana. Można użyć "[nazwa hosta].asuscomm.com" do dostępu do usługi w sieci domowej z sieci WAN. Użyj "[nazwa hosta].asuscomm.com" do zdalnego dostępu do sieci.<p>Przejdź do Advanced Setting (Ustawienia zaawansowane) > WAN w celu konfiguracji przekierowania portów lub ustawień DMZ, aby umożliwić zdalne połączenie z siecią innym klientom WAN.<p>Aby zdalnie skonfigurować router router sieci bezprzewodowej, przejdź do <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">tutaj</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Nazwa hosta została pomyślnie zarejestrowana. Można użyć "[nazwa hosta].asuscomm.com" do dostępu do usługi w sieci domowej z sieci WAN. Użyj "[nazwa hosta].asuscomm.com" do zdalnego dostępu do sieci.<p>Przejdź do Advanced Setting (Ustawienia zaawansowane) > WAN w celu konfiguracji przekierowania portów lub ustawień DMZ, aby umożliwić zdalne połączenie z siecią innym klientom WAN.<p>Aby zdalnie skonfigurować router router sieci bezprzewodowej, przejdź do <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">tutaj</a>.
 LANHostConfig_x_DDNSEnable_itemname=Uruchomić klienta DDNS ?
 LANHostConfig_x_DDNSServer_itemname=Serwer:
 LANHostConfig_x_DDNSUserName_itemname=Nazwa użytkownika lub adres email:

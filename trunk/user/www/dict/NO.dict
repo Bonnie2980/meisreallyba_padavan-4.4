@@ -104,7 +104,7 @@ ShareNode_Seeding_itemdesc=Lar deg aktivere eller deaktivere seeding-funksjonen.
 ShareNode_MaxUpload_itemname=Maksimal opplastingshastighet
 ShareNode_MaxUpload_itemdesc=Angi en verdi mellom 0 til 999. Standardverdien er 0, som betyr at det ikke er en opplastingsgrense.
 HSDPAConfig_hsdpa_enable_hint1=Etter aktivering av USB Modem, vil dine originale WAN-innstillinger bli deaktivert.
-HSDPAConfig_hsdpa_enable_hint2=Hvis du vil endre tilkoblingstypen, gå til <a href="/Advanced_Modem_others.asp">USB Modem</a> for å deaktivere 3G/3.5G-adapteren.
+HSDPAConfig_hsdpa_enable_hint2=Hvis du vil endre tilkoblingstypen, gå til <a href="/modem_others.asp">USB Modem</a> for å deaktivere 3G/3.5G-adapteren.
 HSDPAConfig_USBAdapter_itemname=3G/3.5G USB-adapter
 HSDPAConfig_USBAdapter_itemdesc=Etter aktivering av USB Modem, velg adapteren som ZVMODELVZ støtter.
 APSurvey_msg_connected=Du har allerede koblet til dette tilgangspunktet.
@@ -198,7 +198,7 @@ Device_service_Wireless=Trådløs:
 ddnsname_computername=Etter at du har brukt innstillingen, endres også Device Name (Enhetsnavn) samtidig. Vil du fortsette?
 JS_storageright=Det er navnet på ZVMODELVZ, og standard inntastingstegn inkluderer bokstaver (A-Z, a-z), tall (0-9), mellomrom, understrekning (_) og bindestreker (-). Første og siste tegn bør ikke inneholde mellomrom. Bruk av et ikke-standard navn vil forhindre at andre brukere finner datamaskinen din på nettverket.
 not_support_script=Nettleseren din har ikke støtte for JavaScript. Velg en nettleser som støtter JavaScript eller aktiver dette for å bruke den flerfunksjonelle ruteren, ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Det er gruppenavnet på ZVMODELVZ i nettverksnabolaget, og standard inntastingstegn inkluderer bokstaver (A-Z, a-z), tall (0-9), mellomrom, understrekning (_) og bindestreker (-). Det bør ikke være noen mellomrom i første og siste tegn. Bruk av et ikke-standard navn fører til at andre brukere ikke kan finne datamaskinen din i et LAN.
 Help_of_Run_prog=Du kan lagre skriptfilen i den første partisjonen på USB-disken og legge inn filnavnet her. ZVMODELVZ utfører dette skriptet når systemet monterer USB-disken.
 [AiDisk Wizard]
@@ -436,7 +436,7 @@ AiDisk_Step3_helptitle=Stille inn den delte disken
 AiDisk_Step1_help=ZVMODELVZ gir deg disse tre typene med tilgangsrettigheter til de delte ressursene:<p> a) ubegrensede tilgangsrettigheter, for enhver kan få tilgang til USB-disken din på FTP-serveren.</p><p>b) begrensede tilgangsrettigheter, hvor tilgang til USB-disken din er begrenset til de du har tildelt tilgangsrettigheter. For denne typen, oppretter ZVMODELVZ \"admin/Family\"-kontoer. </p> <p>c) administratorettigheter hvor ZVMODELVZ oppretter \"admin\"-kontoen for fullstendige tilgangsrettigheter.</p><p>Merk: Tilgangsinnstillingene vil fjerne alle dine originale sett med kontoer.</p>
 AiDisk_Step1_help2=PS. Kontoadministrasjonsfunksjon kan ikke fungere på NTFS-partisjon.
 AiDisk_Step2_help=ASUS DDNS oppretter et domenenavn med en dynamisk IP-adresse. <p>Hvis du må konfigurere andre DDNS-tjenesteinnstillinger, henvis til <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Avansert DDNS</a></p>'_top'>Avansert DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Nettverksnabolagdel</a>: Du kan bruke Samba-serveren profesjonelt. <br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>FTP-del</a>: Du kan bruke FTP-serveren profesjonelt.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Nettverksnabolagdel</a>: Du kan bruke Samba-serveren profesjonelt. <br/><a href='../aidisk_ftp.asp' target='_top'>FTP-del</a>: Du kan bruke FTP-serveren profesjonelt.
 Step2_method=Min FTP-server er delt.
 Step2_method1=ubegrensede tilgangsrettigheter
 Step2_method2=begrensede tilgangsrettigheter
@@ -940,7 +940,7 @@ LANHostConfig_x_NTPServer_itemdesc=For å synkronisere systemtiden din med NTP-s
 LANHostConfig_x_DDNSEnable_sectionname=DDNS-innstilling
 LANHostConfig_x_DDNSEnable_sectiondesc=Dynamisk DNS (DDNS) lar deg tilordne et Internett-domenenavn til en datamaskin med en dynamisk IP-adresse. For øyeblikket er flere DDNS-tjenester bygd inn i ZVMODELVZ. Du kan klikke på Gratis prøveversjon under for å starte med en gratis prøvekonto.
 LANHostConfig_x_DDNSEnable_sectiondesc2=Den trådløse ruterens bruker for øyeblikket en privat WAN IP-adresse (192.168.x.x, 10,x,x,x, eller 172.16.x.x). Denne ruteren kan være i NAT-multimiljøet og DDNS-tjenester fungerer ikke i dette miljøet.
-LANHostConfig_x_DDNSEnable_sectiondesc3=Vertsnavnet er registrert. Du kan bruke "[vertsnavn].asuscomm.com" til å få tilgang til tjenesten i hjemmenettverket fra WAN. Bruk "[vertsnavn].asuscomm.com" for å få ekstern tilgang til nettverket ditt.<p>Gå til Advanced Setting (Avansert innstilling) > WAN for å konfigurere portviderekobling eller DMZ-innstillingene for å la andre WAN-klienter få ekstern tilgang til nettverket ditt.<p>Hvis du vil eksternt konfigurere den trådløse ruteren, gå til <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">her</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Vertsnavnet er registrert. Du kan bruke "[vertsnavn].asuscomm.com" til å få tilgang til tjenesten i hjemmenettverket fra WAN. Bruk "[vertsnavn].asuscomm.com" for å få ekstern tilgang til nettverket ditt.<p>Gå til Advanced Setting (Avansert innstilling) > WAN for å konfigurere portviderekobling eller DMZ-innstillingene for å la andre WAN-klienter få ekstern tilgang til nettverket ditt.<p>Hvis du vil eksternt konfigurere den trådløse ruteren, gå til <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">her</a>.
 LANHostConfig_x_DDNSEnable_itemname=Aktiver DDNS-klienten?
 LANHostConfig_x_DDNSServer_itemname=Server:
 LANHostConfig_x_DDNSUserName_itemname=Brukernavn eller e-postadresse:

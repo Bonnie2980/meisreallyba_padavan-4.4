@@ -106,7 +106,7 @@ ShareNode_Seeding_itemdesc=Umožňuje povolit nebo zakázat funkci ohlašování
 ShareNode_MaxUpload_itemname=Maximální rychlost ukládání
 ShareNode_MaxUpload_itemdesc=Zadejte hodnotu mezi 0 až 999. Výchozí hodnota je 0, což označuje, že není žádné omezení ukládání.
 HSDPAConfig_hsdpa_enable_hint1=Po aktivaci USB Modem budou deaktivovány vaše původní nastavení WAN.
-HSDPAConfig_hsdpa_enable_hint2=Chcete-li změnit typ připojení, přejděte na <a href="/Advanced_Modem_others.asp">USB Modem</a> a deaktivujte adaptér.
+HSDPAConfig_hsdpa_enable_hint2=Chcete-li změnit typ připojení, přejděte na <a href="/modem_others.asp">USB Modem</a> a deaktivujte adaptér.
 HSDPAConfig_USBAdapter_itemname=USB adaptér
 HSDPAConfig_USBAdapter_itemdesc=Po aktivaci USB Modem, vyberte adaptér, který ZVMODELVZ podporuje.
 APSurvey_msg_connected=Již jste připojeni k tomuto přístupovému bodu.
@@ -200,7 +200,7 @@ Device_service_Wireless=Služba bezdrátového zařízení:
 ddnsname_computername=Po změně nastavení se změní také jméno zařízení. Chcete pokračovat?
 JS_storageright=Představuje jméno ZVMODELVZ, běžné vstupní znaky zahrnují písmena (A–Z, a–z), čísla (0–9), mezery, podtržítka (_) a pomlčky (-). První ani poslední znak nesmí obsahovat mezeru. Použití nestandardního jména zabrání ostatním uživatelům najít Váš počítač nebo síť.
 not_support_script=Váš prohlížeč nepodporuje JavaScript. Použijte prosím prohlížeč, který podporuje JavaScript, nebo jej povolte pro použití multifunkčního routeru ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Představuje jméno skupiny ZVMODELVZ v místní síti, běžné vstupní znaky zahrnují písmena (A–Z,a–z), čísla (0–9), mezery, podtržítka (_) a pomlčky (-). První ani poslední znak nesmí obsahovat mezeru. Použití nestandardního jména zabrání ostatním uživatelům najít Váš počítač v místní síti.
 Help_of_Run_prog=Můžete uložit skriptovací soubor na první oddíl vašeho USB disku a tam zadat jeho název souboru. ZVMODELVZ spustí tento skript, pokud bude tento USB disk připojen k systému.
 [AiDisk Wizard]
@@ -438,7 +438,7 @@ AiDisk_Step3_helptitle=Nastavení sdíleného disku
 AiDisk_Step1_help=ZVMODELVZ nabízí tři typy přístupových práv ke sdílenému obsahu: <p> a) neomezená přístupová práva, kdy má každý přístup k vašemu USB disku na FTP serveru;</p> <p>b) limitovaná přístupová práva, kdy je přístup k vašemu USB disku limitován přidělenými přístupovými právy. Pro tento typ vytvoří ZVMODELVZ účty \“admin/Family\";</p> <p>c) administrátorská práva, kdy ZVMODELVZ vytvoří účet \"admin\" pro úplná přístupová práva.</p><p>Note: The permission settings will clear your original set of accounts.</p>
 AiDisk_Step1_help2=Správa účtu nemůže pracovat na diskovém oddílu NTFS.
 AiDisk_Step2_help=ASUS DDNS vytvoří název domény s dynamickou IP adresou. <p> Pokud potřebujete konfigurovat jiné nastavení služeb DDNS, prosím přejděte na <a href
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Sdíleno síťovým okolím</a>: Obsluhujte Samba server profesionálně<br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Sdíleno pomocí FTP</a>: Obsluhujte FTP server profesionálně.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Sdíleno síťovým okolím</a>: Obsluhujte Samba server profesionálně<br/><a href='../aidisk_ftp.asp' target='_top'>Sdíleno pomocí FTP</a>: Obsluhujte FTP server profesionálně.
 Step2_method=Můj FTP server je sdílen.
 Step2_method1=Neomezená přístupová práva
 Step2_method2=Omezená přístupová práva
@@ -942,7 +942,7 @@ LANHostConfig_x_NTPServer_itemdesc=Synchronizovat váš systémpvý čas s NTP s
 LANHostConfig_x_DDNSEnable_sectionname=Nastavení DDNS
 LANHostConfig_x_DDNSEnable_sectiondesc=Pomocí dynamického DNS (DDNS) můžete přiřadit název internetové domény počítači s dynamickou IP adresou. Momentálně je několik služeb DDNS přiřazeno k ZVMODELVZ. Dále je uveden odkaz na zkušební verzi, klikněte na něj, abyste spustili zkušební verzi účtu.
 LANHostConfig_x_DDNSEnable_sectiondesc2=Tento bezdrátový směrovač aktuálně používá soukromou adresu IP WAN (192.168.x.x, 10,x,x,x nebo 172.16.x.x). Tento směrovač může být v prostředí s více překlady adres (NAT) a služba DDNS nemůže v tomto prostředí fungovat.
-LANHostConfig_x_DDNSEnable_sectiondesc3=Název hostitele byl úspěšně zaregistrován. Můžete použít "[názevhostitele].asuscomm.com" pro přístup ke službě na domácí síti ze sítě WAN. Použijte "[názevhostitele].asuscomm.com" pro vzdálený přístup k vaší síti.<p>Přejděte na Advanced Setting (Upřesnit nastavení) > WAN a nakonfigurujte předávání portů nebo nastavení DMZ tak, aby mohli ostatní klienti WAN vzdáleně přistupovat k vaší síti.<p>Chcete-li konfigurovat bezdrátový směrovač vzdáleně, přejděte na <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">zde</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=Název hostitele byl úspěšně zaregistrován. Můžete použít "[názevhostitele].asuscomm.com" pro přístup ke službě na domácí síti ze sítě WAN. Použijte "[názevhostitele].asuscomm.com" pro vzdálený přístup k vaší síti.<p>Přejděte na Advanced Setting (Upřesnit nastavení) > WAN a nakonfigurujte předávání portů nebo nastavení DMZ tak, aby mohli ostatní klienti WAN vzdáleně přistupovat k vaší síti.<p>Chcete-li konfigurovat bezdrátový směrovač vzdáleně, přejděte na <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">zde</a>.
 LANHostConfig_x_DDNSEnable_itemname=Povolit klienta DDNS?
 LANHostConfig_x_DDNSServer_itemname=Server:
 LANHostConfig_x_DDNSUserName_itemname=Uživatelské jméno nebo e-mailová adresa:

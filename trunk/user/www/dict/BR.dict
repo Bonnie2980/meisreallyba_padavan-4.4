@@ -100,7 +100,7 @@ ShareNode_Seeding_itemdesc=Permite que você ative ou desative a função de sem
 ShareNode_MaxUpload_itemname=Taxa máxima de Upload
 ShareNode_MaxUpload_itemdesc=Digite um valor entre 0 e 999. O valor padrão é 0 que significa que não há limite de velocidade de upload.
 HSDPAConfig_hsdpa_enable_hint1=Após ativar o USB Modem a porta WAN será desativada.
-HSDPAConfig_hsdpa_enable_hint2=Se você deseja alterar o tipo de conexão por favor clique em  <a href="/Advanced_Modem_others.asp">USB Modem</a> para desativar o modem 3G/3,5G.
+HSDPAConfig_hsdpa_enable_hint2=Se você deseja alterar o tipo de conexão por favor clique em  <a href="/modem_others.asp">USB Modem</a> para desativar o modem 3G/3,5G.
 HSDPAConfig_USBAdapter_itemname=USB Adapter
 HSDPAConfig_USBAdapter_itemdesc=Após ativar o USB Modem selecione um modem suportado pelo ZVMODELVZ.
 APSurvey_msg_connected=Você já está conectado a este ponto de acesso.
@@ -194,7 +194,7 @@ Device_service_Wireless=Rede sem fio:
 ddnsname_computername=Após gravar as configurações o nome do dispositivo também será alterado simultaneamente. Você quer continuar ?
 JS_storageright=Este é o nome do ZVMODELVZ que pode se composto de caracteres como letras (A-Z e a-z), números (0 a 9), espaços, sublinhado (_) e hifens (-). O primeiro e o último caracteres não podem conter espaço. Utilizando um nome fora do padrão você evitará que outros usuários encontrem seu computador na rede.
 not_support_script=Seu navegador não suporta JavaScript. Utilize um navegador que suporta JavaScript ou habilite esta função em seu navegador para utilizar o roteador ZVMODELVZ.
-[Advanced_AiDisk_others.asp]
+[aidisk_others.asp]
 Help_of_Workgroup=Este é o nome do grupo do ZVMODELVZ no ambiente de rede e por padrão pode ser composto de caracteres como letras (A-Z e a-z), números (0 a 9), espaços, sublinhados (_) e hifens (-). Não deve haver espaço no primeiro e último caracteres. Usando um nome fora do padrão outros usuários não poderão encontrar seu computador na rede local (LAN).
 Help_of_Run_prog=Você pode gravar um arquivo de script na partição primária de seu disco USB e digitar o nome deste arquivo aqui. O ZVMODELVZ irá executar este script quando o sistema montar o disco USB.
 [AiDisk Wizard]
@@ -432,7 +432,7 @@ AiDisk_Step3_helptitle=Configurando o compartilhamento de disco
 AiDisk_Step1_help=ZVMODELVZ fornece três tipos de direitos de acesso aos recursos compartilhados:<p>a) Direitos de acesso ilimitados: qualquer usuário pode acessar seu disco USB no servidor de FTP.</p>b) Direitos de acesso limitados: em que o acesso para o seu disco USB está limitado aos usuários que você tiver atribuído estes direitos de acesso. Para este tipo, o ZVMODELVZ cria a conta \"admim/família\". </p>c) Direitos de administrador: no qual o ZVMODELVZ cria uma conta com direito total chamada \"admin\" </ p>. Nota: As configurações de permissão irão limpar a configuração original das contas de usuários.</p>
 AiDisk_Step1_help2=Observação: O gerenciamento de conta de usuário não funciona em uma partição NTFS.
 AiDisk_Step2_help=O serviço ASUS de DNS dinâmico (DDNS) cria um domínio para um endereço de IP dinâmico.<p>Caso precise configurar seu serviço de DNS dinâmico (DDNS) clique aqui <a href='/Advanced_ASUSDDNS_Content.asp' target='_top'>Advanced DDNS</a></p>
-AiDisk_Step3_help=<a href='../Advanced_AiDisk_samba.asp' target='_top'>Compartilhamento do Ambiente de rede</a>: Você pode operar profissionalmente o servidor Samba.<br/><a href='../Advanced_AiDisk_ftp.asp' target='_top'>Compartilhameto do FTP</a>: Você pode operar profissionalmente o servidor FTP.
+AiDisk_Step3_help=<a href='../aidisk_samba.asp' target='_top'>Compartilhamento do Ambiente de rede</a>: Você pode operar profissionalmente o servidor Samba.<br/><a href='../aidisk_ftp.asp' target='_top'>Compartilhameto do FTP</a>: Você pode operar profissionalmente o servidor FTP.
 Step2_method=Meu servidor FTP está compartilhado.
 Step2_method1=direitos de acesso ilimitados
 Step2_method2=direitos de acesso limitados
@@ -936,7 +936,7 @@ LANHostConfig_x_NTPServer_itemdesc=Para sincronizar o horário do seu sistema co
 LANHostConfig_x_DDNSEnable_sectionname=Configuração do DNS Dinâmico (DDNS)
 LANHostConfig_x_DDNSEnable_sectiondesc=O DNS dinâmico permite que você acesse um computador em sua rede local através de um domínio de Internet mesmo quando conectado por um IP dinâmico. Atualmente diversos serviços de DNS dinâmico estão incorporados no ZVMODELVZ. Você pode clicar em Experimentar Gratuitamente para assinar gratuitamente uma conta deste serviço.
 LANHostConfig_x_DDNSEnable_sectiondesc2=O roteador sem fio usa atualmente um endereço IP WAN privado (192.168.x.x, 10,x,x,x ou 172.16.x.x). Este roteador pode estar no ambiente múltiplo NAT e o serviço DDNS pode não operar neste ambiente.
-LANHostConfig_x_DDNSEnable_sectiondesc3=O nome do host foi registrado com sucesso. Você pode usar "[nome do host].asuscomm.com" para acessar o serviço na rede local a partir de WAN. Use "[nome do host].asuscomm.com" para acessar de modo remoto sua rede.<p> Vá para Advanced Setting (Ajuste Avançado) > WAN para configurar o redirecionamento de portas ou os ajustes DMZ para permitir que outros clientes WAN acessem de modo remoto sua rede.<p>Se você quer configurar de modo remoto o roteador sem fio, vá para <a href="../Advanced_BasicFirewall_Content.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">aqui</a>.
+LANHostConfig_x_DDNSEnable_sectiondesc3=O nome do host foi registrado com sucesso. Você pode usar "[nome do host].asuscomm.com" para acessar o serviço na rede local a partir de WAN. Use "[nome do host].asuscomm.com" para acessar de modo remoto sua rede.<p> Vá para Advanced Setting (Ajuste Avançado) > WAN para configurar o redirecionamento de portas ou os ajustes DMZ para permitir que outros clientes WAN acessem de modo remoto sua rede.<p>Se você quer configurar de modo remoto o roteador sem fio, vá para <a href="../firewall.asp" target="_blank" style="text-decoration: underline; font-family:Lucida Console;">aqui</a>.
 LANHostConfig_x_DDNSEnable_itemname=Ativar o cliente DNS dinâmico ?
 LANHostConfig_x_DDNSServer_itemname=Servidor:
 LANHostConfig_x_DDNSUserName_itemname=Nome do usuário ou E-mail:
