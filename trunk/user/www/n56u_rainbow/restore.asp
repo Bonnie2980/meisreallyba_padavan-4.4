@@ -280,8 +280,8 @@
         <form method="post" name="form" action="upload.cgi" target="hidden_frame" enctype="multipart/form-data">
             <input type="hidden" name="action_mode" value="">
             <input type="hidden" name="action_script" value="">
-            <input type="hidden" name="current_page" value="recovery.asp">
-            <input type="hidden" name="next_page" value="recovery.asp">
+            <input type="hidden" name="current_page" value="restore.asp">
+            <input type="hidden" name="next_page" value="restore.asp">
             <input type="hidden" name="next_host" value="">
             <input type="hidden" name="sid_list" value="General;">
             <input type="hidden" name="productid" value="<% nvram_get_x("", " productid"); %>" readonly="1">

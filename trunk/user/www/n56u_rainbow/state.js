@@ -594,7 +594,7 @@ var tabM6 = [{
 	"link": "upgrade.asp"
 }, {
 	"title": "<#menu5_6_4#>",
-	"link": "recovery.asp"
+	"link": "restore.asp"
 }, {
 	"title": "<#menu5_6_6#>",
 	"link": "console.asp"
