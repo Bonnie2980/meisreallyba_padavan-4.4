@@ -5,7 +5,7 @@
 #define BOARD_DESC		"360-T6GS Wireless Router"
 #define BOARD_VENDOR_NAME	"Qihoo 360"
 #define BOARD_VENDOR_URL	"http://www.360.cn/"
-#define BOARD_MODEL_URL		"http://lift.360.cn/"
+#define BOARD_MODEL_URL		"http://life.360.cn/"
 #define BOARD_BOOT_TIME		20
 #define BOARD_FLASH_TIME	120
 #define BOARD_HAS_5G_11AC	1
