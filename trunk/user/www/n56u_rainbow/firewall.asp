@@ -1,519 +1,597 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>
-        <#Web_Title#> - <#menu5_5_1#>
-    </title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="-1">
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="icon" href="images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+	<title>
+		<#Web_Title#> - <#menu5_5_4#>
+	</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="icon" href="images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/iconmoon/css/iconmoon.css">
 	<link rel="stylesheet" type="text/css" href="/bootstrap/css/simple.switch.three.css">
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
-    <script type="text/javascript" src="/jquery.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/main.css">
+	<script type="text/javascript" src="/jquery.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/bootstrap/js/simple.switch.min.js"></script>
-    <script type="text/javascript" src="/state.js"></script>
-    <script type="text/javascript" src="/general.js"></script>
-    <script type="text/javascript" src="/itoggle.js"></script>
-    <script type="text/javascript" src="/popup.js"></script>
-    <script type="text/javascript" src="/help.js"></script>
-    <script>
-        var $j = jQuery.noConflict();
+	<script type="text/javascript" src="/state.js"></script>
+	<script type="text/javascript" src="/general.js"></script>
+	<script type="text/javascript" src="/itoggle.js"></script>
+	<script type="text/javascript" src="/popup.js"></script>
+	<script type="text/javascript" src="/help.js"></script>
+	<script>
+		var $j = jQuery.noConflict();
 
-        $j(document).ready(function () {
-            init_itoggle('fw_enable_x', firewall_changed);
-            init_itoggle('fw_dos_x');
-            init_itoggle('fw_syn_cook');
-            init_itoggle('misc_ping_x');
-            init_itoggle('misc_http_x', http_wopen_changed);
-            init_itoggle('https_wopen', https_wopen_changed);
-            init_itoggle('sshd_wopen', sshd_wopen_changed);
-            init_itoggle('ftpd_wopen', ftpd_wopen_changed);
-            init_itoggle('udpxy_wopen', udpxy_wopen_changed);
-            init_itoggle('trmd_ropen');
-            init_itoggle('aria_ropen');
-        });
+		$j(document).ready(function () {
+			init_itoggle('fw_lw_enable', change_lw_enable);
+		});
 
-    </script>
-    <script>
+	</script>
+	<script>
 
-        var http_proto = '<% nvram_get_x("", "http_proto"); %>';
+		var LWFilterList = [<% get_nvram_list("FirewallConfig", "LWFilterList"); %>];
 
-        function initial() {
-            show_banner(1);
-			show_menu('if-m1-syssettings', 'if-m2-firewall', 1);
-            show_footer();
+		var wItem = new Array(
+			new Array("HTTP", "80", "TCP"),
+			new Array("HTTPS", "443", "TCP"),
+			new Array("FTP", "20:21", "TCP"),
+			new Array("SSH", "22", "TCP"),
+			new Array("TELNET", "23", "TCP"),
+			new Array("L2TP Tunnel", "1701", "UDP"),
+			new Array("PPTP Control", "1723", "TCP"),
+			new Array("GRE", "47", "OTHER"),
+			new Array("IPSEC-ESP", "50", "OTHER"),
+			new Array("IPSEC-AH", "51", "OTHER"),
+			new Array("IPSEC IKE", "500", "UDP"),
+			new Array("IPSEC NAT-T", "4500", "UDP"),
+			new Array("IPv6 Tunnel", "41", "OTHER"));
 
-            load_body();
+		function initial() {
+			show_banner(1);
+			show_menu('if-m1-syssettings', 'if-m2-firewall', 5);
+			show_footer();
 
-            firewall_changed();
+			change_lw_enable();
 
-            if (found_app_sshd()) {
-                $("row_sshd").style.display = "";
-                sshd_wopen_changed();
-            }
+			document.form.filter_lw_date_x_Sun.checked = getDateCheck(document.form.filter_lw_date_x.value, 0);
+			document.form.filter_lw_date_x_Mon.checked = getDateCheck(document.form.filter_lw_date_x.value, 1);
+			document.form.filter_lw_date_x_Tue.checked = getDateCheck(document.form.filter_lw_date_x.value, 2);
+			document.form.filter_lw_date_x_Wed.checked = getDateCheck(document.form.filter_lw_date_x.value, 3);
+			document.form.filter_lw_date_x_Thu.checked = getDateCheck(document.form.filter_lw_date_x.value, 4);
+			document.form.filter_lw_date_x_Fri.checked = getDateCheck(document.form.filter_lw_date_x.value, 5);
+			document.form.filter_lw_date_x_Sat.checked = getDateCheck(document.form.filter_lw_date_x.value, 6);
 
-            if (found_app_ftpd()) {
-                $("row_ftpd_wopen").style.display = "";
-                if (sw_mode != "4")
-                    ftpd_wopen_changed();
-            }
+			document.form.filter_lw_time_x_starthour.value = getTimeRange(document.form.filter_lw_time_x.value, 0);
+			document.form.filter_lw_time_x_startmin.value = getTimeRange(document.form.filter_lw_time_x.value, 1);
+			document.form.filter_lw_time_x_endhour.value = getTimeRange(document.form.filter_lw_time_x.value, 2);
+			document.form.filter_lw_time_x_endmin.value = getTimeRange(document.form.filter_lw_time_x.value, 3);
 
-            if (sw_mode != "4")
-                udpxy_wopen_changed();
+			showLWFilterList();
 
-            if (found_app_torr())
-                $("row_torrent").style.display = "";
+			load_wizard();
+			change_proto();
 
-            if (found_app_aria())
-                $("row_aria").style.display = "";
+			load_body();
+		}
 
-            if (support_http_ssl()) {
-                if (http_proto == "0" || http_proto == "2") {
-                    if (sw_mode != "4")
-                        http_wopen_changed();
-                } else {
-                    $("row_http_wopen").style.display = "none";
-                }
-                if (http_proto == "1" || http_proto == "2") {
-                    $("row_https_wopen").style.display = "";
-                    if (sw_mode != "4")
-                        https_wopen_changed();
-                }
-            } else {
-                if (sw_mode != "4")
-                    http_wopen_changed();
-            }
-        }
+		function applyRule() {
+			if (validForm()) {
+				document.form.filter_lw_date_x.value = setDateCheck(
+					document.form.filter_lw_date_x_Sun,
+					document.form.filter_lw_date_x_Mon,
+					document.form.filter_lw_date_x_Tue,
+					document.form.filter_lw_date_x_Wed,
+					document.form.filter_lw_date_x_Thu,
+					document.form.filter_lw_date_x_Fri,
+					document.form.filter_lw_date_x_Sat);
+				document.form.filter_lw_time_x.value = setTimeRange(
+					document.form.filter_lw_time_x_starthour,
+					document.form.filter_lw_time_x_startmin,
+					document.form.filter_lw_time_x_endhour,
+					document.form.filter_lw_time_x_endmin);
 
-        function applyRule() {
-            if (validForm()) {
-                showLoading();
+				showLoading();
 
-                document.form.action_mode.value = " Apply ";
-                document.form.current_page.value = "/firewall.asp";
-                document.form.next_page.value = "";
+				document.form.action_mode.value = " Restart ";
+				document.form.current_page.value = "/firewall.asp";
+				document.form.next_page.value = "";
 
-                document.form.submit();
-            }
-        }
+				document.form.submit();
+			}
+		}
 
-        function validForm() {
-            if (sw_mode == '4')
-                return true;
+		function validForm() {
+			if ((document.form.fw_lw_enable_x[0].checked == true)
+				&& (document.form.filter_lw_date_x_Sun.checked == false)
+				&& (document.form.filter_lw_date_x_Mon.checked == false)
+				&& (document.form.filter_lw_date_x_Tue.checked == false)
+				&& (document.form.filter_lw_date_x_Wed.checked == false)
+				&& (document.form.filter_lw_date_x_Thu.checked == false)
+				&& (document.form.filter_lw_date_x_Fri.checked == false)
+				&& (document.form.filter_lw_date_x_Sat.checked == false)) {
+				alert("<#FirewallConfig_LanWanActiveDate_itemname#> <#JS_fieldblank#>");
+				return false;
+			}
 
-            if (support_http_ssl()) {
-                if (http_proto == "0" || http_proto == "2") {
-                    if (!validate_range(document.form.misc_httpport_x, 80, 65535))
-                        return false;
-                }
-                if (http_proto == "1" || http_proto == "2") {
-                    if (!validate_range(document.form.https_wport, 81, 65535))
-                        return false;
-                }
-                if (http_proto == "2") {
-                    if (document.form.misc_httpport_x.value == document.form.https_wport.value) {
-                        alert("HTTP and HTTPS ports is equal!");
-                        document.form.https_wport.focus();
-                        document.form.https_wport.select();
-                        return false;
-                    }
-                }
-            } else {
-                if (!validate_range(document.form.misc_httpport_x, 80, 65535))
-                    return false;
-            }
+			if (document.form.fw_lw_enable_x[0].checked == true) {
+				if (!validate_timerange(document.form.filter_lw_time_x_starthour, 0)
+					|| !validate_timerange(document.form.filter_lw_time_x_startmin, 1)
+					|| !validate_timerange(document.form.filter_lw_time_x_endhour, 2)
+					|| !validate_timerange(document.form.filter_lw_time_x_endmin, 3)
+				)
+					return false;
 
-            if (!validate_range(document.form.udpxy_wport, 1024, 65535))
-                return false;
+				var starttime = eval(document.form.filter_lw_time_x_starthour.value + document.form.filter_lw_time_x_startmin.value);
+				var endtime = eval(document.form.filter_lw_time_x_endhour.value + document.form.filter_lw_time_x_endmin.value);
+				if (starttime == endtime) {
+					alert("<#FirewallConfig_URLActiveTime_itemhint2#>");
+					document.form.filter_lw_time_x_starthour.focus();
+					document.form.filter_lw_time_x_starthour.select;
+					return false;
+				}
+			}
 
-            if (found_app_sshd()) {
-                if (!validate_range(document.form.sshd_wport, 22, 65535))
-                    return false;
-            }
+			if (!validate_portlist(document.form.filter_lw_icmp_x, 'filter_lw_icmp_x'))
+				return false;
 
-            if (found_app_ftpd()) {
-                if (!validate_range(document.form.ftpd_wport, 21, 65535))
-                    return false;
-            }
+			return true;
+		}
 
-            return true;
-        }
+		function done_validating(action) {
+			refreshpage();
+		}
 
-        function firewall_changed() {
-            var v = document.form.fw_enable_x[0].checked;
+		function change_proto() {
+			var v = (document.form.filter_lw_proto_x_0.options.selectedIndex == 9) ? 1 : 0;
+			inputCtrl(document.form.filter_lw_protono_x_0, v);
+			inputCtrl(document.form.filter_lw_srcport_x_0, !v);
+			inputCtrl(document.form.filter_lw_dstport_x_0, !v);
+			if (v) {
+				document.form.filter_lw_dstport_x_0.style.display = "none";
+				document.form.filter_lw_protono_x_0.style.display = "";
+				$("col_port_proto").innerHTML = "<#IPConnection_VServerPNo_itemname#>";
+			} else {
+				document.form.filter_lw_protono_x_0.style.display = "none";
+				document.form.filter_lw_dstport_x_0.style.display = "";
+				$("col_port_proto").innerHTML = '<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,18,2);"><#FirewallConfig_LanWanDstPort_itemname#></a>';
+			}
+		}
 
-            inputCtrl(document.form.misc_httpport_x, v);
-            inputCtrl(document.form.https_wport, v);
-            inputCtrl(document.form.sshd_wport, v);
+		function load_wizard() {
+			free_options(document.form.LWKnownApps);
+			add_option(document.form.LWKnownApps, "<#Select_menu_default#>", "User Defined", 1);
+			for (var i = 0; i < wItem.length; i++)
+				add_option(document.form.LWKnownApps, wItem[i][0], wItem[i][0], 0);
+		}
 
-            inputRCtrl1(document.form.misc_ping_x, v);
-            inputRCtrl1(document.form.misc_http_x, v);
-            inputRCtrl1(document.form.https_wopen, v);
-            inputRCtrl1(document.form.sshd_wopen, v);
-            inputRCtrl1(document.form.ftpd_wopen, v);
-            inputRCtrl1(document.form.trmd_ropen, v);
+		function change_wizard(o, id) {
+			var i;
+			var obj = document.form.filter_lw_proto_x_0;
+			for (i = 0; i < wItem.length; i++) {
+				if (wItem[i][0] != null) {
+					if (o.value == wItem[i][0]) {
+						if (wItem[i][2] == "TCP")
+							obj.options[0].selected = 1;
+						else if (wItem[i][2] == "UDP")
+							obj.options[8].selected = 1;
+						else if (wItem[i][2] == "OTHER")
+							obj.options[9].selected = 1;
 
-            if (!v) {
-                inputRCtrl2(document.form.misc_ping_x, 1);
-                inputRCtrl2(document.form.misc_http_x, 1);
-                inputRCtrl2(document.form.https_wopen, 1);
-                inputRCtrl2(document.form.sshd_wopen, 1);
-                inputRCtrl2(document.form.ftpd_wopen, 1);
-                inputRCtrl2(document.form.trmd_ropen, 1);
-            }
+						if (obj.options.selectedIndex == 9)
+							document.form.filter_lw_protono_x_0.value = wItem[i][1];
+						else
+							document.form.filter_lw_dstport_x_0.value = wItem[i][1];
 
-            showhide_div('row_misc_ping', v);
-            showhide_div('access_section', v);
-        }
+						break;
+					}
+				}
+			}
+			change_proto();
+		}
 
-        function http_wopen_changed() {
-            if (sw_mode == '4')
-                return;
-            var v = document.form.misc_http_x[0].checked;
-            showhide_div('row_http_wport', v);
-        }
+		function change_lw_enable() {
+			var v = document.form.fw_lw_enable_x[0].checked;
+			showhide_div('tbl_lwf_main', v);
+			showhide_div('LWFilterList_Block', v);
+		}
 
-        function https_wopen_changed() {
-            if (sw_mode == '4')
-                return;
-            var v = document.form.https_wopen[0].checked;
-            showhide_div('row_https_wport', v);
-        }
+		function valid_IP_subnet(obj) {
+			var ipPattern1 = new RegExp("(^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.(\\*)$)", "gi");
+			var ipPattern2 = new RegExp("(^([0-9]{1,3})\\.([0-9]{1,3})\\.(\\*)\\.(\\*)$)", "gi");
+			var ipPattern3 = new RegExp("(^([0-9]{1,3})\\.(\\*)\\.(\\*)\\.(\\*)$)", "gi");
+			var ipPattern4 = new RegExp("(^(\\*)\\.(\\*)\\.(\\*)\\.(\\*)$)", "gi");
+			var parts = obj.value.split(".");
+			if (!ipPattern1.test(obj.value) && !ipPattern2.test(obj.value) && !ipPattern3.test(obj.value) && !ipPattern4.test(obj.value)) {
+				alert(obj.value + " <#JS_validip#>");
+				obj.focus();
+				obj.select();
+				return false;
+			} else if (parts[0] == 0 || parts[0] > 255 || parts[1] > 255 || parts[2] > 255) {
+				alert(obj.value + " <#JS_validip#>");
+				obj.focus();
+				obj.select();
+				return false;
+			} else
+				return true;
+		}
 
-        function sshd_wopen_changed() {
-            var v = document.form.sshd_wopen[0].checked;
-            showhide_div('row_sshd_wport', v);
-            showhide_div('row_sshd_wbfp', v);
-        }
+		function valid_IP_form(obj) {
+			if (obj.value == "")
+				return true;
+			if (!validate_ipaddr_final(obj, ""))
+				return false;
+			return true;
+		}
 
-        function ftpd_wopen_changed() {
-            if (sw_mode == '4')
-                return;
-            var v = document.form.ftpd_wopen[0].checked;
-            showhide_div('row_ftpd_wport', v);
-        }
+		function markGroupLWF(o, c, b) {
+			var i, obj, proto_other;
+			document.form.group_id.value = "LWFilterList";
+			if (b == " Add ") {
+				proto_other = (document.form.filter_lw_proto_x_0.options.selectedIndex == 9) ? true : false;
+				if (document.form.filter_lw_num_x_0.value >= c) {
+					alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
+					return false;
+				}
+				obj = document.form.filter_lw_srcip_x_0;
+				if (obj.value.split("*").length >= 2) {
+					if (!valid_IP_subnet(obj))
+						return false;
+				} else if (!valid_IP_form(obj))
+					return false;
+				if (!validate_iprange(obj, ""))
+					return false;
+				obj = document.form.filter_lw_dstip_x_0;
+				if (obj.value.split("*").length >= 2) {
+					if (!valid_IP_subnet(obj))
+						return false;
+				} else if (!valid_IP_form(obj))
+					return false;
+				if (!validate_iprange(obj, ""))
+					return false;
+				if (proto_other) {
+					obj = document.form.filter_lw_protono_x_0;
+					if (obj.value == "") {
+						alert("<#JS_fieldblank#>");
+						obj.focus();
+						return false;
+					} else if (!validate_range(obj, 0, 255))
+						return false;
 
-        function udpxy_wopen_changed() {
-            if (sw_mode == '4')
-                return;
-            var v = document.form.udpxy_wopen[0].checked;
-            showhide_div('row_udpxy_wport', v);
-        }
+					for (i = 0; i < LWFilterList.length; i++) {
+						if (document.form.filter_lw_srcip_x_0.value == LWFilterList[i][0] &&
+							document.form.filter_lw_dstip_x_0.value == LWFilterList[i][2] &&
+							document.form.filter_lw_protono_x_0.value == LWFilterList[i][5] &&
+							document.form.filter_lw_proto_x_0.value == LWFilterList[i][4]) {
+							alert("<#JS_duplicate#>");
+							return false;
+						}
+					}
+					document.form.filter_lw_srcport_x_0.value = "";
+					document.form.filter_lw_dstport_x_0.value = "";
+				} else {
+					if (!validate_portrange(document.form.filter_lw_srcport_x_0, ""))
+						return false;
+					if (!validate_portrange(document.form.filter_lw_dstport_x_0, ""))
+						return false;
 
-        function done_validating(action) {
-            refreshpage();
-        }
-    </script>
-    <style>
-        .nav-tabs>li>a {
-            padding-right: 6px;
-            padding-left: 6px;
-        }
-    </style>
+					if (document.form.filter_lw_srcip_x_0.value == "" &&
+						document.form.filter_lw_dstip_x_0.value == "" &&
+						document.form.filter_lw_srcport_x_0.value == "" &&
+						document.form.filter_lw_dstport_x_0.value == "") {
+						alert("<#JS_fieldblank#>");
+						return false;
+					}
+					for (i = 0; i < LWFilterList.length; i++) {
+						if (document.form.filter_lw_srcip_x_0.value == LWFilterList[i][0] &&
+							document.form.filter_lw_srcport_x_0.value == LWFilterList[i][1] &&
+							document.form.filter_lw_dstip_x_0.value == LWFilterList[i][2] &&
+							document.form.filter_lw_dstport_x_0.value == LWFilterList[i][3] &&
+							document.form.filter_lw_proto_x_0.value == LWFilterList[i][4]) {
+							alert("<#JS_duplicate#>");
+							return false;
+						}
+					}
+					document.form.filter_lw_protono_x_0.value = "";
+				}
+			}
+			pageChanged = 0;
+			document.form.action_mode.value = b;
+			return true;
+		}
+
+		function showLWFilterList() {
+			var i;
+			var code = '';
+			var srcaddr, srcport, dstaddr, dstport, protono;
+			if (LWFilterList.length == 0)
+				code += '<tr><td colspan="6" style="text-align: center;"><div class="alert alert-info"><#IPConnection_VSList_Norule#></div></td></tr>';
+			else {
+				for (i = 0; i < LWFilterList.length; i++) {
+					srcaddr = "*";
+					dstaddr = "*";
+					protono = LWFilterList[i][4];
+					if (LWFilterList[i][0] != null && LWFilterList[i][0] != "")
+						srcaddr = LWFilterList[i][0];
+					if (LWFilterList[i][2] != null && LWFilterList[i][2] != "")
+						dstaddr = LWFilterList[i][2];
+					if (protono == "OTHER") {
+						srcport = "-";
+						dstport = "-";
+						protono = LWFilterList[i][5];
+					} else {
+						srcport = "*";
+						dstport = "*";
+						if (LWFilterList[i][1] != null && LWFilterList[i][1] != "")
+							srcport = LWFilterList[i][1];
+						if (LWFilterList[i][3] != null && LWFilterList[i][3] != "")
+							dstport = LWFilterList[i][3];
+					}
+					code += '<tr id="row' + i + '">';
+					code += '<td>&nbsp;' + srcaddr + '</td>';
+					code += '<td width="15%">&nbsp;' + srcport + '</td>';
+					code += '<td width="25%">&nbsp;' + dstaddr + '</td>';
+					code += '<td width="15%">&nbsp;' + dstport + '</td>';
+					code += '<td width="15%">&nbsp;' + protono + '</td>';
+					code += '<td width="5%" style="text-align: center;"><input type="checkbox" name="LWFilterList_s" value="' + i + '" onClick="changeBgColor(this,' + i + ');" id="check' + i + '"></td>';
+					code += '</tr>';
+				}
+				code += '<tr>';
+				code += '<td colspan="5">&nbsp;</td>';
+				code += '<td><button class="btn btn-danger" type="submit" onclick="markGroupLWF(this,64,\' Del \');" name="LWFilterList"><i class="if if-btn-minus"></i></button></td>';
+				code += '</tr>';
+			}
+			$j('#LWFilterList_Block').append(code);
+		}
+
+		function changeBgColor(obj, num) {
+			$("row" + num).style.background = (obj.checked) ? '#D9EDF7' : 'whiteSmoke';
+		}
+
+	</script>
+	<style>
+		.nav-tabs>li>a {
+			padding-right: 6px;
+			padding-left: 6px;
+		}
+
+		.radio.inline+.radio.inline,
+		.checkbox.inline+.checkbox.inline {
+			margin-left: 3px;
+		}
+
+		.table-list td {
+			padding: 6px 4px;
+		}
+
+		.table-list input,
+		.table-list select {
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+
+		.table-list tr:nth-child(2) {
+			font-size: 75%;
+			font-weight: bold;
+		}
+	</style>
 </head>
 
 <body onload="initial();" onunLoad="return unload_body();">
 	<div id="Loading" class="popup_bg"></div>
-    <div class="wrapper">
-        <div class="container-fluid" style="padding-right: 0px">
-            <div class="row-fluid">
-                <div class="span3">
-                    <center>
-                        <div id="logo"></div>
-                    </center>
-                </div>
-                <div class="span9">
-                    <div id="TopBanner"></div>
-                </div>
-            </div>
-        </div>
-        <iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
-        <form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
-            <input type="hidden" name="current_page" value="firewall.asp">
-            <input type="hidden" name="next_page" value="">
-            <input type="hidden" name="next_host" value="">
-            <input type="hidden" name="sid_list" value="FirewallConfig;">
-            <input type="hidden" name="group_id" value="">
-            <input type="hidden" name="action_mode" value="">
-            <input type="hidden" name="action_script" value="">
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span3">
-                        <!--Sidebar content-->
-                        <!--=====Beginning of Main Menu=====-->
-                        <div class="well sidebar-nav side_nav" style="padding: 0px;">
-                            <ul id="mainMenu" class="clearfix"></ul>
-                            <ul class="clearfix">
-                                <li>
-                                    <div id="subMenu" class="accordion"></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+	<div class="wrapper">
+		<div class="container-fluid" style="padding-right: 0px">
+			<div class="row-fluid">
+				<div class="span3">
+					<center>
+						<div id="logo"></div>
+					</center>
+				</div>
+				<div class="span9">
+					<div id="TopBanner"></div>
+				</div>
+			</div>
+		</div>
+		<iframe name="hidden_frame" id="hidden_frame" src="" width="0" height="0" frameborder="0"></iframe>
+		<form method="post" name="form" id="ruleForm" action="/start_apply.htm" target="hidden_frame">
+			<input type="hidden" name="current_page" value="firewall.asp">
+			<input type="hidden" name="next_page" value="">
+			<input type="hidden" name="next_host" value="">
+			<input type="hidden" name="sid_list" value="FirewallConfig;">
+			<input type="hidden" name="group_id" value="LWFilterList">
+			<input type="hidden" name="action_mode" value="">
+			<input type="hidden" name="action_script" value="">
+			<input type="hidden" name="filter_lw_date_x" value="<% nvram_get_x(""," filter_lw_date_x"); %>">
+			<input type="hidden" name="filter_lw_time_x" value="<% nvram_get_x(""," filter_lw_time_x"); %>">
+			<input type="hidden" name="filter_lw_num_x_0" value="<% nvram_get_x("", " filter_lw_num_x"); %>" readonly="1">
 
-                    <div class="span9">
-                        <!--Body content-->
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <div class="box well grad_colour_dark_blue">
-                                    <h2 class="box_head round_top">
-                                        <#menu5_5#> - <#menu5_5_1#>
-                                    </h2>
-                                    <div class="round_bottom">
-                                        <div class="row-fluid">
-                                            <div id="tabMenu" class="submenuBlock"></div>
-                                            <div class="alert alert-info" style="margin: 10px;">
-                                                <#FirewallConfig_display2_sectiondesc#>
-                                            </div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span3">
+						<!--Sidebar content-->
+						<!--=====Beginning of Main Menu=====-->
+						<div class="well sidebar-nav side_nav" style="padding: 0px;">
+							<ul id="mainMenu" class="clearfix"></ul>
+							<ul class="clearfix">
+								<li>
+									<div id="subMenu" class="accordion"></div>
+								</li>
+							</ul>
+						</div>
+					</div>
 
-                                            <table width="100%" cellpadding="4" cellspacing="0" class="table">
-                                                <tr>
-                                                    <th colspan="2" style="background-color: #E3E3E3;">
-                                                        <#menu5_5#>
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th width="50%">
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,6);"><#FirewallConfig_FirewallEnable_itemname#></a>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="fw_enable_x_fake" <% nvram_match_x("", "fw_enable_x" , "1" , "value=1 checked" ); %><% nvram_match_x("", "fw_enable_x" , "0" , "value=0" ); %> />                              
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="fw_enable_x" id="fw_enable_x_1" onClick="firewall_changed();" <% nvram_match_x("","fw_enable_x", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="fw_enable_x" id="fw_enable_x_0" onClick="firewall_changed();" <% nvram_match_x("","fw_enable_x", "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,7);"><#FirewallConfig_DoSEnable_itemname#></a>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="fw_dos_x_fake" <% nvram_match_x("", "fw_dos_x" , "1" , "value=1 checked" ); %><% nvram_match_x("", "fw_dos_x" , "0" , "value=0" ); %>>
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="fw_dos_x" id="fw_dos_x_1" class="input" <% nvram_match_x("", "fw_dos_x", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="fw_dos_x" id="fw_dos_x_0" class="input" <% nvram_match_x("", "fw_dos_x", "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,8);"><#FirewallConfigSynFlood#></a>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="fw_syn_cook_fake" <% nvram_match_x("", "fw_syn_cook" , "1" , "value=1 checked" ); %><% nvram_match_x("", "fw_syn_cook" , "0" , "value=0" ); %> /> 
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="fw_syn_cook" id="fw_syn_cook_1" class="input" <% nvram_match_x("", "fw_syn_cook", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="fw_syn_cook" id="fw_syn_cook_0" class="input" <% nvram_match_x("", "fw_syn_cook" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,1);"><#FirewallConfig_WanLanLog_itemname#></a>
-                                                    </th>
-                                                    <td>
-                                                        <select name="fw_log_x" class="input" onchange="return change_common(this, 'FirewallConfig', 'fw_log_x')">
-                                                            <option value="none" <% nvram_match_x("","fw_log_x", "none" ,"selected"); %>><#checkbox_No#></option>
-                                                            <option value="drop" <% nvram_match_x("","fw_log_x", "drop" ,"selected"); %>>Dropped</option>
-                                                            <option value="accept" <% nvram_match_x("","fw_log_x", "accept" ,"selected"); %>>Accepted</option>
-                                                            <option value="both" <% nvram_match_x("","fw_log_x", "both" ,"selected"); %>>Both</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_misc_ping">
-                                                    <th>
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,5);"><#FirewallConfig_x_WanPingEnable_itemname#></a>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="misc_ping_x_fake" <% nvram_match_x("", "misc_ping_x" , "1" , "value=1 checked" ); %><% nvram_match_x("", "misc_ping_x" , "0" , "value=0" ); %> />
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="misc_ping_x" id="misc_ping_x_1" class="input" <% nvram_match_x("","misc_ping_x", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="misc_ping_x" id="misc_ping_x_0" class="input" <% nvram_match_x("","misc_ping_x", "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table width="100%" cellpadding="4" cellspacing="0" class="table" id="access_section">
-                                                <tr>
-                                                    <th colspan="2" style="background-color: #E3E3E3;">
-                                                        <#Adm_Access_WAN#>
-                                                    </th>
-                                                </tr>
-                                                <tr id="row_http_wopen">
-                                                    <th width="50%">
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,2);"><#FirewallConfig_x_WanWebEnable_itemname#></a>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="misc_http_x_fake" <% nvram_match_x("", "misc_http_x" , "1" , "value=1 checked" ); %><% nvram_match_x("", "misc_http_x" , "0" , "value=0" ); %> />                         
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="misc_http_x" id="misc_http_x_1" class="input" onclick="http_wopen_changed();" <% nvram_match_x("","misc_http_x", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="misc_http_x" id="misc_http_x_0" class="input" onclick="http_wopen_changed();" <% nvram_match_x("","misc_http_x", "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_http_wport" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,8,3);"><#FirewallConfig_x_WanWebPort_itemname#></a>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <input type="text" maxlength="5" size="5" name="misc_httpport_x" class="input" value='<% nvram_get_x("", " misc_httpport_x"); %>' onkeypress="return is_number(this,event);" />
-                                                        &nbsp;
-                                                        <span style="color:#888;">[80..65535]</span>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_https_wopen" style="display:none;">
-                                                    <th width="50%">
-                                                        <#Adm_System_https_wopen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="https_wopen_fake" <% nvram_match_x("", "https_wopen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "https_wopen" , "0" , "value=0" ); %> />
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" value="1" name="https_wopen" id="https_wopen_1" class="input" onclick="https_wopen_changed();" <% nvram_match_x("","https_wopen", "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" value="0" name="https_wopen" id="https_wopen_0" class="input" onclick="https_wopen_changed();" <% nvram_match_x("","https_wopen", "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_https_wport" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <#Adm_System_https_wport#>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <input type="text" maxlength="5" size="5" name="https_wport" class="input" value='<% nvram_get_x("", " https_wport"); %>' onkeypress="return is_number(this,event);" />
-                                                        &nbsp;
-                                                        <span style="color:#888;">[81..65535]</span>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_sshd" style="display:none;">
-                                                    <th>
-                                                        <#Adm_System_sshd_wopen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="sshd_wopen_fake" <% nvram_match_x("", "sshd_wopen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "sshd_wopen" , "0" , "value=0" ); %>>
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" name="sshd_wopen" id="sshd_wopen_1" class="input" value="1" onclick="sshd_wopen_changed();" <% nvram_match_x("", "sshd_wopen" , "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" name="sshd_wopen" id="sshd_wopen_0" class="input" value="0" onclick="sshd_wopen_changed();" <% nvram_match_x("", "sshd_wopen" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_sshd_wport" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <#Adm_System_sshd_wport#>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <input type="text" maxlength="5" size="5" name="sshd_wport" class="input" value='<% nvram_get_x(""," sshd_wport"); %>' onkeypress="return is_number(this,event);"/>
-                                                        &nbsp;
-                                                        <span style="color:#888;">[22..65535]</span>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_sshd_wbfp" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <#Adm_System_sshd_wbfp#>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <select name="sshd_wbfp" class="input">
-                                                            <option value="0" <% nvram_match_x("","sshd_wbfp", "0" ,"selected"); %>><#checkbox_No#></option>
-                                                            <option value="1" <% nvram_match_x("","sshd_wbfp", "1" ,"selected"); %>>Max 3 tries / 1 min</option>
-                                                            <option value="2" <% nvram_match_x("","sshd_wbfp", "2" ,"selected"); %>>Max 3 tries / 5 min (*)</option>
-                                                            <option value="3" <% nvram_match_x("","sshd_wbfp", "3" ,"selected"); %>>Max 3 tries / 10 min</option>
-                                                            <option value="4" <% nvram_match_x("","sshd_wbfp", "4" ,"selected"); %>>Max 3 tries / 30 min</option>
-                                                            <option value="5" <% nvram_match_x("","sshd_wbfp", "5" ,"selected"); %>>Max 3 tries / 60 min</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_ftpd_wopen" style="display:none;">
-                                                    <th>
-                                                        <#Adm_System_ftpd_wopen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="ftpd_wopen_fake" <% nvram_match_x("", "ftpd_wopen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "ftpd_wopen" , "0" , "value=0" ); %>> 
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" name="ftpd_wopen" id="ftpd_wopen_1" class="input" value="1" onclick="ftpd_wopen_changed();" <% nvram_match_x("", "ftpd_wopen" , "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" name="ftpd_wopen" id="ftpd_wopen_0" class="input" value="0" onclick="ftpd_wopen_changed();" <% nvram_match_x("", "ftpd_wopen" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_ftpd_wport" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <#Adm_System_ftpd_wport#>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <input type="text" maxlength="5" size="5" name="ftpd_wport" class="input" value='<% nvram_get_x(""," ftpd_wport"); %>' onkeypress="return is_number(this,event);"/>
-                                                        &nbsp;
-                                                        <span style="color:#888;">[21..65535]</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>
-                                                        <#Adm_System_udpxy_wopen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="udpxy_wopen_fake" <% nvram_match_x("", "udpxy_wopen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "udpxy_wopen" , "0" , "value=0" ); %>>
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" name="udpxy_wopen" id="udpxy_wopen_1" class="input" value="1" onclick="udpxy_wopen_changed();"<% nvram_match_x("", "udpxy_wopen" , "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" name="udpxy_wopen" id="udpxy_wopen_0" class="input" value="0" onclick="udpxy_wopen_changed();" <% nvram_match_x("", "udpxy_wopen" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_udpxy_wport" style="display:none;">
-                                                    <th style="border-top: 0 none;">
-                                                        <#Adm_System_udpxy_wport#>
-                                                    </th>
-                                                    <td style="border-top: 0 none;">
-                                                        <input type="text" maxlength="5" size="5" name="udpxy_wport" class="input" value='<% nvram_get_x(""," udpxy_wport"); %>' onkeypress="return is_number(this,event);"/>
-                                                        &nbsp;
-                                                        <span style="color:#888;">[1024..65535]</span>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_torrent" style="display:none;">
-                                                    <th>
-                                                        <#Adm_System_trmd_ropen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="trmd_ropen_fake" <% nvram_match_x("", "trmd_ropen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "trmd_ropen" , "0" , "value=0" ); %> />
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" name="trmd_ropen" id="trmd_ropen_1" class="input" value="1" <% nvram_match_x("", "trmd_ropen" , "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" name="trmd_ropen" id="trmd_ropen_0" class="input" value="0" <% nvram_match_x("", "trmd_ropen" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr id="row_aria" style="display:none;">
-                                                    <th>
-                                                        <#Adm_System_aria_ropen#>
-                                                    </th>
-                                                    <td>
-                                                        <input type="checkbox" id="aria_ropen_fake" <% nvram_match_x("", "aria_ropen" , "1" , "value=1 checked" ); %><% nvram_match_x("", "aria_ropen" , "0" , "value=0" ); %> />
-                                                        <div style="position: absolute; margin-left: -10000px;">
-                                                            <input type="radio" name="aria_ropen" id="aria_ropen_1" class="input" value="1" <% nvram_match_x("", "aria_ropen" , "1" , "checked" ); %>/><#checkbox_Yes#>
-                                                            <input type="radio" name="aria_ropen" id="aria_ropen_0" class="input" value="0" <% nvram_match_x("", "aria_ropen" , "0" , "checked" ); %>/><#checkbox_No#>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table class="table">
-                                                <tr>
-                                                    <td style="border: 0 none;">
-                                                        <center>
-                                                            <input name="button" type="button" class="btn btn-primary" style="width: 219px" onclick="applyRule();" value="<#CTL_apply#>" />
-                                                        </center>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div id="footer"></div>
-    </div>
+					<div class="span9">
+						<!--Body content-->
+						<div class="row-fluid">
+							<div class="span12">
+								<div class="box well grad_colour_dark_blue">
+									<h2 class="box_head round_top">
+										<#menu5_5#> - <#menu5_5_4#>
+									</h2>
+									<div class="round_bottom">
+										<div class="row-fluid">
+											<div id="tabMenu" class="submenuBlock"></div>
+											<div class="alert alert-info" style="margin: 10px;">
+												<#FirewallConfig_display1_sectiondesc#>
+											</div>
+
+											<table width="100%" cellpadding="4" cellspacing="0" class="table">
+												<tr>
+													<th width="50%" style="padding-bottom: 0px; border-top: 0 none;">
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,10,5);"><#FirewallConfig_LanWanFirewallEnable_itemname#></a>
+													</th>
+													<td style="padding-bottom: 0px; border-top: 0 none;">
+														<input type="checkbox" id="fw_lw_enable_fake" <% nvram_match_x("", "fw_lw_enable_x" , "1" , "value=1 checked"); %><% nvram_match_x("", "fw_lw_enable_x" , "0" , "value=0" ); %> />
+														<div style="position: absolute; margin-left: -10000px;">
+															<input type="radio" value="1" name="fw_lw_enable_x" id="fw_lw_enable_1" onClick="change_lw_enable();" <% nvram_match_x("","fw_lw_enable_x", "1" , "checked" ); %>><#checkbox_Yes#>
+															<input type="radio" value="0" name="fw_lw_enable_x" id="fw_lw_enable_0" onClick="change_lw_enable();" <% nvram_match_x("","fw_lw_enable_x", "0" , "checked" ); %>><#checkbox_No#>
+														</div>
+													</td>
+												</tr>
+											</table>
+											<table width="100%" cellpadding="4" cellspacing="0" class="table" id="tbl_lwf_main" style="display:none">
+												<tr>
+													<th colspan="2" style="background-color: #E3E3E3;">
+														<#menu5_5_4#>
+													</th>
+												</tr>
+												<tr>
+													<th width="50%">
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,10,3);"><#FirewallConfig_LanWanDefaultAct_itemname#></a>
+													</th>
+													<td>
+														<select name="filter_lw_default_x" class="input">
+															<option value="DROP" <% nvram_match_x("","filter_lw_default_x", "DROP" ,"selected"); %>><#WhiteList#></option>
+															<option value="ACCEPT" <% nvram_match_x("","filter_lw_default_x", "ACCEPT" ,"selected"); %>><#BlackList#></option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<th>
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,10,1);"><#FirewallConfig_LanWanActiveDate_itemname#></a>
+													</th>
+													<td>
+														<div class="controls">
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Mon" class="input" onChange="return changeDate();"><#DAY_Mon#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Tue" class="input" onChange="return changeDate();"><#DAY_Tue#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Wed" class="input" onChange="return changeDate();"><#DAY_Wed#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Thu" class="input" onChange="return changeDate();"><#DAY_Thu#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Fri" class="input" onChange="return changeDate();"><#DAY_Fri#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Sat" class="input" onChange="return changeDate();"><#DAY_Sat#></label>
+															<label class="checkbox inline"><input type="checkbox" name="filter_lw_date_x_Sun" class="input" onChange="return changeDate();"><#DAY_Sun#></label>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th>
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,10,2);"><#FirewallConfig_LanWanActiveTime_itemname#></a>
+													</th>
+													<td>
+														<input type="text" maxlength="2" class="input" style="width: 25px;" size="2" name="filter_lw_time_x_starthour" onKeyPress="return is_number(this,event);" />:
+														<input type="text" maxlength="2" class="input" style="width: 25px;" size="2" name="filter_lw_time_x_startmin" onKeyPress="return is_number(this,event);" />-
+														<input type="text" maxlength="2" class="input" style="width: 25px;" size="2" name="filter_lw_time_x_endhour" onKeyPress="return is_number(this,event);" />:
+														<input type="text" maxlength="2" class="input" style="width: 25px;" size="2" name="filter_lw_time_x_endmin" onKeyPress="return is_number(this,event);" />
+													</td>
+												</tr>
+												<tr>
+													<th>
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,10,4);"><#FirewallConfig_LanWanICMP_itemname#></a>
+													</th>
+													<td>
+														<input type="text" maxlength="36" class="input" size="32" name="filter_lw_icmp_x" value='<% nvram_get_x("","filter_lw_icmp_x"); %>' onKeyPress="return is_portlist(this,event)">
+													</td>
+												</tr>
+												<tr>
+													<th>
+														<#FirewallConfig_LWFilterList_widzarddesc#>
+													</th>
+													<td>
+														<select name="LWKnownApps" class="input" onChange="change_wizard(this, 'LWKnownApps');">
+															<option value="User Defined"><#Select_menu_default#></option>
+														</select>
+													</td>
+												</tr>
+											</table>
+											<table width="100%" cellpadding="4" cellspacing="0" class="table table-list" id="LWFilterList_Block" style="display:none">
+												<tr>
+													<th colspan="6" style="background-color: #E3E3E3;">
+														<#FirewallConfig_LWFilterList_groupitemdesc#>
+													</th>
+												</tr>
+												<tr>
+													<td>
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,18,3);"><#FirewallConfig_LanWanSrcIP_itemname#></a>
+													</td>
+													<td width="15%">
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,18,2);"> <#FirewallConfig_LanWanSrcPort_itemname#></a>
+													</td>
+													<td width="25%">
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,18,3);"><#FirewallConfig_LanWanDstIP_itemname#></a>
+													</td>
+													<td width="15%" id="col_port_proto">
+														<a class="help_tooltip" href="javascript:void(0);" onmouseover="openTooltip(this,18,2);"><#FirewallConfig_LanWanDstPort_itemname#></a>
+													</td>
+													<td width="15%">
+														<#FirewallConfig_LanWanProFlag_itemname#>
+													</td>
+													<td width="5%">&nbsp;</td>
+												</tr>
+												<tr>
+													<td>
+														<input type="text" maxlength="15" class="span12" size="14" name="filter_lw_srcip_x_0" value='<% nvram_get_x("", "filter_lw_srcip_x_0"); %>' onKeyPress="return is_iprange(this,event);" />
+													</td>
+													<td>
+														<input type="text" maxlength="11" class="span12" size="10" name="filter_lw_srcport_x_0" value='<% nvram_get_x("", "filter_lw_srcport_x_0"); %>' onKeyPress="return is_portrange(this,event);" />
+													</td>
+													<td>
+														<input type="text" maxlength="15" class="span12" size="14" name="filter_lw_dstip_x_0" value='<% nvram_get_x("", "filter_lw_dstip_x_0"); %>' onKeyPress="return is_iprange(this,event);" />
+													</td>
+													<td>
+														<input type="text" maxlength="11" class="span12" size="10" name="filter_lw_dstport_x_0" value='<% nvram_get_x("", "filter_lw_dstport_x_0"); %>' onKeyPress="return is_portrange(this,event);" />
+														<input style="display:none" type="text" class="span12" maxlength="3" size="3" name="filter_lw_protono_x_0" value='<% nvram_get_x("", " filter_lw_protono_x_0"); %>' onkeypress="return is_number(this,event);" />
+													</td>
+													<td>
+														<select name="filter_lw_proto_x_0" class="span12" onchange="change_proto()">
+															<option value="TCP" <% nvram_match_x("","filter_lw_proto_x_0","TCP","selected");%>>TCP</option>
+															<option value="TCP ALL" <% nvram_match_x("","filter_lw_proto_x_0","TCPALL","selected"); %>>TCP ALL</option>
+															<option value="TCP SYN" <% nvram_match_x("","filter_lw_proto_x_0","TCPSYN","selected"); %>>TCP SYN</option>
+															<option value="TCP ACK" <% nvram_match_x("","filter_lw_proto_x_0","TCPACK","selected"); %>>TCP ACK</option>
+															<option value="TCP FIN" <% nvram_match_x("","filter_lw_proto_x_0","TCPFIN","selected"); %>>TCP FIN</option>
+															<option value="TCP RST" <% nvram_match_x("","filter_lw_proto_x_0","TCPRST","selected"); %>>TCP RST</option>
+															<option value="TCP URG" <% nvram_match_x("","filter_lw_proto_x_0","TCPURG","selected"); %>>TCP URG</option>
+															<option value="TCP PSH" <% nvram_match_x("","filter_lw_proto_x_0","TCPPSH","selected"); %>>TCP PSH</option>
+															<option value="UDP" <% nvram_match_x("","filter_lw_proto_x_0","UDP","selected");%>>UDP</option>
+															<option value="OTHER" <% nvram_match_x("","filter_lw_proto_x_0","OTHER","selected");%>>Other</option>
+														</select>
+													</td>
+													<td>
+														<button class="btn" type="submit" onclick="return markGroupLWF(this, 64, ' Add ');" name="LWFilterList2">
+															<i class="if if-btn-plus"></i>
+														</button>
+													</td>
+												</tr>
+											</table>
+											<table class="table">
+												<tr>
+													<td style="border: 0 none;">
+														<center>
+															<input name="button" type="button" class="btn btn-primary" style="width: 219px" onclick="applyRule();" value="<#CTL_apply#>" />
+														</center>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div id="footer"></div>
+	</div>
 </body>
 </html>

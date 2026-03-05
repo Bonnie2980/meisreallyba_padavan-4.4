@@ -550,7 +550,7 @@ var tabM3 = [{
 }];
 var tabM4 = [{
 	"title": "<#menu5_5_1#>",
-	"link": "firewall.asp"
+	"link": "basic_firewall.asp"
 }, {
 	"title": "<#menu5_5_5#>",
 	"link": "netfilter.asp"
@@ -562,7 +562,7 @@ var tabM4 = [{
 	"link": "macfilter.asp"
 }, {
 	"title": "<#menu5_5_4#>",
-	"link": "netfilter.asp"
+	"link": "firewall.asp"
 }];
 var tabM5 = [{
 	"title": "<#menu5_4_3#>",
