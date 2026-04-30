@@ -1,7 +1,7 @@
 ##################################################################
-# Board PID # Board Name       # PRODUCT # Note
+# Board PID   # Board Name       # PRODUCT # Note
 ##################################################################
-# NETGEAR-BZV # NETGEAR-BZV   # MT7621  #
+# NETGEAR-BZV # NETGEAR-BZV      # MT7621  #
 ##################################################################
 
 CFLAGS += -DBOARD_NETGEAR_BZV
