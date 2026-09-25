@@ -3617,15 +3617,19 @@ struct mime_handler mime_handlers[] = {
 	{ "client_function.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
 	{ "disk_functions.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
 	{ "md5.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
+	{ "**bootstrap.bundle.min.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**jquery.slim.min.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**sakura.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**signin.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**main.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**util.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 
 	/* cached css  */
 	{ "**.css", "text/css", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
 
-#if defined(APP_ARIA)
 	/* cached font */
 	{ "**.woff", "application/font-woff", NULL, NULL, do_file, 0 }, // 2016.01 Volt1
 	{ "**.woff2", "application/font-woff", NULL, NULL, do_file, 0 },
-#endif
 
 	/* cached images */
 	{ "**.png", "image/png", NULL, NULL, do_file, 0 }, // 2012.06 Eagle23
