@@ -3621,6 +3621,7 @@ struct mime_handler mime_handlers[] = {
 	{ "**jquery.slim.min.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 	{ "**sakura.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 	{ "**signin.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
+	{ "**signout.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 	{ "**main.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 	{ "**util.js", "text/javascript", NULL, NULL, do_file, 0 }, // 2026.09 Eagle23
 
